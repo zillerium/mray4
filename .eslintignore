@@ -1,0 +1,11 @@
+# Ignore build artifacts
+.next/
+dist/
+build/
+
+# Ignore third-party code
+node_modules/
+
+# Add any other paths you want to ignore
+vendor-chunks/
+
