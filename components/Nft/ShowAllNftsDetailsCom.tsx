@@ -9,7 +9,9 @@ interface ShowAllNftsDetailsComProps {
   selectedToken: number;
 }
 
-const ShowAllNftsDetailsCom: React.FC<ShowAllNftsDetailsComProps> = ({ selectedToken }) => {
+const ShowAllNftsDetailsCom: React.FC<ShowAllNftsDetailsComProps> = ({
+  selectedToken,
+}) => {
   const { address: userAddress } = useAccount();
   const [pdfClientName, setPdfClientName] = useState<string>("");
   const [ipfsPdfCid, setIpfsPdfCid] = useState<string>("");
@@ -72,15 +74,14 @@ const ShowAllNftsDetailsCom: React.FC<ShowAllNftsDetailsComProps> = ({ selectedT
           )}
           {ipfsPdfCid && (
             <div className="w-full max-w-md mt-4">
-              <AddIpfsNftDoc
-                ipfsAddress={ipfsPdfCid}
-                nftId={selectedToken}
-              />
+              <AddIpfsNftDoc ipfsAddress={ipfsPdfCid} nftId={selectedToken} />
             </div>
           )}
         </div>
       ) : (
-        <p className="text-red-500">Only approved users may add PDFs to this NFT.</p>
+        <p className="text-red-500">
+          Only approved users may add PDFs to this NFT.
+        </p>
       )}
     </div>
   );

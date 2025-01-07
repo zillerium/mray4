@@ -25,22 +25,6 @@ const NavBarAdmin = () => {
             NFT Admin
           </li>
         </Link>
-        <Link href="/TokenModel">
-          <li
-            role="menuitem"
-            className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
-          >
-            Token Model
-          </li>
-        </Link>
-        <Link href="/PriceGraph">
-          <li
-            role="menuitem"
-            className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
-          >
-            Price Graph
-          </li>
-        </Link>
       </ul>
     </li>
   );
