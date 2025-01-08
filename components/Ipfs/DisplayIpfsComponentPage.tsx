@@ -1,13 +1,15 @@
 // components/DisplayIpfsComponentPage.tsx
 
-import React from "react";
+import React from 'react';
 
 // Define an interface for the component props
 interface DisplayIpfsComponentPageProps {
   carModelUri: string; // Explicitly define the type of carModelUri
 }
 
-const DisplayIpfsComponentPage: React.FC<DisplayIpfsComponentPageProps> = ({ carModelUri }) => {
+const DisplayIpfsComponentPage: React.FC<DisplayIpfsComponentPageProps> = ({
+  carModelUri,
+}) => {
   const ipfsLink = `https://rose-wonderful-crab-70.mypinata.cloud/ipfs/${carModelUri}`;
 
   return (
@@ -18,7 +20,7 @@ const DisplayIpfsComponentPage: React.FC<DisplayIpfsComponentPageProps> = ({ car
             src={ipfsLink}
             alt="IPFS Image"
             className="h-50 d-inline-block"
-            style={{ width: 500, backgroundColor: "rgba(0, 0, 255, 0.1)" }}
+            style={{ width: 500, backgroundColor: 'rgba(0, 0, 255, 0.1)' }}
           />
           <a
             href={ipfsLink}
@@ -37,4 +39,3 @@ const DisplayIpfsComponentPage: React.FC<DisplayIpfsComponentPageProps> = ({ car
 };
 
 export default DisplayIpfsComponentPage;
-

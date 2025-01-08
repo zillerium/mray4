@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import ManageInvestorPool from '@/components/Pool/ManageInvestorPool';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
-import InvestorPoolMgrGraphicCom from "@/components/Pool/InvestorPoolMgrGraphicCom";
+import InvestorPoolMgrGraphicCom from '@/components/Pool/InvestorPoolMgrGraphicCom';
 
 const ShowInvestorPool: React.FC = () => {
   return (
@@ -23,4 +23,3 @@ const ShowInvestorPool: React.FC = () => {
 };
 
 export default ShowInvestorPool;
-

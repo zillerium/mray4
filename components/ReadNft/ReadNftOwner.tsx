@@ -1,9 +1,9 @@
 // components/ReadNftOwner.tsx
 
-import React, { useEffect, useState } from "react";
-import { useContractRead } from "wagmi";
-import uniContractABI from "@/lib/uniContractABI.json";
-import uniContractAddress from "@/lib/uniContractAddress.json";
+import React, { useEffect, useState } from 'react';
+import { useContractRead } from 'wagmi';
+import uniContractABI from '@/lib/uniContractABI.json';
+import uniContractAddress from '@/lib/uniContractAddress.json';
 
 interface ReadNftOwnerProps {
   tokenNumber: string;
@@ -18,7 +18,7 @@ const ReadNftOwner: React.FC<ReadNftOwnerProps> = ({ tokenNumber }) => {
   const { data: owner, error } = useContractRead({
     address: contractAddress,
     abi: uniContractABI, // Directly use the imported ABI
-    functionName: "ownerOf",
+    functionName: 'ownerOf',
     args: [tokenNumber],
   });
 
@@ -26,16 +26,15 @@ const ReadNftOwner: React.FC<ReadNftOwnerProps> = ({ tokenNumber }) => {
     if (owner) {
       setOwnerAddress(owner.toString());
     } else if (error) {
-      setOwnerAddress("Error fetching owner");
+      setOwnerAddress('Error fetching owner');
     }
   }, [owner, error]);
 
   return (
     <div className="mt-2">
-      <h5>Owner: {ownerAddress || "Loading..."}</h5>
+      <h5>Owner: {ownerAddress || 'Loading...'}</h5>
     </div>
   );
 };
 
 export default ReadNftOwner;
-

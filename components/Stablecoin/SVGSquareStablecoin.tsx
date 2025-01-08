@@ -52,7 +52,13 @@ const SVGSquareStablecoin = () => {
             }}
           >
             {/* Row 1: Stablecoin */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
               <span>Mray Tokens</span>
               <span style={{ color: '#4f46e5' }}>
                 {isConnected && address ? (
@@ -108,7 +114,10 @@ const SVGSquareStablecoin = () => {
               alignItems: 'center',
             }}
           >
-            <FontAwesomeIcon icon={faCoins} style={{ fontSize: '36px', color: '#4f46e5' }} />
+            <FontAwesomeIcon
+              icon={faCoins}
+              style={{ fontSize: '36px', color: '#4f46e5' }}
+            />
           </div>
         </foreignObject>
       </svg>
@@ -117,4 +126,3 @@ const SVGSquareStablecoin = () => {
 };
 
 export default SVGSquareStablecoin;
-

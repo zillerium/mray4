@@ -5,12 +5,11 @@ import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
 import RedeemNftPool from '@/components/Pool/RedeemNftPool';
 import BuyNftPool from '@/components/Pool/BuyNftPool';
 import GetStablecoinBalanceNew from '@/components/Stablecoin/GetStablecoinBalanceNew';
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json"; // Address for the vault contract
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the vault contract
 
 const contractAddress = vaultNFTAddress.address as `0x${string}`;
 
 export default function ManagePool() {
-
   const [nftList, setNftList] = useState<number[]>([]);
   const [selectedNft, setSelectedNft] = useState<number | null>(null);
 
@@ -22,8 +21,6 @@ export default function ManagePool() {
     const selectedValue = parseInt(event.target.value, 10);
     setSelectedNft(selectedValue);
   };
-
-
 
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
@@ -37,33 +34,35 @@ export default function ManagePool() {
         >
           Mray&apos;s NFT Vault
         </span>
-        {selectedNft !== null && <DisplayNFTNumber selectedToken={selectedNft} />}
+        {selectedNft !== null && (
+          <DisplayNFTNumber selectedToken={selectedNft} />
+        )}
       </h2>
       <br />
       <p>
         <b>Mray&apos;s Pool of Locked NFTs</b>
       </p>
       <p className="mt-4 text-base">
-        Our NFT pool has locked a range of NFTs which act as a safe asset base for RWAs.
+        Our NFT pool has locked a range of NFTs which act as a safe asset base
+        for RWAs.
       </p>
-  <div className="w-full h-px bg-gray-300 mb-2"></div>
+      <div className="w-full h-px bg-gray-300 mb-2"></div>
 
-{/* Total Locked Mray Tokens */}
-<div className="mt-2">
-  {/* Line above and below */}
-  <div className="border-t border-b py-4">
-    <div className="flex items-center justify-between">
-      <p className="font-bold text-2xl text-purple-900">
-        Locked Assets (Mray) 
-      </p>
-      <div className="px-6 py-3 bg-green-100 text-green-800 text-3xl font-extrabold rounded-md">
-        <GetStablecoinBalanceNew walletAddress={contractAddress} />
+      {/* Total Locked Mray Tokens */}
+      <div className="mt-2">
+        {/* Line above and below */}
+        <div className="border-t border-b py-4">
+          <div className="flex items-center justify-between">
+            <p className="font-bold text-2xl text-purple-900">
+              Locked Assets (Mray)
+            </p>
+            <div className="px-6 py-3 bg-green-100 text-green-800 text-3xl font-extrabold rounded-md">
+              <GetStablecoinBalanceNew walletAddress={contractAddress} />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-  <div className="w-full h-px bg-gray-300 mb-2"></div>
-
+      <div className="w-full h-px bg-gray-300 mb-2"></div>
 
       <div className="flex flex-wrap items-center gap-4 mt-4">
         <ReadNftsPool onNftListUpdate={handleNftListUpdate} />
@@ -114,4 +113,3 @@ export default function ManagePool() {
     </div>
   );
 }
-

@@ -17,4 +17,3 @@ const TimestampToDate: React.FC<TimestampToDateProps> = ({ timestamp }) => {
 };
 
 export default TimestampToDate;
-

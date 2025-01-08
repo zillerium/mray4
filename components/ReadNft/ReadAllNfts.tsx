@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ReadTokenCounter from "@/components/Nft/ReadTokenCounter";
+import React, { useState, useEffect } from 'react';
+import ReadTokenCounter from '@/components/Nft/ReadTokenCounter';
 
 interface ReadAllNftsProps {
   onTokenListUpdate: (tokenList: number[]) => void;
@@ -12,7 +12,10 @@ const ReadAllNfts: React.FC<ReadAllNftsProps> = ({ onTokenListUpdate }) => {
   useEffect(() => {
     if (tokenCounter !== null && tokenCounter !== tokenList.length) {
       // Generate list starting from 1
-      const newTokenList = Array.from({ length: tokenCounter }, (_, i) => i + 1);
+      const newTokenList = Array.from(
+        { length: tokenCounter },
+        (_, i) => i + 1,
+      );
       setTokenList(newTokenList);
       onTokenListUpdate(newTokenList); // Pass the updated token list to the parent
     }
@@ -30,4 +33,3 @@ const ReadAllNfts: React.FC<ReadAllNftsProps> = ({ onTokenListUpdate }) => {
 };
 
 export default ReadAllNfts;
-

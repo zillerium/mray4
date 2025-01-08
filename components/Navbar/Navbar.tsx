@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import CustomButton from '@/components/Navbar/CustomButton'
+import React, { useState } from 'react';
+import CustomButton from '@/components/Navbar/CustomButton';
 import NavBarNFTs from '@/components/Navbar/NavBarNFTs';
 import NavBarValuations from '@/components/Navbar/NavBarValuations';
 import NavBarInvestors from '@/components/Navbar/NavBarInvestors';
@@ -7,13 +7,12 @@ import NavBarNftPool from '@/components/Navbar/NavBarNftPool';
 import NavBarWallet from '@/components/Navbar/NavBarWallet';
 import NavBarAdmin from '@/components/Navbar/NavBarAdmin';
 
-
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <nav className="lg:px-16 px-6 bg-white shadow-md flex flex-wrap items-center lg:py-0 py-2">
@@ -53,8 +52,9 @@ const Navbar = () => {
         id="menu"
       >
         <nav>
-          <ul className="text-xl text-center items-center gap-x-3 pt-4 lg:text-lg lg:flex lg:pt-0"> {/* Reduced gap */}
-
+          <ul className="text-xl text-center items-center gap-x-3 pt-4 lg:text-lg lg:flex lg:pt-0">
+            {' '}
+            {/* Reduced gap */}
             <NavBarWallet />
             <NavBarNFTs />
             <NavBarValuations />
@@ -68,8 +68,7 @@ const Navbar = () => {
         </nav>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
-
+export default Navbar;

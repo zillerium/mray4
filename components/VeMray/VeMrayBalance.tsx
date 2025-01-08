@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
 import veMintABI from '@/lib/vaultNFTABI.json'; // Include the correct ABI for VeMint
 import veMintContractAddress from '@/lib/vaultNFTAddress.json'; // VeMint contract address
-import CopyText from '@/components/Util/CopyText'; 
+import CopyText from '@/components/Util/CopyText';
 
 interface VeMrayBalanceProps {
   walletAddress: string;
@@ -17,7 +17,7 @@ const VeMrayBalance: React.FC<VeMrayBalanceProps> = ({ walletAddress }) => {
   const { data, error: balanceError } = useContractRead({
     address: contractAddress,
     abi: veMintABI,
-    functionName: 'veMrayBalance',  // Calls the getVeMRayBalance function from your contract
+    functionName: 'veMrayBalance', // Calls the getVeMRayBalance function from your contract
     args: [walletAddress],
   });
 
@@ -38,8 +38,12 @@ const VeMrayBalance: React.FC<VeMrayBalanceProps> = ({ walletAddress }) => {
         <table className="min-w-full bg-white border border-gray-200 rounded-lg">
           <thead>
             <tr className="bg-gray-100 text-gray-700">
-              <th className="py-2 px-4 text-left font-semibold border-b">Wallet</th>
-              <th className="py-2 px-4 text-left font-semibold border-b">Balance</th>
+              <th className="py-2 px-4 text-left font-semibold border-b">
+                Wallet
+              </th>
+              <th className="py-2 px-4 text-left font-semibold border-b">
+                Balance
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -57,4 +61,3 @@ const VeMrayBalance: React.FC<VeMrayBalanceProps> = ({ walletAddress }) => {
 };
 
 export default VeMrayBalance;
-

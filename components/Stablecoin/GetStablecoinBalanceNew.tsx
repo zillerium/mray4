@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useContractRead } from 'wagmi';
 import mintContractABI from '@/lib/mintContractABI.json';
 import mintContractAddress from '@/lib/mintContractAddress.json';
-import { CURRENCY_FACTOR } from "@/components/Util/ReformatCurrency";
+import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 const stablecoinAddress = mintContractAddress.address as `0x${string}`;
 
@@ -10,7 +10,9 @@ interface GetStablecoinBalanceNewProps {
   walletAddress: string; // Accept wallet address as a prop
 }
 
-const GetStablecoinBalanceNew: React.FC<GetStablecoinBalanceNewProps> = ({ walletAddress }) => {
+const GetStablecoinBalanceNew: React.FC<GetStablecoinBalanceNewProps> = ({
+  walletAddress,
+}) => {
   const [balance, setBalance] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,8 +40,9 @@ const GetStablecoinBalanceNew: React.FC<GetStablecoinBalanceNewProps> = ({ walle
     return <span className="text-red-500">Error fetching balance</span>;
   }
 
-  return <span>{balance ? parseFloat(balance).toLocaleString() : 'Loading...'}</span>;
+  return (
+    <span>{balance ? parseFloat(balance).toLocaleString() : 'Loading...'}</span>
+  );
 };
 
 export default GetStablecoinBalanceNew;
-

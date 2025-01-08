@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function ShowStablecoinBal() {
-
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       {/* Header */}
@@ -35,7 +34,8 @@ export default function ShowStablecoinBal() {
         <b>ERC20 Car Token</b>
       </p>
       <p className="mt-4 text-base">
-        Once your tokens are minted, they are in your wallet to spend and use as you like, 24/7. You can redeem your NFT any time before expiration.
+        Once your tokens are minted, they are in your wallet to spend and use as
+        you like, 24/7. You can redeem your NFT any time before expiration.
       </p>
       <br />
 
@@ -51,12 +51,11 @@ export default function ShowStablecoinBal() {
             padding: '0 40px',
           }}
         >
-  {"\"Liquidity via Mray is clean and simple, illiquid NFTs can be "}
-    <b>instantly transformed into liquid</b>
-    {" ERC20 tokens, straight into your wallet.\""}
+          {'"Liquidity via Mray is clean and simple, illiquid NFTs can be '}
+          <b>instantly transformed into liquid</b>
+          {' ERC20 tokens, straight into your wallet."'}
         </p>
       </div>
     </div>
   );
 }
-

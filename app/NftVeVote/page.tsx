@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import React from "react";
-import GetNftVeVoteButton from "@/components/NftVe/GetNftVeVoteButton";
+import React from 'react';
+import GetNftVeVoteButton from '@/components/NftVe/GetNftVeVoteButton';
 
 export default function NftVeVote() {
   return (
     <div>
-        <GetNftVeVoteButton />
+      <GetNftVeVoteButton />
     </div>
   );
 }
-

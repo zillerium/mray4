@@ -5,17 +5,19 @@ interface NftWalletAddressComponentPageProps {
   setNftWalletAddress: (address: string) => void;
 }
 
-const NftWalletAddressComponentPage: React.FC<NftWalletAddressComponentPageProps> = ({
-  nftWalletAddress,
-  setNftWalletAddress,
-}) => {
+const NftWalletAddressComponentPage: React.FC<
+  NftWalletAddressComponentPageProps
+> = ({ nftWalletAddress, setNftWalletAddress }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNftWalletAddress(e.target.value);
   };
 
   return (
     <div className="mb-4 flex flex-col sm:flex-row items-center sm:space-x-4">
-      <label htmlFor="nftWalletAddress" className="text-xl font-semibold mb-2 sm:mb-0">
+      <label
+        htmlFor="nftWalletAddress"
+        className="text-xl font-semibold mb-2 sm:mb-0"
+      >
         NFT Owner
       </label>
       <input
@@ -32,4 +34,3 @@ const NftWalletAddressComponentPage: React.FC<NftWalletAddressComponentPageProps
 };
 
 export default NftWalletAddressComponentPage;
-

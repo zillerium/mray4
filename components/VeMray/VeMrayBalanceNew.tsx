@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
 import veMintABI from '@/lib/vaultNFTABI.json'; // Include the correct ABI for VeMint
 import veMintContractAddress from '@/lib/vaultNFTAddress.json'; // VeMint contract address
-    
+
 const VeMrayBalanceNew: React.FC = () => {
   const { address: connectedWalletAddress } = useAccount();
   const [balance, setBalance] = useState<string | null>('Loading...');
@@ -38,10 +38,11 @@ const VeMrayBalanceNew: React.FC = () => {
 
   // Parse balance or fallback to "0" if invalid
   const displayBalance =
-    balance && !isNaN(parseFloat(balance)) ? parseFloat(balance).toLocaleString() : '0';
+    balance && !isNaN(parseFloat(balance))
+      ? parseFloat(balance).toLocaleString()
+      : '0';
 
   return <span>{displayBalance}</span>;
 };
 
 export default VeMrayBalanceNew;
-

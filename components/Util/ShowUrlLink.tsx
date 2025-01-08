@@ -1,5 +1,5 @@
-import React from "react";
-import { FaExternalLinkAlt } from "react-icons/fa"; // External link icon
+import React from 'react';
+import { FaExternalLinkAlt } from 'react-icons/fa'; // External link icon
 
 interface ShowUrlLinkProps {
   baseUrl: string; // Base URL (e.g., "https://sepolia.basescan.org/address/")
@@ -7,13 +7,17 @@ interface ShowUrlLinkProps {
   className?: string; // Optional custom className for styling
 }
 
-const ShowUrlLink: React.FC<ShowUrlLinkProps> = ({ baseUrl, path, className }) => {
+const ShowUrlLink: React.FC<ShowUrlLinkProps> = ({
+  baseUrl,
+  path,
+  className,
+}) => {
   return (
     <a
       href={`${baseUrl}${path}`}
       target="_blank"
       rel="noopener noreferrer"
-      className={className || "text-blue-500 hover:underline"}
+      className={className || 'text-blue-500 hover:underline'}
     >
       <FaExternalLinkAlt />
     </a>
@@ -21,4 +25,3 @@ const ShowUrlLink: React.FC<ShowUrlLinkProps> = ({ baseUrl, path, className }) =
 };
 
 export default ShowUrlLink;
-

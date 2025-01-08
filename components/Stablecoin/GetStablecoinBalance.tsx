@@ -30,8 +30,9 @@ const GetStablecoinBalance: React.FC = () => {
     return <span className="text-red-500">Error fetching balance</span>;
   }
 
-  return <span>{balance ? parseFloat(balance).toLocaleString() : 'Loading...'}</span>;
+  return (
+    <span>{balance ? parseFloat(balance).toLocaleString() : 'Loading...'}</span>
+  );
 };
 
 export default GetStablecoinBalance;
-

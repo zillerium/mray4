@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useAccount } from "wagmi";
-import LoadPdfIpfsCid from "@/components/Ipfs/LoadPdfIpfsCid";
-import AddIpfsNftDoc from "@/components/Ipfs/AddIpfsNftDoc";
-import CopyText from "@/components/Util/CopyText";
-import CheckDocUser from "@/components/Util/CheckDocUser";
+import React, { useState, useEffect } from 'react';
+import { useAccount } from 'wagmi';
+import LoadPdfIpfsCid from '@/components/Ipfs/LoadPdfIpfsCid';
+import AddIpfsNftDoc from '@/components/Ipfs/AddIpfsNftDoc';
+import CopyText from '@/components/Util/CopyText';
+import CheckDocUser from '@/components/Util/CheckDocUser';
 
 interface ShowAllNftsDetailsComProps {
   selectedToken: number;
@@ -13,8 +13,8 @@ const ShowAllNftsDetailsCom: React.FC<ShowAllNftsDetailsComProps> = ({
   selectedToken,
 }) => {
   const { address: userAddress } = useAccount();
-  const [pdfClientName, setPdfClientName] = useState<string>("");
-  const [ipfsPdfCid, setIpfsPdfCid] = useState<string>("");
+  const [pdfClientName, setPdfClientName] = useState<string>('');
+  const [ipfsPdfCid, setIpfsPdfCid] = useState<string>('');
   const [isDocUser, setIsDocUser] = useState<boolean | null>(null); // To track doc user permissions
   const [checkingStatus, setCheckingStatus] = useState<boolean>(true); // To track permission checking
 
@@ -61,7 +61,7 @@ const ShowAllNftsDetailsCom: React.FC<ShowAllNftsDetailsComProps> = ({
           {pdfClientName && <div className="text-lg mt-2">{pdfClientName}</div>}
           {ipfsPdfCid && (
             <div className="mt-2 p-4 bg-yellow-100 rounded-lg">
-              IPFS PDF CID:{" "}
+              IPFS PDF CID:{' '}
               <a
                 href={`https://rose-wonderful-crab-70.mypinata.cloud/ipfs/${ipfsPdfCid}`}
                 target="_blank"
@@ -88,4 +88,3 @@ const ShowAllNftsDetailsCom: React.FC<ShowAllNftsDetailsComProps> = ({
 };
 
 export default ShowAllNftsDetailsCom;
-

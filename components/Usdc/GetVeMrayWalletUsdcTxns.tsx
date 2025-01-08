@@ -22,16 +22,19 @@ export default function GetVeMrayWalletTxns() {
       </button>
 
       {/* Transactions Table */}
-      {loadTransactions && <UsdcTransactionsTable setErrorMessage={setErrorMessage} />}
+      {loadTransactions && (
+        <UsdcTransactionsTable setErrorMessage={setErrorMessage} />
+      )}
 
       {/* Centralized Error Box */}
       {errorMessage && (
         <div className="w-full max-w-md p-4 bg-red-100 text-red-700 border border-red-500 rounded mt-4">
-          <p><strong>Error Details:</strong></p>
+          <p>
+            <strong>Error Details:</strong>
+          </p>
           <p>{errorMessage}</p>
         </div>
       )}
     </div>
   );
 }
-

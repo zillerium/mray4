@@ -49,10 +49,12 @@ const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
 
       {/* Status and Transaction Hash */}
       <div className="w-full max-w-md">
-        {txnStatus && <div className="text-gray-600 text-sm mt-2">{txnStatus}</div>}
+        {txnStatus && (
+          <div className="text-gray-600 text-sm mt-2">{txnStatus}</div>
+        )}
         {transactionHash && (
           <div className="text-sm mt-2">
-            Transaction Hash:{" "}
+            Transaction Hash:{' '}
             <a
               href={`https://sepolia.basescan.org/tx/${transactionHash}`}
               target="_blank"
@@ -63,11 +65,14 @@ const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
             </a>
           </div>
         )}
-        {error && <div className="text-red-500 text-sm mt-2">Error: {error.message}</div>}
+        {error && (
+          <div className="text-red-500 text-sm mt-2">
+            Error: {error.message}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default RedeemNftPool;
-

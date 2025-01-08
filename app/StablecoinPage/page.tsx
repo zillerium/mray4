@@ -1,12 +1,11 @@
-"use client";
+'use client';
 
-import GetStablecoinBalanceCom from "@/components/Stablecoin/GetStablecoinBalanceCom";
+import GetStablecoinBalanceCom from '@/components/Stablecoin/GetStablecoinBalanceCom';
 
 export default function StablecoinPage() {
   return (
     <div>
-        <GetStablecoinBalanceCom />
+      <GetStablecoinBalanceCom />
     </div>
   );
 }
-

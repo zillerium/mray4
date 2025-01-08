@@ -38,11 +38,14 @@ const CopyText: React.FC<CopyTextProps> = ({ copiedText }) => {
   return (
     <div className="flex items-center space-x-2">
       <p className="bg-gray-200 px-4 py-2 rounded">{shortenedMarketId}</p>
-      <button onClick={handleCopyClick} className="text-blue-500 hover:text-blue-700">
+      <button
+        onClick={handleCopyClick}
+        className="text-blue-500 hover:text-blue-700"
+      >
         <FaRegCopy size={20} /> {/* Display copy icon */}
       </button>
       {copySuccess && <span className="text-blue-500">{copySuccess}</span>}
-      
+
       {/* Hidden text area for fallback copy method */}
       <textarea
         ref={textAreaRef}
@@ -55,4 +58,3 @@ const CopyText: React.FC<CopyTextProps> = ({ copiedText }) => {
 };
 
 export default CopyText;
-

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
-import nftVeValContractABI from "@/lib/vaultNFTABI.json";
-import nftVeValContractAddress from "@/lib/vaultNFTAddress.json";
-import { CURRENCY_FACTOR } from "@/components/Util/ReformatCurrency";
+import nftVeValContractABI from '@/lib/vaultNFTABI.json';
+import nftVeValContractAddress from '@/lib/vaultNFTAddress.json';
+import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 import VotingTable from './VotingTable';
 
@@ -21,7 +21,10 @@ function convertUnixTimestampToDate(unixTimestamp: number): string {
   return `${year}-${month}-${day}`;
 }
 
-const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({ nftId, onVotingStateChange }) => {
+const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({
+  nftId,
+  onVotingStateChange,
+}) => {
   const [lowerLimit, setLowerLimit] = useState<number | null>(null);
   const [upperLimit, setUpperLimit] = useState<number | null>(null);
   const [votingActive, setVotingActive] = useState<boolean | null>(null);
@@ -36,7 +39,11 @@ const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({ nftId, onVotingStat
   });
 
   useEffect(() => {
-    if (valuationData && Array.isArray(valuationData) && valuationData.length === 4) {
+    if (
+      valuationData &&
+      Array.isArray(valuationData) &&
+      valuationData.length === 4
+    ) {
       try {
         const lowerLimitString = valuationData[0]?.toString() || '0';
         const upperLimitString = valuationData[1]?.toString() || '0';
@@ -56,7 +63,10 @@ const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({ nftId, onVotingStat
         setError('Error converting data');
       }
     } else if (valuationError) {
-      console.error(`Error fetching valuation for NFT ID ${nftId}:`, valuationError.message);
+      console.error(
+        `Error fetching valuation for NFT ID ${nftId}:`,
+        valuationError.message,
+      );
       setError('Error fetching valuation data');
     }
   }, [valuationData, valuationError, onVotingStateChange]);
@@ -78,5 +88,3 @@ const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({ nftId, onVotingStat
 };
 
 export default NftVeVoteDetails;
-
-

@@ -4,11 +4,11 @@ import uniContractABI from '@/lib/uniContractABI.json';
 import uniContractAddress from '@/lib/uniContractAddress.json';
 
 interface DisplayIpfsDocsProps {
-  tokenNumber: string;  // The token number (NFT ID) passed to the component
+  tokenNumber: string; // The token number (NFT ID) passed to the component
 }
 
 const contractAddress = uniContractAddress.address as `0x${string}`;
-const baseUrl = "https://rose-wonderful-crab-70.mypinata.cloud/ipfs/";
+const baseUrl = 'https://rose-wonderful-crab-70.mypinata.cloud/ipfs/';
 
 const DisplayIpfsDocs: React.FC<DisplayIpfsDocsProps> = ({ tokenNumber }) => {
   const [ipfsAddresses, setIpfsAddresses] = useState<string[]>([]);
@@ -18,7 +18,7 @@ const DisplayIpfsDocs: React.FC<DisplayIpfsDocsProps> = ({ tokenNumber }) => {
     address: contractAddress,
     abi: uniContractABI,
     functionName: 'getIpfsAddresses',
-    args: [tokenNumber],  // Pass the token number (nftId)
+    args: [tokenNumber], // Pass the token number (nftId)
   });
 
   useEffect(() => {
@@ -44,20 +44,23 @@ const DisplayIpfsDocs: React.FC<DisplayIpfsDocsProps> = ({ tokenNumber }) => {
                   className="flex justify-between items-center p-2 bg-white border rounded shadow-sm"
                 >
                   <span className="font-mono text-sm">
-                    {index + 1}. <a
+                    {index + 1}.{' '}
+                    <a
                       href={`${baseUrl}${ipfs}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-500 hover:underline"
                     >
-                      {ipfs}  {/* Display only the IPFS hash (Qm...) */}
+                      {ipfs} {/* Display only the IPFS hash (Qm...) */}
                     </a>
                   </span>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-gray-500">No IPFS documents found for this NFT</div>
+            <div className="text-gray-500">
+              No IPFS documents found for this NFT
+            </div>
           )}
         </div>
       )}
@@ -66,4 +69,3 @@ const DisplayIpfsDocs: React.FC<DisplayIpfsDocsProps> = ({ tokenNumber }) => {
 };
 
 export default DisplayIpfsDocs;
-

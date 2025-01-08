@@ -14,7 +14,11 @@ const ReadNftPrice: React.FC<ReadNftPriceProps> = ({ nftId }) => {
   const [error, setError] = useState<string | null>(null);
 
   // Fetch the NFT price for the specified NFT ID
-  const { data: nftPriceData, error: nftPriceError, refetch } = useContractRead({
+  const {
+    data: nftPriceData,
+    error: nftPriceError,
+    refetch,
+  } = useContractRead({
     address: contractAddress,
     abi: nftVeValuationABI,
     functionName: 'calculateNFTValue',
@@ -23,9 +27,9 @@ const ReadNftPrice: React.FC<ReadNftPriceProps> = ({ nftId }) => {
   useEffect(() => {
     if (nftPriceData) {
       // Convert from wei to ether
-      const priceInEth = (nftPriceData.toString()) ;
+      const priceInEth = nftPriceData.toString();
       setPrice(parseFloat(priceInEth).toFixed(2)); // Format to 2 decimals
-     // setPrice(350);
+      // setPrice(350);
     } else if (nftPriceError) {
       setError('Error fetching NFT price');
     }
@@ -64,4 +68,3 @@ const ReadNftPrice: React.FC<ReadNftPriceProps> = ({ nftId }) => {
 };
 
 export default ReadNftPrice;
-

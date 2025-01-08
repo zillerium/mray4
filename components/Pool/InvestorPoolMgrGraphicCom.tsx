@@ -9,7 +9,7 @@ const contractAddress = vaultNFTAddress.address as `0x${string}`;
 
 const InvestorPoolMgrGraphicCom = () => {
   const [poolData, setPoolData] = useState<[number, string][]>([]); // Array of [lockedBalance, walletAddress]
-  
+
   // Read the contract to get all locked USDC investment details
   const { data, error } = useContractRead({
     address: contractAddress,
@@ -17,20 +17,21 @@ const InvestorPoolMgrGraphicCom = () => {
     functionName: 'getAllUsdcInvestmentDetails',
   });
 
-useEffect(() => {
-  if (data && Array.isArray(data)) {
-    if (data.length === 0) {
-      setPoolData([]);
-    } else {
-      const processedData = data.map((entry: { lockedBalance: bigint; walletAddress: string }) => [
-        parseInt(entry.lockedBalance.toString(), 10), // Convert balance to integer
-        entry.walletAddress, // Wallet address
-      ]) as [number, string][];
-      setPoolData(processedData);
+  useEffect(() => {
+    if (data && Array.isArray(data)) {
+      if (data.length === 0) {
+        setPoolData([]);
+      } else {
+        const processedData = data.map(
+          (entry: { lockedBalance: bigint; walletAddress: string }) => [
+            parseInt(entry.lockedBalance.toString(), 10), // Convert balance to integer
+            entry.walletAddress, // Wallet address
+          ],
+        ) as [number, string][];
+        setPoolData(processedData);
+      }
     }
-  }
-}, [data]);
-
+  }, [data]);
 
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
@@ -60,4 +61,3 @@ useEffect(() => {
 };
 
 export default InvestorPoolMgrGraphicCom;
-

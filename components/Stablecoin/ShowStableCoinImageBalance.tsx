@@ -25,4 +25,3 @@ const ShowStableCoinImageBalance = () => {
 };
 
 export default ShowStableCoinImageBalance;
-

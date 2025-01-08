@@ -5,7 +5,10 @@ interface AdminWalletTimelineProps {
   onClick: () => void;
 }
 
-const AdminWalletTimeline: React.FC<AdminWalletTimelineProps> = ({ walletAddress, onClick }) => {
+const AdminWalletTimeline: React.FC<AdminWalletTimelineProps> = ({
+  walletAddress,
+  onClick,
+}) => {
   return (
     <div className="relative">
       {/* Icon */}
@@ -34,4 +37,3 @@ const AdminWalletTimeline: React.FC<AdminWalletTimelineProps> = ({ walletAddress
 };
 
 export default AdminWalletTimeline;
-

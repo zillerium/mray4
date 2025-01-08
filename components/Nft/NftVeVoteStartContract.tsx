@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useWriteContract } from "wagmi";
-import nftVeValContractABI from "@/lib/vaultNFTABI.json"; // Import ABI for the veToken-based valuation contract
-import nftVeValContractAddress from "@/lib/vaultNFTAddress.json"; // Import contract address for the veToken-based valuation contract
-import { FaExternalLinkAlt } from "react-icons/fa"; // Import FontAwesome icon
-import CopyText from "@/components/Util/CopyText";
+import React, { useState } from 'react';
+import { useWriteContract } from 'wagmi';
+import nftVeValContractABI from '@/lib/vaultNFTABI.json'; // Import ABI for the veToken-based valuation contract
+import nftVeValContractAddress from '@/lib/vaultNFTAddress.json'; // Import contract address for the veToken-based valuation contract
+import { FaExternalLinkAlt } from 'react-icons/fa'; // Import FontAwesome icon
+import CopyText from '@/components/Util/CopyText';
 
 interface NftVeVoteStartContractProps {
   tokenNumber: string;
@@ -16,7 +16,7 @@ const contractAddress = nftVeValContractAddress.address as `0x${string}`;
 // Function to convert date from YYYYMMDD to Unix timestamp
 function convertToUnixTimestamp(dateStr: string): number {
   if (!/^\d{8}$/.test(dateStr)) {
-    throw new Error("Invalid date format. Please use YYYYMMDD.");
+    throw new Error('Invalid date format. Please use YYYYMMDD.');
   }
 
   const year = parseInt(dateStr.substring(0, 4), 10);
@@ -33,11 +33,11 @@ const NftVeVoteStartContract: React.FC<NftVeVoteStartContractProps> = ({
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
   const { data: transactionHash, writeContract, error } = useWriteContract();
 
-  const formattedDate = endDate.replace(/-/g, ""); // Convert to YYYYMMDD format
+  const formattedDate = endDate.replace(/-/g, ''); // Convert to YYYYMMDD format
 
   const handleStartVotingClick = async () => {
     if (!tokenNumber || !endDate) {
-      alert("Please enter both a valid token number and end date.");
+      alert('Please enter both a valid token number and end date.');
       return;
     }
 
@@ -47,14 +47,14 @@ const NftVeVoteStartContract: React.FC<NftVeVoteStartContractProps> = ({
       writeContract({
         address: contractAddress,
         abi: nftVeValContractABI,
-        functionName: "startVoting",
+        functionName: 'startVoting',
         args: [Number(tokenNumber), unixTimestamp],
       });
 
-      setTxnStatus("Transaction submitted...");
+      setTxnStatus('Transaction submitted...');
     } catch (e) {
-      console.error("Transaction failed:", e);
-      setTxnStatus("Transaction failed");
+      console.error('Transaction failed:', e);
+      setTxnStatus('Transaction failed');
     }
   };
 
@@ -71,7 +71,7 @@ const NftVeVoteStartContract: React.FC<NftVeVoteStartContractProps> = ({
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded w-full max-w-md"
         onClick={handleStartVotingClick}
-        disabled={txnStatus === "Transaction submitted..."}
+        disabled={txnStatus === 'Transaction submitted...'}
       >
         Start Voting
       </button>
@@ -83,7 +83,7 @@ const NftVeVoteStartContract: React.FC<NftVeVoteStartContractProps> = ({
         )}
         {transactionHash && (
           <div className="text-sm mt-2 flex items-center">
-            Transaction Hash: <CopyText copiedText={transactionHash} />{" "}
+            Transaction Hash: <CopyText copiedText={transactionHash} />{' '}
             <a
               href={`https://sepolia.basescan.org/tx/${transactionHash}`}
               target="_blank"
@@ -105,4 +105,3 @@ const NftVeVoteStartContract: React.FC<NftVeVoteStartContractProps> = ({
 };
 
 export default NftVeVoteStartContract;
-

@@ -26,7 +26,10 @@ const NftOwner: React.FC<NftOwnerProps> = ({ nftId }) => {
       setOwnerAddress(owner.toString());
     }
     if (ownerError) {
-      console.error(`Error fetching owner for NFT ID ${nftId}:`, ownerError.message);
+      console.error(
+        `Error fetching owner for NFT ID ${nftId}:`,
+        ownerError.message,
+      );
       setOwnerAddress('Error fetching owner');
     }
   }, [owner, ownerError, nftId]);
@@ -42,4 +45,3 @@ const NftOwner: React.FC<NftOwnerProps> = ({ nftId }) => {
 };
 
 export default NftOwner;
-

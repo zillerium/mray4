@@ -11,7 +11,9 @@ interface ReadInvestorPoolDataProps {
 
 const contractAddress = vaultNFTAddress.address as `0x${string}`;
 
-const ReadInvestorPoolData: React.FC<ReadInvestorPoolDataProps> = ({ walletAddress }) => {
+const ReadInvestorPoolData: React.FC<ReadInvestorPoolDataProps> = ({
+  walletAddress,
+}) => {
   const [usdcBalance, setUsdcBalance] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,4 +52,3 @@ const ReadInvestorPoolData: React.FC<ReadInvestorPoolDataProps> = ({ walletAddre
 };
 
 export default ReadInvestorPoolData;
-

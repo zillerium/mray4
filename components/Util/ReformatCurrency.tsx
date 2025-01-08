@@ -12,9 +12,8 @@ export const CURRENCY_FACTOR = 1e6;
 export function reformatCurrency(input: string | number): number | null {
   const value = Number(input);
   if (isNaN(value) || value < 0) {
-    console.error("Invalid input for scaling:", input);
+    console.error('Invalid input for scaling:', input);
     return null;
   }
   return Math.round(value * CURRENCY_FACTOR);
 }
-

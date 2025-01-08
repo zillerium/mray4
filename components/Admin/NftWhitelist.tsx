@@ -55,10 +55,11 @@ const NftWhitelist: React.FC = () => {
         )}
       </div>
 
-      {selectedWallet && <NftAdminWalletRemove walletAddress={selectedWallet} />}
+      {selectedWallet && (
+        <NftAdminWalletRemove walletAddress={selectedWallet} />
+      )}
     </div>
   );
 };
 
 export default NftWhitelist;
-

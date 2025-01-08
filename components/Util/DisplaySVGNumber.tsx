@@ -31,4 +31,3 @@ const DisplaySVGNumber: React.FC<DisplaySVGNumberProps> = ({ digit }) => {
 };
 
 export default DisplaySVGNumber;
-

@@ -1,5 +1,5 @@
-import React from "react";
-import { useAccount } from "wagmi";
+import React from 'react';
+import { useAccount } from 'wagmi';
 
 const GetWalletHeader: React.FC = () => {
   const { isConnected } = useAccount();
@@ -21,4 +21,3 @@ const GetWalletHeader: React.FC = () => {
 };
 
 export default GetWalletHeader;
-

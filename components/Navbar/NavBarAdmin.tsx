@@ -31,4 +31,3 @@ const NavBarAdmin = () => {
 };
 
 export default NavBarAdmin;
-

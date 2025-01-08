@@ -1,7 +1,7 @@
-import React from "react";
-import { useContractRead } from "wagmi";
-import vaultNFTABI from "@/lib/vaultNFTABI.json";
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json";
+import React from 'react';
+import { useContractRead } from 'wagmi';
+import vaultNFTABI from '@/lib/vaultNFTABI.json';
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
 
 const contractAddress = vaultNFTAddress.address as `0x${string}`;
 
@@ -10,7 +10,7 @@ const GetInvestorLockedTotal: React.FC = () => {
   const { data, error } = useContractRead({
     address: contractAddress,
     abi: vaultNFTABI,
-    functionName: "getTotalUsdcLockedValue",
+    functionName: 'getTotalUsdcLockedValue',
   });
 
   if (error) {
@@ -31,15 +31,14 @@ const GetInvestorLockedTotal: React.FC = () => {
   const totalValue = data.toString();
   const adjustedValue = Number(totalValue) / 1_000_000;
   // Format the adjusted value with up to 6 decimal places
-  const formattedValue = new Intl.NumberFormat("en-US", {
+  const formattedValue = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 6,
   }).format(adjustedValue);
 
   return (
-    <span>{adjustedValue !== 0 ? `${formattedValue} USDC` : "0 USDC"}</span>
+    <span>{adjustedValue !== 0 ? `${formattedValue} USDC` : '0 USDC'}</span>
   );
 };
 
 export default GetInvestorLockedTotal;
-

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useWriteContract } from "wagmi";
-import uniContractABI from "@/lib/uniContractABI.json"; // ABI for the NFT contract
-import uniContractAddress from "@/lib/uniContractAddress.json"; // Address for the NFT contract
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json"; // Address for the Vault contract
-import { FaExternalLinkAlt } from "react-icons/fa"; // Import FontAwesome icon
-import CopyText from "@/components/Util/CopyText";
+import React, { useState } from 'react';
+import { useWriteContract } from 'wagmi';
+import uniContractABI from '@/lib/uniContractABI.json'; // ABI for the NFT contract
+import uniContractAddress from '@/lib/uniContractAddress.json'; // Address for the NFT contract
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the Vault contract
+import { FaExternalLinkAlt } from 'react-icons/fa'; // Import FontAwesome icon
+import CopyText from '@/components/Util/CopyText';
 
 interface NftVeApproveVaultProps {
   tokenId: string;
@@ -20,7 +20,7 @@ const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
 
   const handleApproveVaultClick = async () => {
     if (!tokenId) {
-      alert("Please enter a valid token ID.");
+      alert('Please enter a valid token ID.');
       return;
     }
 
@@ -28,14 +28,14 @@ const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
       writeContract({
         address: nftAddress,
         abi: uniContractABI,
-        functionName: "approve",
+        functionName: 'approve',
         args: [vaultAddress, Number(tokenId)],
       });
 
-      setTxnStatus("Transaction submitted...");
+      setTxnStatus('Transaction submitted...');
     } catch (e) {
-      console.error("Transaction failed:", e);
-      setTxnStatus("Transaction failed");
+      console.error('Transaction failed:', e);
+      setTxnStatus('Transaction failed');
     }
   };
 
@@ -47,7 +47,7 @@ const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded w-full max-w-md"
         onClick={handleApproveVaultClick}
-        disabled={txnStatus === "Transaction submitted..."}
+        disabled={txnStatus === 'Transaction submitted...'}
       >
         Approve NFT {tokenId}
       </button>
@@ -59,7 +59,7 @@ const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
         )}
         {transactionHash && (
           <div className="text-sm mt-2 flex items-center">
-            Transaction Hash: <CopyText copiedText={transactionHash} />{" "}
+            Transaction Hash: <CopyText copiedText={transactionHash} />{' '}
             <a
               href={`https://sepolia.basescan.org/tx/${transactionHash}`}
               target="_blank"
@@ -81,4 +81,3 @@ const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
 };
 
 export default NftVeApproveVault;
-

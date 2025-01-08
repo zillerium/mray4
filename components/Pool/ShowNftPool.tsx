@@ -1,11 +1,11 @@
 // ShowNftPool.tsx
-"use client";
+'use client';
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import ManagePool from '@/components/Pool/ManagePool';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
-import PoolMgrGraphicCom from "@/components/Pool/PoolMgrGraphicCom";
+import PoolMgrGraphicCom from '@/components/Pool/PoolMgrGraphicCom';
 
 const ShowNftPool: React.FC = () => {
   return (
@@ -24,4 +24,3 @@ const ShowNftPool: React.FC = () => {
 };
 
 export default ShowNftPool;
-

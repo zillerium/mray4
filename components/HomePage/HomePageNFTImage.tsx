@@ -34,7 +34,7 @@ const HomePageNFTImage = () => {
           stroke="#a0c4ff" /* Light blue border */
           strokeWidth="2"
         />
-        
+
         {/* Screen area */}
         <rect
           x="30"
@@ -47,17 +47,38 @@ const HomePageNFTImage = () => {
         />
 
         {/* Liquidity Label */}
-        <text x="125" y="100" textAnchor="middle" fontSize="18" fill="#230b59" fontWeight="bold">
+        <text
+          x="125"
+          y="100"
+          textAnchor="middle"
+          fontSize="18"
+          fill="#230b59"
+          fontWeight="bold"
+        >
           Liquidity
         </text>
 
         {/* NFT Value Counter */}
-        <text x="125" y="140" textAnchor="middle" fontSize="24" fill="#230b59" fontWeight="bold">
+        <text
+          x="125"
+          y="140"
+          textAnchor="middle"
+          fontSize="24"
+          fill="#230b59"
+          fontWeight="bold"
+        >
           ${nftValue.toLocaleString()}
         </text>
 
         {/* NFT Details, moved further down the phone screen */}
-        <text x="125" y="300" textAnchor="middle" fontSize="16" fill="#230b59" fontWeight="bold">
+        <text
+          x="125"
+          y="300"
+          textAnchor="middle"
+          fontSize="16"
+          fill="#230b59"
+          fontWeight="bold"
+        >
           2023 Lamborghini
         </text>
         <text x="125" y="330" textAnchor="middle" fontSize="14" fill="#230b59">
@@ -72,4 +93,3 @@ const HomePageNFTImage = () => {
 };
 
 export default HomePageNFTImage;
-

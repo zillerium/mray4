@@ -1,15 +1,15 @@
-import React from "react";
-import VeMrayBalanceInvestor from "@/components/VeMray/VeMrayBalanceInvestor";
-import { useAccount } from "wagmi";
-import BuyUSDCVeTokens from "@/components/VeMray/BuyUSDCVeTokens";
-import GetUSDCWalletBalance from "@/components/Util/GetUSDCWalletBalance";
-import USDCVaultApprove from "@/components/Util/USDCVaultApprove";
-import GetUsdcWalletLockedBalance from "@/components/Usdc/GetUsdcWalletLockedBalance";
-import GetUsdcAllowance from "@/components/Usdc/GetUsdcAllowance";
+import React from 'react';
+import VeMrayBalanceInvestor from '@/components/VeMray/VeMrayBalanceInvestor';
+import { useAccount } from 'wagmi';
+import BuyUSDCVeTokens from '@/components/VeMray/BuyUSDCVeTokens';
+import GetUSDCWalletBalance from '@/components/Util/GetUSDCWalletBalance';
+import USDCVaultApprove from '@/components/Util/USDCVaultApprove';
+import GetUsdcWalletLockedBalance from '@/components/Usdc/GetUsdcWalletLockedBalance';
+import GetUsdcAllowance from '@/components/Usdc/GetUsdcAllowance';
 
 export default function GetVeMrayBalanceButton() {
   const { address: connectedWalletAddress } = useAccount(); // Get the connected wallet
-  const walletAddress = connectedWalletAddress ?? ""; // Default to empty string if undefined
+  const walletAddress = connectedWalletAddress ?? ''; // Default to empty string if undefined
 
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
@@ -60,4 +60,3 @@ export default function GetVeMrayBalanceButton() {
     </div>
   );
 }
-

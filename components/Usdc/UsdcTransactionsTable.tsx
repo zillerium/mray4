@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useAccount, useContractRead } from "wagmi";
-import vaultNFTABI from "@/lib/vaultNFTABI.json";
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json";
-import TimestampToDate from "@/components/Util/TimestampToDate";
-import RedeemUsdcTokens from "@/components/Usdc/RedeemUsdcTokens";
+import React, { useState, useEffect } from 'react';
+import { useAccount, useContractRead } from 'wagmi';
+import vaultNFTABI from '@/lib/vaultNFTABI.json';
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import TimestampToDate from '@/components/Util/TimestampToDate';
+import RedeemUsdcTokens from '@/components/Usdc/RedeemUsdcTokens';
 
 interface UsdcTransaction {
   lockedUsdc: bigint; // Corrected field name
@@ -21,14 +21,14 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
 }) => {
   const { address, isConnected } = useAccount();
   const [usdcTxnsData, setUsdcTxnsData] = useState<UsdcTransaction[] | null>(
-    null
+    null,
   );
 
   const { data: usdcWalletTxnsData, error: usdcWalletTxnsError } =
     useContractRead({
       address: isConnected && address ? contractAddress : undefined,
       abi: vaultNFTABI,
-      functionName: "getUsdcWalletTxnDetails",
+      functionName: 'getUsdcWalletTxnDetails',
       args: isConnected && address ? [address] : [],
     });
 
@@ -37,8 +37,8 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
       Array.isArray(data) &&
       data.every(
         (item) =>
-          typeof item.lockedUsdc === "bigint" &&
-          typeof item.expiryTimestamp === "bigint"
+          typeof item.lockedUsdc === 'bigint' &&
+          typeof item.expiryTimestamp === 'bigint',
       )
     );
   }
@@ -92,4 +92,3 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
 };
 
 export default UsdcTransactionsTable;
-

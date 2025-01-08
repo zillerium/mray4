@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useContractRead } from "wagmi";
-import vaultNFTABI from "@/lib/vaultNFTABI.json"; // ABI for the vault contract
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json"; // Address for the vault contract
+import React, { useState, useEffect } from 'react';
+import { useContractRead } from 'wagmi';
+import vaultNFTABI from '@/lib/vaultNFTABI.json'; // ABI for the vault contract
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the vault contract
 
 const contractAddress = vaultNFTAddress.address as `0x${string}`;
 
-const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walletAddress }) => {
+const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
+  walletAddress,
+}) => {
   const [lockedBalance, setLockedBalance] = useState<string | null>(null);
 
   const { data: usdcBalanceData, error: usdcBalanceError } = useContractRead({
     address: contractAddress,
     abi: vaultNFTABI,
-    functionName: "usdcBalance", // Contract function to fetch balance
+    functionName: 'usdcBalance', // Contract function to fetch balance
     args: [walletAddress],
   });
 
@@ -19,7 +21,7 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walle
     if (usdcBalanceData) {
       setLockedBalance((Number(usdcBalanceData) / 10 ** 6).toFixed(2)); // Convert to USDC format
     } else if (usdcBalanceError) {
-      console.log("Error fetching USDC wallet balance");
+      console.log('Error fetching USDC wallet balance');
     } else {
       setLockedBalance(null);
     }
@@ -27,7 +29,7 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walle
 
   const handleGetBalanceClick = () => {
     if (usdcBalanceError) {
-      console.error("Error fetching balance:", usdcBalanceError);
+      console.error('Error fetching balance:', usdcBalanceError);
     }
   };
 
@@ -35,8 +37,8 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walle
     <div
       className="flex items-center justify-between w-full bg-white shadow-md rounded-lg p-4"
       style={{
-        border: "1px solid #e5e7eb", // Light gray border
-        gap: "0.5rem",               // Spacing between elements
+        border: '1px solid #e5e7eb', // Light gray border
+        gap: '0.5rem', // Spacing between elements
       }}
     >
       {/* Title */}
@@ -44,7 +46,7 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walle
 
       {/* Balance */}
       <span className="text-xl font-bold text-gray-900">
-        {lockedBalance !== null ? `${lockedBalance} USDC` : ""}
+        {lockedBalance !== null ? `${lockedBalance} USDC` : ''}
       </span>
 
       {/* Button */}
@@ -52,9 +54,9 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walle
         onClick={handleGetBalanceClick}
         className="text-white bg-blue-500 hover:bg-blue-600 font-bold rounded-full flex items-center justify-center"
         style={{
-          fontSize: "1.5rem", // Font size for "+"
-          width: "2.5rem",    // Circle size
-          height: "2.5rem",   // Circle size
+          fontSize: '1.5rem', // Font size for "+"
+          width: '2.5rem', // Circle size
+          height: '2.5rem', // Circle size
         }}
       >
         +
@@ -64,4 +66,3 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({ walle
 };
 
 export default GetUsdcWalletLockedBalance;
-

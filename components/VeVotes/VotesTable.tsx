@@ -30,7 +30,7 @@ const VotesTable: React.FC<VotesTableProps> = ({ votesData }) => {
           {votesData.map((vote, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-               <CopyText copiedText={vote?.voter?.toString()} />
+                <CopyText copiedText={vote?.voter?.toString()} />
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {vote?.votes?.toString()}
@@ -47,4 +47,3 @@ const VotesTable: React.FC<VotesTableProps> = ({ votesData }) => {
 };
 
 export default VotesTable;
-

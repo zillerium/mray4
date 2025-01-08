@@ -1,16 +1,15 @@
-"use client";
+'use client';
 
-import Navbar from "@/components/Navbar/Navbar";
-import HomePageDesc from "./HomePageDesc";
-import HomePageImage from "./HomePageImage";
-import HomeCarCapital from "./HomeCarCapital";
-import HomePageSummary from "./HomePageSummary";
-import HomePageNFTDesc from "./HomePageNFTDesc";
-import HomePageNFTImage from "./HomePageNFTImage";
-import GetWalletHeader from "@/components/Util/GetWalletHeader";
+import Navbar from '@/components/Navbar/Navbar';
+import HomePageDesc from './HomePageDesc';
+import HomePageImage from './HomePageImage';
+import HomeCarCapital from './HomeCarCapital';
+import HomePageSummary from './HomePageSummary';
+import HomePageNFTDesc from './HomePageNFTDesc';
+import HomePageNFTImage from './HomePageNFTImage';
+import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
 export default function HomePageCom() {
-
   return (
     <div>
       <Navbar />
@@ -36,4 +35,3 @@ export default function HomePageCom() {
     </div>
   );
 }
-

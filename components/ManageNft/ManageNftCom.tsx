@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import ManageNftIpfs from '@/components/ManageNft/ManageNftIpfs';
-import NftGraphicCom from "@/components/Nft/NftGraphicCom";
-import GetWalletHeader from "@/components/Util/GetWalletHeader";
+import NftGraphicCom from '@/components/Nft/NftGraphicCom';
+import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
 const ManageNftCom: React.FC = () => {
   return (
@@ -22,4 +22,3 @@ const ManageNftCom: React.FC = () => {
 };
 
 export default ManageNftCom;
-

@@ -1,6 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { CurrencyDollarIcon, ArrowsRightLeftIcon, HandThumbUpIcon, WalletIcon } from '@heroicons/react/24/solid';
+import {
+  CurrencyDollarIcon,
+  ArrowsRightLeftIcon,
+  HandThumbUpIcon,
+  WalletIcon,
+} from '@heroicons/react/24/solid';
 
 const HomePageNFTDesc = () => (
   <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
@@ -19,10 +24,12 @@ const HomePageNFTDesc = () => (
     >
       Convert your NFT into ERC20 tokens
     </h2>
-    
+
     {/* Description */}
     <p className="mt-4 text-base">
-      Lock your NFT into a vault for instant ERC20 tokens. Easy to access, no strings attached. Short or long-term locking available. Redeem your NFT anytime. 
+      Lock your NFT into a vault for instant ERC20 tokens. Easy to access, no
+      strings attached. Short or long-term locking available. Redeem your NFT
+      anytime.
     </p>
 
     {/* Feature List in a two-by-two grid with icons */}
@@ -55,4 +62,3 @@ const HomePageNFTDesc = () => (
 );
 
 export default HomePageNFTDesc;
-

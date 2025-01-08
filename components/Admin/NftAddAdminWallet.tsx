@@ -48,11 +48,13 @@ const NftAddAdminWallet: React.FC = () => {
         </button>
       </div>
       {txnStatus && <div className="text-gray-600 mt-2">{txnStatus}</div>}
-      <ShowTxnHash txnStatus={txnStatus} transactionHash={transactionHash ? transactionHash.toString() : null} error={error} />
-
+      <ShowTxnHash
+        txnStatus={txnStatus}
+        transactionHash={transactionHash ? transactionHash.toString() : null}
+        error={error}
+      />
     </div>
   );
 };
 
 export default NftAddAdminWallet;
-

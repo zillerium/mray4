@@ -65,4 +65,3 @@ const CreateNftAndIpfs: React.FC<CreateNftAndIpfsProps> = ({
 };
 
 export default CreateNftAndIpfs;
-

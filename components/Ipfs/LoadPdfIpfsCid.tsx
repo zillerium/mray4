@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FaUpload } from 'react-icons/fa';  // Importing an icon from react-icons
+import { FaUpload } from 'react-icons/fa'; // Importing an icon from react-icons
 
 interface LoadPdfIpfsCidProps {
   enabledButton: boolean;
@@ -8,7 +8,11 @@ interface LoadPdfIpfsCidProps {
   onIpfsCidChange: (cid: string) => void;
 }
 
-const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({ enabledButton, onPdfClientNameChange, onIpfsCidChange }) => {
+const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({
+  enabledButton,
+  onPdfClientNameChange,
+  onIpfsCidChange,
+}) => {
   const [productPdf, setProductPdf] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +22,7 @@ const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({ enabledButton, onPdfCli
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setProductPdf(file);
-      onPdfClientNameChange(file.name);  // Pass PDF name to parent
+      onPdfClientNameChange(file.name); // Pass PDF name to parent
     }
   };
 
@@ -31,19 +35,24 @@ const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({ enabledButton, onPdfCli
     setLoading(true);
 
     try {
-      const formDataBoundary = (formData as unknown as { _boundary?: string })._boundary;
-      const res = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
-        maxBodyLength: Infinity,
-        headers: {
-          'Content-Type': `multipart/form-data; boundary=${formDataBoundary || ''}`,
-          'Authorization': `Bearer ${JWT}`,
-        }
-      });
+      const formDataBoundary = (formData as unknown as { _boundary?: string })
+        ._boundary;
+      const res = await axios.post(
+        'https://api.pinata.cloud/pinning/pinFileToIPFS',
+        formData,
+        {
+          maxBodyLength: Infinity,
+          headers: {
+            'Content-Type': `multipart/form-data; boundary=${formDataBoundary || ''}`,
+            Authorization: `Bearer ${JWT}`,
+          },
+        },
+      );
 
       const { IpfsHash } = res.data;
-      onIpfsCidChange(IpfsHash);  // Pass IPFS CID to parent
+      onIpfsCidChange(IpfsHash); // Pass IPFS CID to parent
     } catch (error) {
-      console.error("Error uploading to IPFS: ", error);
+      console.error('Error uploading to IPFS: ', error);
     } finally {
       setLoading(false);
     }
@@ -56,7 +65,7 @@ const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({ enabledButton, onPdfCli
           htmlFor="pdf-btn"
           className={`flex items-center justify-center space-x-2 py-2 px-4 rounded cursor-pointer ${enabledButton ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
         >
-          <FaUpload className="w-4 h-4" />  {/* Icon for the upload button */}
+          <FaUpload className="w-4 h-4" /> {/* Icon for the upload button */}
           <span>PDF</span>
           <input
             type="file"
@@ -97,7 +106,7 @@ const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({ enabledButton, onPdfCli
               Uploading...
             </>
           ) : (
-            "Save PDF"
+            'Save PDF'
           )}
         </button>
       </div>
@@ -106,4 +115,3 @@ const LoadPdfIpfsCid: React.FC<LoadPdfIpfsCidProps> = ({ enabledButton, onPdfCli
 };
 
 export default LoadPdfIpfsCid;
-

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FaUpload } from 'react-icons/fa';  // Importing an icon from react-icons
+import { FaUpload } from 'react-icons/fa'; // Importing an icon from react-icons
 
 interface LoadImageIpfsCidProps {
   enabledButton: boolean;
@@ -8,7 +8,11 @@ interface LoadImageIpfsCidProps {
   onIpfsCidChange: (cid: string) => void;
 }
 
-const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({ enabledButton, onImageClientNameChange, onIpfsCidChange }) => {
+const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({
+  enabledButton,
+  onImageClientNameChange,
+  onIpfsCidChange,
+}) => {
   const [productImage, setProductImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +22,7 @@ const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({ enabledButton, onIm
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setProductImage(file);
-      onImageClientNameChange(file.name);  // Pass image name to parent
+      onImageClientNameChange(file.name); // Pass image name to parent
     }
   };
 
@@ -31,19 +35,24 @@ const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({ enabledButton, onIm
     setLoading(true);
 
     try {
-      const formDataBoundary = (formData as unknown as { _boundary?: string })._boundary;
-      const res = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
-        maxBodyLength: Infinity,
-        headers: {
-          'Content-Type': `multipart/form-data; boundary=${formDataBoundary || ''}`,
-          'Authorization': `Bearer ${JWT}`,
-        }
-      });
+      const formDataBoundary = (formData as unknown as { _boundary?: string })
+        ._boundary;
+      const res = await axios.post(
+        'https://api.pinata.cloud/pinning/pinFileToIPFS',
+        formData,
+        {
+          maxBodyLength: Infinity,
+          headers: {
+            'Content-Type': `multipart/form-data; boundary=${formDataBoundary || ''}`,
+            Authorization: `Bearer ${JWT}`,
+          },
+        },
+      );
 
       const { IpfsHash } = res.data;
-      onIpfsCidChange(IpfsHash);  // Pass IPFS CID to parent
+      onIpfsCidChange(IpfsHash); // Pass IPFS CID to parent
     } catch (error) {
-      console.error("Error uploading to IPFS: ", error);
+      console.error('Error uploading to IPFS: ', error);
     } finally {
       setLoading(false);
     }
@@ -56,7 +65,7 @@ const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({ enabledButton, onIm
           htmlFor="image-btn"
           className={`flex items-center justify-center space-x-2 py-2 px-4 rounded cursor-pointer ${enabledButton ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
         >
-          <FaUpload className="w-4 h-4" />  {/* Icon for the upload button */}
+          <FaUpload className="w-4 h-4" /> {/* Icon for the upload button */}
           <span>Image</span>
           <input
             type="file"
@@ -97,7 +106,7 @@ const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({ enabledButton, onIm
               Uploading...
             </>
           ) : (
-            "Save Image"
+            'Save Image'
           )}
         </button>
       </div>
@@ -106,4 +115,3 @@ const LoadImageIpfsCid: React.FC<LoadImageIpfsCidProps> = ({ enabledButton, onIm
 };
 
 export default LoadImageIpfsCid;
-

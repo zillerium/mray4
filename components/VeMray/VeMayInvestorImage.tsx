@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const VeMayInvestorImage = () => {
   return (
@@ -7,11 +7,10 @@ const VeMayInvestorImage = () => {
         src="/voteescrow.svg"
         alt="Vote Escrow"
         className="max-w-full h-auto" // Ensures image scales responsively
-        style={{ width: "100%", maxWidth: "500px" }} // Caps width for larger screens
+        style={{ width: '100%', maxWidth: '500px' }} // Caps width for larger screens
       />
     </div>
   );
 };
 
 export default VeMayInvestorImage;
-

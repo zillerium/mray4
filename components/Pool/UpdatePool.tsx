@@ -17,8 +17,8 @@ const UpdatePool: React.FC<UpdatePoolProps> = ({ nftId }) => {
   const { writeContract, error } = useWriteContract();
 
   const handleAddToPoolClick = async () => {
-    if (!nftId ) {
-      alert("Invalid NFT ID.");
+    if (!nftId) {
+      alert('Invalid NFT ID.');
       return;
     }
 
@@ -53,4 +53,3 @@ const UpdatePool: React.FC<UpdatePoolProps> = ({ nftId }) => {
 };
 
 export default UpdatePool;
-

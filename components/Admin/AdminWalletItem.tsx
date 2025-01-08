@@ -5,7 +5,10 @@ interface AdminWalletItemProps {
   onClick: () => void;
 }
 
-const AdminWalletItem: React.FC<AdminWalletItemProps> = ({ walletAddress, onClick }) => {
+const AdminWalletItem: React.FC<AdminWalletItemProps> = ({
+  walletAddress,
+  onClick,
+}) => {
   return (
     <div
       className="relative bg-white p-4 rounded border border-slate-200 text-slate-500 shadow cursor-pointer hover:bg-slate-100 transition"
@@ -17,4 +20,3 @@ const AdminWalletItem: React.FC<AdminWalletItemProps> = ({ walletAddress, onClic
 };
 
 export default AdminWalletItem;
-

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useAccount, useContractRead } from "wagmi";
-import uniContractABI from "@/lib/uniContractABI.json"; // Directly import ABI
-import uniContractAddress from "@/lib/uniContractAddress.json"; // Directly import contract address
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json";
-import DisplayIpfsComponentPage from "@/components/Ipfs/DisplayIpfsComponentPage"; // Component to display image
-import CopyText from "@/components/Util/CopyText"; // Component for copying text
-import ShowUrlLink from "@/components/Util/ShowUrlLink"; // Component for copying text
+import React, { useEffect, useState } from 'react';
+import { useAccount, useContractRead } from 'wagmi';
+import uniContractABI from '@/lib/uniContractABI.json'; // Directly import ABI
+import uniContractAddress from '@/lib/uniContractAddress.json'; // Directly import contract address
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import DisplayIpfsComponentPage from '@/components/Ipfs/DisplayIpfsComponentPage'; // Component to display image
+import CopyText from '@/components/Util/CopyText'; // Component for copying text
+import ShowUrlLink from '@/components/Util/ShowUrlLink'; // Component for copying text
 
 interface ReadNftByTokenNumberProps {
   tokenNumber: string;
@@ -15,7 +15,9 @@ interface ReadNftByTokenNumberProps {
 const contractAddress = uniContractAddress.address as `0x${string}`;
 const vaultAddress = vaultNFTAddress.address as `0x${string}`;
 
-const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({ tokenNumber }) => {
+const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({
+  tokenNumber,
+}) => {
   const [tokenURI, setTokenURI] = useState<string | null>(null);
   const [nftOwner, setNftOwner] = useState<string | null>(null);
   const { address: connectedWalletAddress, isConnected } = useAccount();
@@ -23,7 +25,7 @@ const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({ tokenNumber
   const { data, error } = useContractRead({
     address: contractAddress,
     abi: uniContractABI, // Directly use the imported ABI
-    functionName: "getNftDetails",
+    functionName: 'getNftDetails',
     args: [tokenNumber],
   });
 
@@ -35,9 +37,15 @@ const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({ tokenNumber
       return null; // End without showing any message
     }
     if (connectedWalletAddress === nftOwner) {
-      return <span className="ml-2 font-bold text-green-500">You own this NFT</span>;
+      return (
+        <span className="ml-2 font-bold text-green-500">You own this NFT</span>
+      );
     }
-    return <span className="ml-2 font-bold text-red-500">Someone else owns this NFT</span>;
+    return (
+      <span className="ml-2 font-bold text-red-500">
+        Someone else owns this NFT
+      </span>
+    );
   };
 
   useEffect(() => {
@@ -46,7 +54,7 @@ const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({ tokenNumber
       setTokenURI(uri);
       setNftOwner(owner);
     } else if (error) {
-      console.error("Error fetching NFT details:", error);
+      console.error('Error fetching NFT details:', error);
     }
   }, [data, error]);
 
@@ -56,20 +64,28 @@ const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({ tokenNumber
         <>
           <DisplayIpfsComponentPage carModelUri={tokenURI} />
           <p>NFT: {tokenNumber}</p>
-          <p>NFT Owner:
-             <div className="flex items-center">
-                <CopyText copiedText={nftOwner} />
-                &nbsp;
-                <ShowUrlLink baseUrl="https://sepolia.basescan.org/address/" path={nftOwner} />
-             </div>            
-             {renderOwnershipStatus()}
+          <p>
+            NFT Owner:
+            <div className="flex items-center">
+              <CopyText copiedText={nftOwner} />
+              &nbsp;
+              <ShowUrlLink
+                baseUrl="https://sepolia.basescan.org/address/"
+                path={nftOwner}
+              />
+            </div>
+            {renderOwnershipStatus()}
           </p>
-          <p>Token URI: 
-             <div className="flex items-center">
-                <CopyText copiedText={tokenURI} />
-                &nbsp;
-                <ShowUrlLink baseUrl="https://rose-wonderful-crab-70.mypinata.cloud/ipfs/" path={tokenURI} />
-             </div>            
+          <p>
+            Token URI:
+            <div className="flex items-center">
+              <CopyText copiedText={tokenURI} />
+              &nbsp;
+              <ShowUrlLink
+                baseUrl="https://rose-wonderful-crab-70.mypinata.cloud/ipfs/"
+                path={tokenURI}
+              />
+            </div>
           </p>
         </>
       ) : (
@@ -80,4 +96,3 @@ const ReadNftByTokenNumber: React.FC<ReadNftByTokenNumberProps> = ({ tokenNumber
 };
 
 export default ReadNftByTokenNumber;
-

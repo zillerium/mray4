@@ -1,5 +1,5 @@
-import React from "react";
-import DisplaySVGNumber from "@/components/Util/DisplaySVGNumber";
+import React from 'react';
+import DisplaySVGNumber from '@/components/Util/DisplaySVGNumber';
 
 interface DisplayNFTNumberProps {
   selectedToken: number;
@@ -8,7 +8,7 @@ interface DisplayNFTNumberProps {
 const DisplayNFTNumber: React.FC<DisplayNFTNumberProps> = ({
   selectedToken,
 }) => {
-  const digits = selectedToken.toString().split("").map(Number);
+  const digits = selectedToken.toString().split('').map(Number);
 
   return (
     <span className="inline-flex">
@@ -20,4 +20,3 @@ const DisplayNFTNumber: React.FC<DisplayNFTNumberProps> = ({
 };
 
 export default DisplayNFTNumber;
-

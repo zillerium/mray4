@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
-import { useContractRead } from "wagmi";
-import UnifiedNFTABI from "@/lib/uniContractABI.json"; // ABI for UnifiedNFT contract
-import UnifiedNFTAddress from "@/lib/uniContractAddress.json"; // Contract address for UnifiedNFT
+import React, { useEffect } from 'react';
+import { useContractRead } from 'wagmi';
+import UnifiedNFTABI from '@/lib/uniContractABI.json'; // ABI for UnifiedNFT contract
+import UnifiedNFTAddress from '@/lib/uniContractAddress.json'; // Contract address for UnifiedNFT
 
 interface CheckMintingUserProps {
   walletAddress: string; // Wallet address to check
   onResult: (isMintingUser: boolean) => void; // Callback to pass the result back to the parent
 }
 
-const CheckMintingUser: React.FC<CheckMintingUserProps> = ({ walletAddress, onResult }) => {
+const CheckMintingUser: React.FC<CheckMintingUserProps> = ({
+  walletAddress,
+  onResult,
+}) => {
   const contractAddress = UnifiedNFTAddress.address as `0x${string}`;
 
   // Call the `isMintingUser` function from the smart contract
   const { data, isError, isLoading } = useContractRead({
     address: contractAddress,
     abi: UnifiedNFTABI,
-    functionName: "isMintingUser",
+    functionName: 'isMintingUser',
     args: [walletAddress],
   });
 
@@ -31,10 +34,11 @@ const CheckMintingUser: React.FC<CheckMintingUserProps> = ({ walletAddress, onRe
   return (
     <div>
       {isLoading && <p>Checking Permissions</p>}
-      {!isLoading && isError && <p className="text-red-500">Error checking minting user status.</p>}
+      {!isLoading && isError && (
+        <p className="text-red-500">Error checking minting user status.</p>
+      )}
     </div>
   );
 };
 
 export default CheckMintingUser;
-

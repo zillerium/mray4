@@ -5,7 +5,9 @@ interface InvestorPoolGraphicComProps {
   poolData: [number, string][]; // Array of tuples with [lockedBalance, walletAddress]
 }
 
-const InvestorPoolGraphicCom: React.FC<InvestorPoolGraphicComProps> = ({ poolData }) => {
+const InvestorPoolGraphicCom: React.FC<InvestorPoolGraphicComProps> = ({
+  poolData,
+}) => {
   const totalUSD = poolData.reduce((acc, [usdAmount]) => acc + usdAmount, 0);
   const radius = 80;
   const diameter = 2 * Math.PI * radius;
@@ -13,12 +15,11 @@ const InvestorPoolGraphicCom: React.FC<InvestorPoolGraphicComProps> = ({ poolDat
 
   // Formatter for USD amounts without decimals
 
-const formatUSD = (amount: number) =>
-  new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 6,
-  }).format(amount / 1_000_000); // Divide by 1e6 to scale from base USDC
-
+  const formatUSD = (amount: number) =>
+    new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 6,
+    }).format(amount / 1_000_000); // Divide by 1e6 to scale from base USDC
 
   return (
     <div className="flex w-full h-auto items-center justify-center space-x-8">
@@ -62,7 +63,8 @@ const formatUSD = (amount: number) =>
               }}
             />
             <span className="text-gray-800 font-medium">
-             <CopyText copiedText={walletAddress} /> ({formatUSD(usdAmount)} USD)
+              <CopyText copiedText={walletAddress} /> ({formatUSD(usdAmount)}{' '}
+              USD)
             </span>
           </div>
         ))}
@@ -72,4 +74,3 @@ const formatUSD = (amount: number) =>
 };
 
 export default InvestorPoolGraphicCom;
-

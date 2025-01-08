@@ -35,7 +35,6 @@ const RedeemUsdcTokens: React.FC<RedeemUsdcTokensProps> = ({ txnId }) => {
         setTxnStatus('Transaction failed: An unknown error occurred.');
       }
     }
-
   };
 
   return (
@@ -48,11 +47,12 @@ const RedeemUsdcTokens: React.FC<RedeemUsdcTokensProps> = ({ txnId }) => {
         {txnStatus === 'Transaction submitted...' ? 'Processing...' : 'Redeem'}
       </button>
       {txnStatus && <p className="text-lg">{txnStatus}</p>}
-      {transactionHash && <p className="text-lg">Transaction Hash: {transactionHash}</p>}
+      {transactionHash && (
+        <p className="text-lg">Transaction Hash: {transactionHash}</p>
+      )}
       {error && <p className="text-red-500">Error: {error.message}</p>}
     </div>
   );
 };
 
 export default RedeemUsdcTokens;
-

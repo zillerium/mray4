@@ -3,7 +3,7 @@ import { useContractRead } from 'wagmi';
 import vaultNFTABI from '@/lib/vaultNFTABI.json'; // ABI for NftVault contract
 import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Contract address for NftVault
 import CopyText from '@/components/Util/CopyText';
-import { CURRENCY_FACTOR } from "@/components/Util/ReformatCurrency";
+import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 interface ReadNftPoolDataProps {
   nftId: number;
@@ -92,7 +92,9 @@ const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
             </tr>
             <tr>
               <td className="border px-4 py-2">Collateralization Ratio</td>
-              <td className="border px-4 py-2">{vaultData.collateralizationRatio}</td>
+              <td className="border px-4 py-2">
+                {vaultData.collateralizationRatio}
+              </td>
             </tr>
             <tr>
               <td className="border px-4 py-2">Original Minted Amount</td>
@@ -118,4 +120,3 @@ const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
 };
 
 export default ReadNftPoolData;
-

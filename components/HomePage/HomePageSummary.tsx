@@ -51,4 +51,3 @@ const HomePageSummary = () => (
 );
 
 export default HomePageSummary;
-

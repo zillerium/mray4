@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import ReadInvestorPool from "@/components/Pool/ReadInvestorPool";
-import ReadInvestorPoolData from "@/components/Pool/ReadInvestorPoolData";
+import React, { useState } from 'react';
+import ReadInvestorPool from '@/components/Pool/ReadInvestorPool';
+import ReadInvestorPoolData from '@/components/Pool/ReadInvestorPoolData';
 
 export default function ManageInvestorPool() {
   const [investorList, setInvestorList] = useState<string[]>([]);
@@ -11,7 +11,7 @@ export default function ManageInvestorPool() {
   };
 
   const handleSelectInvestor = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setSelectedInvestor(event.target.value);
   };
@@ -20,11 +20,11 @@ export default function ManageInvestorPool() {
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2
         className="text-3xl md:text-4xl font-normal leading-tight"
-        style={{ fontFamily: "'Cormorant Garamond', serif", color: "#230b59" }}
+        style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
       >
         <span
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
-          style={{ fontFamily: "'Montserrat', sans-serif", color: "#230b59" }}
+          style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
           Mray&apos;s Investor Vault
         </span>
@@ -46,7 +46,7 @@ export default function ManageInvestorPool() {
             id="investorDropdown"
             className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded"
             onChange={handleSelectInvestor}
-            value={selectedInvestor ?? ""}
+            value={selectedInvestor ?? ''}
           >
             <option value="" disabled>
               Select Wallet
@@ -71,4 +71,3 @@ export default function ManageInvestorPool() {
     </div>
   );
 }
-

@@ -1,6 +1,6 @@
 // components/IpfsCidInput.tsx
 
-import React from "react";
+import React from 'react';
 
 interface IpfsCidInputProps {
   ipfsCid: string;
@@ -15,7 +15,10 @@ const IpfsCidInput: React.FC<IpfsCidInputProps> = ({
 }) => {
   return (
     <div className="mt-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ipfsCid">
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor="ipfsCid"
+      >
         IPFS CID
       </label>
       <input
@@ -37,4 +40,3 @@ const IpfsCidInput: React.FC<IpfsCidInputProps> = ({
 };
 
 export default IpfsCidInput;
-

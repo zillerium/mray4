@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
-import nftVeValContractABI from "@/lib/vaultNFTABI.json"; 
-import nftVeValContractAddress from "@/lib/vaultNFTAddress.json"; 
+import nftVeValContractABI from '@/lib/vaultNFTABI.json';
+import nftVeValContractAddress from '@/lib/vaultNFTAddress.json';
 import VotesTable from '@/components/VeVotes/VotesTable'; // Import the VotesTable component
 import VotesSummary from '@/components/VeVotes/VotesSummary'; // Import the VotesSummary component
-import { CURRENCY_FACTOR } from "@/components/Util/ReformatCurrency";
+import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 const contractAddress = nftVeValContractAddress.address as `0x${string}`;
 
@@ -14,7 +14,11 @@ interface Vote {
   price: bigint;
 }
 
-const VeVotesCastBal: React.FC<{  nftOwner: string;  nftId: number; onVotesCastChange: (votesCast: number) => void }> = ({nftOwner,  nftId, onVotesCastChange }) => {
+const VeVotesCastBal: React.FC<{
+  nftOwner: string;
+  nftId: number;
+  onVotesCastChange: (votesCast: number) => void;
+}> = ({ nftOwner, nftId, onVotesCastChange }) => {
   const { isConnected } = useAccount();
 
   // Use useContractRead to call getVotesForNFT function from the smart contract
@@ -30,7 +34,10 @@ const VeVotesCastBal: React.FC<{  nftOwner: string;  nftId: number; onVotesCastC
   useEffect(() => {
     if (votesData) {
       // Calculate and update the total votes cast
-      const totalVotesCast = votesData.reduce((total, vote) => total + Number(vote.votes), 0);
+      const totalVotesCast = votesData.reduce(
+        (total, vote) => total + Number(vote.votes),
+        0,
+      );
       onVotesCastChange(totalVotesCast);
     }
 
@@ -39,11 +46,12 @@ const VeVotesCastBal: React.FC<{  nftOwner: string;  nftId: number; onVotesCastC
     }
   }, [votesData, error, nftId, onVotesCastChange]);
 
-  const convertedVotesData = votesData?.map(vote => ({
-    voter: vote.voter,
-    votes: Number(vote.votes), // Convert bigint to number
-    price: Number(vote.price) / CURRENCY_FACTOR,
-  })) || [];
+  const convertedVotesData =
+    votesData?.map((vote) => ({
+      voter: vote.voter,
+      votes: Number(vote.votes), // Convert bigint to number
+      price: Number(vote.price) / CURRENCY_FACTOR,
+    })) || [];
 
   return (
     <div>
@@ -54,7 +62,11 @@ const VeVotesCastBal: React.FC<{  nftOwner: string;  nftId: number; onVotesCastC
           votesData && (
             <>
               <VotesTable votesData={convertedVotesData} />
-              <VotesSummary votesData={votesData} nftId={nftId} nftOwner={nftOwner} />
+              <VotesSummary
+                votesData={votesData}
+                nftId={nftId}
+                nftOwner={nftOwner}
+              />
             </>
           )
         )
@@ -66,4 +78,3 @@ const VeVotesCastBal: React.FC<{  nftOwner: string;  nftId: number; onVotesCastC
 };
 
 export default VeVotesCastBal;
-

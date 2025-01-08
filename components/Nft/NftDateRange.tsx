@@ -7,17 +7,24 @@ interface NftDateRangeProps {
   setSelectedDate: (date: string) => void; // Prop to handle the date change
 }
 
-const NftDateRange: React.FC<NftDateRangeProps> = ({ tokenNumber, setSelectedDate }) => {
-  const [priceDate, setPriceDate] = useState<string>("");
+const NftDateRange: React.FC<NftDateRangeProps> = ({
+  tokenNumber,
+  setSelectedDate,
+}) => {
+  const [priceDate, setPriceDate] = useState<string>('');
 
-  const handlePriceDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setPriceDate(event.target.value);
     setSelectedDate(event.target.value); // Pass the selected date to the parent component
   };
 
   return (
     <div className="mb-4">
-      <h3 className="font-medium mb-2">Set End Date for Voting on {tokenNumber}</h3>
+      <h3 className="font-medium mb-2">
+        Set End Date for Voting on {tokenNumber}
+      </h3>
       <input
         type="date"
         value={priceDate}
@@ -29,4 +36,3 @@ const NftDateRange: React.FC<NftDateRangeProps> = ({ tokenNumber, setSelectedDat
 };
 
 export default NftDateRange;
-

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { FaSync } from "react-icons/fa";
-import { useAccount } from "wagmi";
-import NftVeVoteDetails from "@/components/NftVe/NftVeVoteDetails";
-import DisplayLockedMsg from "@/components/Util/DisplayLockedMsg";
-import VeVotesCastBal from "@/components/VeVotes/VeVotesCastBal";
-import TokenHolderVeVoting from "@/components/VeVotes/TokenHolderVeVoting";
-import ReadAllNfts from "@/components/ReadNft/ReadAllNfts";
-import DisplayNftsDropDown from "@/components/Nft/DisplayNftsDropDown";
-import ReadNftByTokenNumberOwner from "@/components/ReadNft/ReadNftByTokenNumberOwner";
-import DisplayIpfsDocs from "@/components/Ipfs/DisplayIpfsDocs";
-import DisplayNFTNumber from "@/components/Nft/DisplayNFTNumber";
-import Navbar from "@/components/Navbar/Navbar";
-import GetWalletHeader from "@/components/Util/GetWalletHeader";
+import React, { useState } from 'react';
+import { FaSync } from 'react-icons/fa';
+import { useAccount } from 'wagmi';
+import NftVeVoteDetails from '@/components/NftVe/NftVeVoteDetails';
+import DisplayLockedMsg from '@/components/Util/DisplayLockedMsg';
+import VeVotesCastBal from '@/components/VeVotes/VeVotesCastBal';
+import TokenHolderVeVoting from '@/components/VeVotes/TokenHolderVeVoting';
+import ReadAllNfts from '@/components/ReadNft/ReadAllNfts';
+import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
+import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
+import DisplayIpfsDocs from '@/components/Ipfs/DisplayIpfsDocs';
+import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
+import Navbar from '@/components/Navbar/Navbar';
+import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
 export default function GetNftVeVoteButton() {
   const { isConnected } = useAccount();
@@ -49,14 +49,14 @@ export default function GetNftVeVoteButton() {
               className="flex items-center space-x-4 text-3xl md:text-4xl font-normal leading-tight"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                color: "#230b59",
+                color: '#230b59',
               }}
             >
               <span
                 className="text-4xl md:text-5xl font-black leading-none tracking-tight"
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
-                  color: "#230b59",
+                  color: '#230b59',
                 }}
               >
                 Voting on NFT Valuations
@@ -148,4 +148,3 @@ export default function GetNftVeVoteButton() {
     </div>
   );
 }
-

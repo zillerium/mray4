@@ -6,10 +6,13 @@ import ShowTxnHash from '@/components/Util/ShowTxnHash';
 
 interface AddIpfsNftDocProps {
   ipfsAddress: string; // IPFS address supplied to the component
-  nftId: number;       // Selected NFT ID passed down as a prop
+  nftId: number; // Selected NFT ID passed down as a prop
 }
 
-const AddIpfsNftDoc: React.FC<AddIpfsNftDocProps> = ({ ipfsAddress, nftId }) => {
+const AddIpfsNftDoc: React.FC<AddIpfsNftDocProps> = ({
+  ipfsAddress,
+  nftId,
+}) => {
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
   const { data: transactionHash, writeContract, error } = useWriteContract();
@@ -50,4 +53,3 @@ const AddIpfsNftDoc: React.FC<AddIpfsNftDocProps> = ({ ipfsAddress, nftId }) => 
 };
 
 export default AddIpfsNftDoc;
-

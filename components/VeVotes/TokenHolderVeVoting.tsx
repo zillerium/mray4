@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useWriteContract } from "wagmi";
-import vaultNFTABI from "@/lib/vaultNFTABI.json"; // Import ABI for veToken valuation contract
-import vaultNFTAddress from "@/lib/vaultNFTAddress.json"; // Import contract address for veToken valuation contract
-import { reformatCurrency } from "@/components/Util/ReformatCurrency";
+import React, { useState } from 'react';
+import { useWriteContract } from 'wagmi';
+import vaultNFTABI from '@/lib/vaultNFTABI.json'; // Import ABI for veToken valuation contract
+import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Import contract address for veToken valuation contract
+import { reformatCurrency } from '@/components/Util/ReformatCurrency';
 
 interface TokenHolderVeVotingProps {
   nftId: number; // Expecting a number since it's parsed before passed
@@ -19,16 +19,16 @@ const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
 
   const handleVoteClick = async () => {
     if (!price) {
-      alert("Please enter a valid price.");
+      alert('Please enter a valid price.');
       return;
     }
 
-// Scale the input price
-  const reformattedPrice = reformatCurrency(price);
-  if (reformattedPrice === null) {
-    alert("Please enter a valid numeric price.");
-    return;
-  }
+    // Scale the input price
+    const reformattedPrice = reformatCurrency(price);
+    if (reformattedPrice === null) {
+      alert('Please enter a valid numeric price.');
+      return;
+    }
 
     setTxnStatus('Processing your transaction...'); // Set the message immediately after clicking the button
 
@@ -67,11 +67,12 @@ const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
 
       {/* Display the transaction status message directly */}
       {txnStatus && <div className="text-lg mt-2">{txnStatus}</div>}
-      {transactionHash && <div className="text-lg mt-2">Transaction Hash: {transactionHash}</div>}
+      {transactionHash && (
+        <div className="text-lg mt-2">Transaction Hash: {transactionHash}</div>
+      )}
       {error && <div className="text-red-500 mt-2">Error: {error.message}</div>}
     </div>
   );
 };
 
 export default TokenHolderVeVoting;
-

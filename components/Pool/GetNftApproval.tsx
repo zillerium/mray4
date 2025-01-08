@@ -1,7 +1,7 @@
 //components/Pool/GetNftApproval.tsx
-import React from "react";
-import { useAccount } from "wagmi";
-import UpdatePool from "./UpdatePool";
+import React from 'react';
+import { useAccount } from 'wagmi';
+import UpdatePool from './UpdatePool';
 
 interface GetNftApprovalProps {
   nftId: number;
@@ -31,4 +31,3 @@ const GetNftApproval: React.FC<GetNftApprovalProps> = ({ nftId, nftOwner }) => {
 };
 
 export default GetNftApproval;
-

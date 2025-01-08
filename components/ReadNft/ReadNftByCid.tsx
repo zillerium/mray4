@@ -1,9 +1,9 @@
 // components/ReadNftByCid.tsx
 
-import React, { useEffect, useState } from "react";
-import { useContractRead } from "wagmi";
-import uniContractABI from "@/lib/uniContractABI.json"; // Directly import ABI
-import uniContractAddress from "@/lib/uniContractAddress.json"; // Directly import contract address
+import React, { useEffect, useState } from 'react';
+import { useContractRead } from 'wagmi';
+import uniContractABI from '@/lib/uniContractABI.json'; // Directly import ABI
+import uniContractAddress from '@/lib/uniContractAddress.json'; // Directly import contract address
 
 interface ReadNftByCidProps {
   ipfsCid: string;
@@ -19,7 +19,7 @@ const ReadNftByCid: React.FC<ReadNftByCidProps> = ({ ipfsCid }) => {
   const { data, error } = useContractRead({
     address: contractAddress,
     abi: uniContractABI, // Directly use the imported ABI
-    functionName: "cidToTokenId",
+    functionName: 'cidToTokenId',
     args: [ipfsCid],
   });
 
@@ -27,7 +27,9 @@ const ReadNftByCid: React.FC<ReadNftByCidProps> = ({ ipfsCid }) => {
     if (data) {
       setTokenId(data.toString());
     } else if (error) {
-      setErrorMessage(`Error fetching data from the contract: ${error.message}`);
+      setErrorMessage(
+        `Error fetching data from the contract: ${error.message}`,
+      );
     }
   }, [data, error]);
 
@@ -38,11 +40,13 @@ const ReadNftByCid: React.FC<ReadNftByCidProps> = ({ ipfsCid }) => {
       {errorMessage ? (
         <p className="text-red-500">{errorMessage}</p>
       ) : (
-        <p>Token Number: {tokenId !== null ? tokenId : "Fetching token number..."}</p>
+        <p>
+          Token Number:{' '}
+          {tokenId !== null ? tokenId : 'Fetching token number...'}
+        </p>
       )}
     </div>
   );
 };
 
 export default ReadNftByCid;
-

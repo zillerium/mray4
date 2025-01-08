@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useContractRead } from 'wagmi';
 import vaultNFTABI from '@/lib/vaultNFTABI.json';
 import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
-import { FaSync } from "react-icons/fa";
+import { FaSync } from 'react-icons/fa';
 
 interface ReadNftsPoolProps {
   onNftListUpdate: (nftList: number[]) => void;
@@ -21,17 +21,19 @@ const ReadNftsPool: React.FC<ReadNftsPoolProps> = ({ onNftListUpdate }) => {
     functionName: 'getAllLockedNFTs',
   });
 
-const handleFetchNfts = () => {
-  refetch().then((result) => {
-    if (result.data && Array.isArray(result.data)) {
-      const nftList = result.data.map((id: string | number | bigint) => parseInt(id.toString(), 10));
-      onNftListUpdate(nftList);
-      setErrorMessage(null);
-    } else if (error) {
-      setErrorMessage('Error fetching locked NFTs');
-    }
-  });
-};
+  const handleFetchNfts = () => {
+    refetch().then((result) => {
+      if (result.data && Array.isArray(result.data)) {
+        const nftList = result.data.map((id: string | number | bigint) =>
+          parseInt(id.toString(), 10),
+        );
+        onNftListUpdate(nftList);
+        setErrorMessage(null);
+      } else if (error) {
+        setErrorMessage('Error fetching locked NFTs');
+      }
+    });
+  };
 
   return (
     <>
@@ -47,4 +49,3 @@ const handleFetchNfts = () => {
 };
 
 export default ReadNftsPool;
-
