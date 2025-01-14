@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useWriteContract, useAccount } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 
 interface RedeemNftPoolProps {
   nftId: string;
 }
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
   const { isConnected } = useAccount();
@@ -24,7 +24,7 @@ const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
     try {
       writeContract({
         address: contractAddress,
-        abi: vaultNFTABI,
+        abi: bondTreasuryABI,
         functionName: 'redeemNFT',
         args: [BigInt(nftId)],
       });

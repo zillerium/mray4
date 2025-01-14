@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { FaCaretDown } from 'react-icons/fa'; // Import caret icon
 
-const NavBarNftPool = () => {
+const NavBarBonds = () => {
   return (
     <li className="relative py-2 lg:py-0 group">
       <button
@@ -10,7 +10,7 @@ const NavBarNftPool = () => {
         type="button"
       >
         <span className="flex items-center">
-          Pool
+          Bonds
           <FaCaretDown className="ml-1" />
         </span>
       </button>
@@ -18,20 +18,20 @@ const NavBarNftPool = () => {
         role="menu"
         className="hidden group-hover:block absolute z-10 min-w-[120px] overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg"
       >
-        <Link href="/NftPool">
+      <Link href="/BondIssue">
           <li
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
           >
-            NFT Pool
+            Bond Issue
           </li>
         </Link>
-        <Link href="/InvestorPool">
+        <Link href="/BondBuy">
           <li
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
           >
-            Investor Pool
+            Buy
           </li>
         </Link>
       </ul>
@@ -39,4 +39,4 @@ const NavBarNftPool = () => {
   );
 };
 
-export default NavBarNftPool;
+export default NavBarBonds;

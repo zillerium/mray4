@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
-import nftVeValContractABI from '@/lib/vaultNFTABI.json'; // ABI for the contract
-import nftVeValContractAddress from '@/lib/vaultNFTAddress.json'; // Contract address
+import bondTreasuryContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the contract
+import bondTreasuryContractAddress from '@/lib/bondTreasuryAddress.json'; // Contract address
 import CopyText from '@/components/Util/CopyText';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { reformatCurrency } from '@/components/Util/ReformatCurrency';
@@ -11,7 +11,7 @@ interface SetNftVeVoteComProps {
   ownedNft: boolean;
 }
 
-const contractAddress = nftVeValContractAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryContractAddress.address as `0x${string}`;
 
 // Function to convert date to Unix timestamp
 function convertToUnixTimestamp(dateStr: string): number {
@@ -47,11 +47,10 @@ const SetNftVeVoteCom: React.FC<SetNftVeVoteComProps> = ({
 
       writeContract({
         address: contractAddress,
-        abi: nftVeValContractABI,
-        functionName: 'setNftVeVote',
+        abi: bondTreasuryContractABI,
+        functionName: 'startNftInvestmentPeriod',
         args: [
           Number(tokenNumber),
-          reformattedLowerLimit,
           reformattedLowerLimit,
           unixTimestamp,
         ],

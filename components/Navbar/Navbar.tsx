@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import CustomButton from '@/components/Navbar/CustomButton';
 import NavBarNFTs from '@/components/Navbar/NavBarNFTs';
-import NavBarValuations from '@/components/Navbar/NavBarValuations';
-import NavBarInvestors from '@/components/Navbar/NavBarInvestors';
-import NavBarNftPool from '@/components/Navbar/NavBarNftPool';
-import NavBarWallet from '@/components/Navbar/NavBarWallet';
+import NavBarBonds from '@/components/Navbar/NavBarBonds';
+import NavBarTreasury from '@/components/Navbar/NavBarTreasury';
+import NavBarAUMs from '@/components/Navbar/NavBarAUMs';
+import NavBarAssets from '@/components/Navbar/NavBarAssets';
 import NavBarAdmin from '@/components/Navbar/NavBarAdmin';
 
 const Navbar = () => {
@@ -55,11 +55,11 @@ const Navbar = () => {
           <ul className="text-xl text-center items-center gap-x-3 pt-4 lg:text-lg lg:flex lg:pt-0">
             {' '}
             {/* Reduced gap */}
-            <NavBarWallet />
+            <NavBarAssets />
             <NavBarNFTs />
-            <NavBarValuations />
-            <NavBarNftPool />
-            <NavBarInvestors />
+            <NavBarBonds />
+            <NavBarAUMs />
+            <NavBarTreasury />
             <NavBarAdmin /> {/* New Admin Navbar */}
             <li className="py-2 lg:py-0 lg:ml-6">
               <CustomButton />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
 import uniContractABI from '@/lib/uniContractABI.json'; // Directly import ABI
 import uniContractAddress from '@/lib/uniContractAddress.json'; // Directly import contract address
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 import DisplayIpfsComponentPage from '@/components/Ipfs/DisplayIpfsComponentPage'; // Component to display image
 import CopyText from '@/components/Util/CopyText'; // Component for copying text
 import ShowUrlLink from '@/components/Util/ShowUrlLink'; // Component for copying text
@@ -15,7 +15,7 @@ interface ReadNftByTokenNumberProps {
 
 // Cast the address to the expected type
 const contractAddress = uniContractAddress.address as `0x${string}`;
-const vaultAddress = vaultNFTAddress.address as `0x${string}`;
+const vaultAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const ReadNftByTokenNumberOwner: React.FC<ReadNftByTokenNumberProps> = ({
   tokenNumber,

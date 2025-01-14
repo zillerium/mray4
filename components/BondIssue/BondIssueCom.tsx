@@ -7,10 +7,10 @@ import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumber
 import Navbar from '@/components/Navbar/Navbar';
 import SetNftVeVoteCom from '@/components/NftVe/SetNftVeVoteCom';
 import NftVeApproveVault from '@/components/NftVe/NftVeApproveVault';
-import DisplayHelpHeadings from '@/components/ManageNft/DisplayHelpHeadings';
+import DisplayHelpHeadings from '@/components/BondIssue/DisplayHelpHeadings';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
-const ManageNftPriceCom: React.FC = () => {
+const BondIssueCom: React.FC = () => {
   const { address: userAddress } = useAccount();
   const [nftOwner, setNftOwner] = useState<string | null>(null); // New state
   const [tokenList, setTokenList] = useState<number[]>([]);
@@ -138,4 +138,4 @@ const ManageNftPriceCom: React.FC = () => {
   );
 };
 
-export default ManageNftPriceCom;
+export default BondIssueCom;

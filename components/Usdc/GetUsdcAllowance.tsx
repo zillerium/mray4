@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useContractRead } from 'wagmi';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the vault contract
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json'; // Address for the vault contract
 import usdcABI from '@/lib/usdcABI.json'; // ABI for the USDC contract
 import usdcAddress from '@/lib/usdcAddress.json'; // Address for the USDC contract
 
-const vaultAddress = vaultNFTAddress.address as `0x${string}`;
+const vaultAddress = usdcTreasuryAddress.address as `0x${string}`;
 const usdcContractAddress = usdcAddress.address as `0x${string}`;
 
 const GetUsdcAllowance: React.FC<{ walletAddress: string }> = ({

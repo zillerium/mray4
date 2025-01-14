@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json'; // ABI for the vault contract
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the vault contract
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // ABI for the vault contract
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json'; // Address for the vault contract
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
   walletAddress,
@@ -12,8 +12,8 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
 
   const { data: usdcBalanceData, error: usdcBalanceError } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
-    functionName: 'usdcBalance', // Contract function to fetch balance
+    abi: usdcTreasuryABI,
+    functionName: 'getAllUsdcInvestors',
     args: [walletAddress],
   });
 

@@ -1,90 +1,83 @@
 import React, { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
-import nftVeValContractABI from '@/lib/vaultNFTABI.json';
-import nftVeValContractAddress from '@/lib/vaultNFTAddress.json';
-import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
-
+import nftVeValContractABI from "@/lib/bondTreasuryABI.json";
+import nftVeValContractAddress from "@/lib/bondTreasuryAddress.json";
 import VotingTable from './VotingTable';
 
 const contractAddress = nftVeValContractAddress.address as `0x${string}`;
 
 interface NftVeVoteDetailsProps {
   nftId: string | number;
-  onVotingStateChange?: (active: boolean) => void; // Add this line
+  onVotingStateChange?: (active: boolean) => void; // Optional prop
 }
+const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({ nftId, onVotingStateChange }) => {
 
-function convertUnixTimestampToDate(unixTimestamp: number): string {
-  const date = new Date(unixTimestamp * 1000);
-  const year = date.getUTCFullYear();
-  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-  const day = date.getUTCDate().toString().padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
-const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({
-  nftId,
-  onVotingStateChange,
-}) => {
-  const [lowerLimit, setLowerLimit] = useState<number | null>(null);
-  const [upperLimit, setUpperLimit] = useState<number | null>(null);
-  const [votingActive, setVotingActive] = useState<boolean | null>(null);
-  const [endDate, setEndDate] = useState<string | null>(null);
+  const [nftPrice, setNftPrice] = useState<number | null>(null);
+  const [bondAmount, setBondAmount] = useState<number | null>(null);
+  const [bondMaturity, setBondMaturity] = useState<string | null>(null);
+  const [bondSalePeriodEnd, setBondSalePeriodEnd] = useState<string | null>(null);
+  const [totalBondSupply, setTotalBondSupply] = useState<number | null>(null);
+  const [remainingBondSupply, setRemainingBondSupply] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const { data: valuationData, error: valuationError } = useContractRead({
+  const { data, error: bondDetailsError } = useContractRead({
     address: contractAddress,
     abi: nftVeValContractABI,
-    functionName: 'nftValuations',
+    functionName: 'getBondedNftDetails',
     args: [nftId],
   });
 
   useEffect(() => {
-    if (
-      valuationData &&
-      Array.isArray(valuationData) &&
-      valuationData.length === 4
-    ) {
+    if (data !== undefined && data !== null) {
       try {
-        const lowerLimitString = valuationData[0]?.toString() || '0';
-        const upperLimitString = valuationData[1]?.toString() || '0';
-        const votingActiveBool = Boolean(valuationData[2]);
-        const endDateUnix = parseInt(valuationData[3]?.toString() || '0', 10);
+        const {
+          nftPrice,
+          bondAmount,
+          bondMaturity,
+          bondSalePeriodEnd,
+          totalBondSupply,
+          remainingBondSupply,
+        } = data as {
+          nftPrice: number;
+          bondAmount: number;
+          bondMaturity: number;
+          bondSalePeriodEnd: number;
+          totalBondSupply: number;
+          remainingBondSupply: number;
+        };
 
-        setLowerLimit(Number(lowerLimitString) / CURRENCY_FACTOR);
-        setUpperLimit(Number(upperLimitString) / CURRENCY_FACTOR);
-        setVotingActive(votingActiveBool);
-        setEndDate(convertUnixTimestampToDate(endDateUnix));
-
-        if (onVotingStateChange) {
-          onVotingStateChange(votingActiveBool); // Notify parent of voting state
-        }
-      } catch (error) {
-        console.error('Error converting data:', error);
-        setError('Error converting data');
+        setNftPrice(nftPrice);
+        setBondAmount(bondAmount);
+        setBondMaturity(new Date(bondMaturity * 1000).toISOString().split('T')[0]);
+        setBondSalePeriodEnd(new Date(bondSalePeriodEnd * 1000).toISOString().split('T')[0]);
+        setTotalBondSupply(totalBondSupply);
+        setRemainingBondSupply(remainingBondSupply);
+        setError(null); // Clear any errors
+      } catch (e) {
+        console.error('Error parsing bond details:', e);
+        setError('Error processing bond details');
       }
-    } else if (valuationError) {
-      console.error(
-        `Error fetching valuation for NFT ID ${nftId}:`,
-        valuationError.message,
-      );
-      setError('Error fetching valuation data');
+    } else if (bondDetailsError) {
+      console.error('Error fetching bond details:', bondDetailsError.message);
+      setError('Error fetching bond details');
     }
-  }, [valuationData, valuationError, onVotingStateChange]);
+  }, [data, bondDetailsError]);
+
+  if (error) {
+    return <p className="text-red-500">{error}</p>;
+  }
 
   return (
-    <div className="mt-4">
-      {error ? (
-        <p className="text-red-500">{error}</p>
-      ) : (
-        <VotingTable
-          lowerLimit={lowerLimit}
-          upperLimit={upperLimit}
-          endDate={endDate}
-          votingActive={votingActive}
-        />
-      )}
-    </div>
+    <VotingTable
+      nftPrice={nftPrice}
+      bondAmount={bondAmount}
+      bondMaturity={bondMaturity}
+      bondSalePeriodEnd={bondSalePeriodEnd}
+      totalBondSupply={totalBondSupply}
+      remainingBondSupply={remainingBondSupply}
+    />
   );
 };
 
 export default NftVeVoteDetails;
+

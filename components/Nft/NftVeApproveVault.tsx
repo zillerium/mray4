@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
 import uniContractABI from '@/lib/uniContractABI.json'; // ABI for the NFT contract
 import uniContractAddress from '@/lib/uniContractAddress.json'; // Address for the NFT contract
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the Vault contract
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for the Vault contract
 import { FaExternalLinkAlt } from 'react-icons/fa'; // Import FontAwesome icon
 import CopyText from '@/components/Util/CopyText';
 
@@ -11,7 +11,7 @@ interface NftVeApproveVaultProps {
 }
 
 const nftAddress = uniContractAddress.address as `0x${string}`;
-const vaultAddress = vaultNFTAddress.address as `0x${string}`;
+const vaultAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
   const [txnStatus, setTxnStatus] = useState<string | null>(null);

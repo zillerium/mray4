@@ -5,9 +5,9 @@ import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
 import RedeemNftPool from '@/components/Pool/RedeemNftPool';
 import BuyNftPool from '@/components/Pool/BuyNftPool';
 import GetStablecoinBalanceNew from '@/components/Stablecoin/GetStablecoinBalanceNew';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Address for the vault contract
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for the vault contract
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
 export default function ManagePool() {
   const [nftList, setNftList] = useState<number[]>([]);

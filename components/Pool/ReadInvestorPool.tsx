@@ -2,15 +2,15 @@
 
 import React, { useState } from 'react';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json';
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 import { FaSync } from 'react-icons/fa';
 
 interface ReadInvestorPoolProps {
   onInvestorListUpdate: (investorList: string[]) => void;
 }
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const ReadInvestorPool: React.FC<ReadInvestorPoolProps> = ({
   onInvestorListUpdate,
@@ -19,8 +19,8 @@ const ReadInvestorPool: React.FC<ReadInvestorPoolProps> = ({
 
   const { error, refetch } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
-    functionName: 'getAllUsdcPayers',
+    abi: usdcTreasuryABI,
+    functionName: 'getAllUsdcInvestors',
   });
 
   const handleFetchInvestors = () => {

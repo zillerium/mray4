@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
-import nftVeValContractABI from '@/lib/vaultNFTABI.json';
-import nftVeValContractAddress from '@/lib/vaultNFTAddress.json';
+import nftVeValContractABI from '@/lib/bondTreasuryABI.json';
+import nftVeValContractAddress from '@/lib/bondTreasuryAddress.json';
 import VotesTable from '@/components/VeVotes/VotesTable'; // Import the VotesTable component
 import VotesSummary from '@/components/VeVotes/VotesSummary'; // Import the VotesSummary component
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';

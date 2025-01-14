@@ -34,7 +34,7 @@ const HomePageDesc = () => (
     </p>
 
     {/* Get Started Button */}
-    <Link href="/ManageNftPage">
+    <Link href="/NftMint">
       <button className="mt-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition duration-200">
         Get started
       </button>

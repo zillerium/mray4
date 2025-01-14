@@ -3,7 +3,7 @@
 import Navbar from '@/components/Navbar/Navbar';
 import React from 'react';
 import GetVeMrayBalanceButton from '@/components/VeMray/GetVeMrayBalanceButton';
-import VeMayInvestorImage from '@/components/VeMray/VeMayInvestorImage';
+import VeMrayInvestorImage from '@/components/VeMray/VeMrayInvestorImage';
 import GetVeMrayWalletUsdcTxns from '@/components/Usdc/GetVeMrayWalletUsdcTxns';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
@@ -16,7 +16,7 @@ export default function Investing() {
         <GetWalletHeader />
         <div className="flex flex-col md:flex-row gap-4 w-full mt-8">
           <GetVeMrayBalanceButton />
-          <VeMayInvestorImage />
+          <VeMrayInvestorImage />
         </div>
 
         <div className="w-full mt-8">

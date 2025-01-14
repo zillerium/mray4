@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useContractWrite } from 'wagmi';
-import usdcMintABI from '@/lib/vaultNFTABI.json'; // Correct ABI for the vault contract
-import vaultAddress from '@/lib/vaultNFTAddress.json'; // Address of the vault contract
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // Correct ABI for the vault contract
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json'; // Address of the vault contract
 import ShowTxnHash from '@/components/Util/ShowTxnHash'; // Utility component for showing transaction hash
 import { FaDollarSign } from 'react-icons/fa'; // Import icon library for USDC icon
 
-const contractAddress = vaultAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const BuyUSDCVeTokens: React.FC = () => {
   const [usdcAmount, setUsdcAmount] = useState<string>('');
@@ -22,8 +22,8 @@ const BuyUSDCVeTokens: React.FC = () => {
       const usdcAmountBigInt = BigInt(Number(usdcAmount) * 10 ** 6); // Adjust for USDC decimals
       writeContract({
         address: contractAddress,
-        abi: usdcMintABI,
-        functionName: 'payUSDCAndMintTokens',
+        abi: usdcTreasuryABI,
+        functionName: 'treasuryUsdcDeposit',
         args: [usdcAmountBigInt],
       });
     } catch (e: unknown) {

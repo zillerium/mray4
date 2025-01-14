@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json';
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 import TimestampToDate from '@/components/Util/TimestampToDate';
 import RedeemUsdcTokens from '@/components/Usdc/RedeemUsdcTokens';
 
@@ -14,7 +14,7 @@ interface UsdcTransactionsTableProps {
   setErrorMessage: (message: string | null) => void;
 }
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
   setErrorMessage,
@@ -27,7 +27,7 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
   const { data: usdcWalletTxnsData, error: usdcWalletTxnsError } =
     useContractRead({
       address: isConnected && address ? contractAddress : undefined,
-      abi: vaultNFTABI,
+      abi: usdcTreasuryABI,
       functionName: 'getUsdcWalletTxnDetails',
       args: isConnected && address ? [address] : [],
     });

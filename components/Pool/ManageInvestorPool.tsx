@@ -26,15 +26,15 @@ export default function ManageInvestorPool() {
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Mray&apos;s Investor Vault
+          USDC Treasury
         </span>
       </h2>
       <br />
       <p>
-        <b>Mray&apos;s Pool of Locked USDCs</b>
+        <b>Free USDC in the Treasury</b>
       </p>
       <p className="mt-4 text-base">
-        Our investors provides liquid USDC to help stablise the MRAY stablecoin.
+        USDC is the basis of bond payments and RWA price stablization.
       </p>
       <br />
 

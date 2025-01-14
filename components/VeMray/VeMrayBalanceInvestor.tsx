@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useContractRead, useAccount } from 'wagmi';
-import veMintABI from '@/lib/vaultNFTABI.json'; // ABI for VeMint
-import veMintContractAddress from '@/lib/vaultNFTAddress.json'; // VeMint contract address
+import veMintABI from '@/lib/bondTreasuryABI.json'; // ABI for VeMint
+import veMintContractAddress from '@/lib/bondTreasuryAddress.json'; // VeMint contract address
 
 const contractAddress = veMintContractAddress.address as `0x${string}`;
 

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import InvestorPoolGraphicCom from '@/components/Pool/InvestorPoolGraphicCom';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json';
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 import GetInvestorLockedTotal from '@/components/Pool/GetInvestorLockedTotal';
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const InvestorPoolMgrGraphicCom = () => {
-  const [poolData, setPoolData] = useState<[number, string][]>([]); // Array of [lockedBalance, walletAddress]
+  const [poolData, setPoolData] = useState<[number, string][]>([]); // Array of [usdcBalance, externalWalletAddress]
 
   // Read the contract to get all locked USDC investment details
   const { data, error } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
+    abi: usdcTreasuryABI,
     functionName: 'getAllUsdcInvestmentDetails',
   });
 
@@ -23,16 +23,16 @@ const InvestorPoolMgrGraphicCom = () => {
         setPoolData([]);
       } else {
         const processedData = data.map(
-          (entry: { lockedBalance: bigint; walletAddress: string }) => [
-            parseInt(entry.lockedBalance.toString(), 10), // Convert balance to integer
-            entry.walletAddress, // Wallet address
+          (entry: { usdcBalance: bigint; externalWalletAddress: string }) => [
+            parseInt(entry.usdcBalance.toString(), 10), // Convert balance to integer
+            entry.externalWalletAddress, // Wallet address
           ],
         ) as [number, string][];
         setPoolData(processedData);
       }
     }
   }, [data]);
-
+ console.log(" error ====> ", error)
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2
@@ -43,7 +43,7 @@ const InvestorPoolMgrGraphicCom = () => {
           className="text-3xl md:text-4xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Locked USDC Value <GetInvestorLockedTotal />
+          Free Treasury Balance <GetInvestorLockedTotal />
         </span>
       </h2>
       <br />
@@ -55,7 +55,7 @@ const InvestorPoolMgrGraphicCom = () => {
           <p className="text-gray-700 text-lg">No investments in Pool</p>
         )}
       </div>
-      {error && <p className="text-red-500">Error fetching pool data</p>}
+      {error && <p className="text-red-500">Error fetching pool data from pool</p>}
     </div>
   );
 };

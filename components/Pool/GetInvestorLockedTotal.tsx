@@ -1,23 +1,23 @@
 import React from 'react';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json';
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const GetInvestorLockedTotal: React.FC = () => {
   // Fetch the total locked USDC value
   const { data, error } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
-    functionName: 'getTotalUsdcLockedValue',
+    abi: usdcTreasuryABI,
+    functionName: 'getTreasuryBalance',
   });
 
   if (error) {
     // Display a controlled error message
     return (
       <span className="text-red-500">
-        Error fetching total USDC locked value
+        Error fetching USDC Contract Balance (All Vaults)
       </span>
     );
   }

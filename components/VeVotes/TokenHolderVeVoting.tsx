@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json'; // Import ABI for veToken valuation contract
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Import contract address for veToken valuation contract
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // Import ABI for veToken valuation contract
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Import contract address for veToken valuation contract
 import { reformatCurrency } from '@/components/Util/ReformatCurrency';
 
 interface TokenHolderVeVotingProps {
   nftId: number; // Expecting a number since it's parsed before passed
 }
 
-const vaultContractAddress = vaultNFTAddress.address as `0x${string}`;
+const vaultContractAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
   const [price, setPrice] = useState<string>(''); // State to store the vote price
@@ -36,8 +36,8 @@ const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
       // Call the vote function on the veToken smart contract
       writeContract({
         address: vaultContractAddress,
-        abi: vaultNFTABI,
-        functionName: 'vote',
+        abi: bondTreasuryABI,
+        functionName: 'invest',
         args: [nftId, Number(reformattedPrice)], // Pass the NFT ID and the price
       });
 

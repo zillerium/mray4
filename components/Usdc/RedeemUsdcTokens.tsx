@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useContractWrite } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json'; // ABI for the Vault contract
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json'; // Vault contract address
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // ABI for the Vault contract
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json'; // Vault contract address
 
 interface RedeemUsdcTokensProps {
   txnId: number; // Transaction ID for redeeming
 }
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
 const RedeemUsdcTokens: React.FC<RedeemUsdcTokensProps> = ({ txnId }) => {
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
@@ -20,7 +20,7 @@ const RedeemUsdcTokens: React.FC<RedeemUsdcTokensProps> = ({ txnId }) => {
     try {
       writeContract({
         address: contractAddress,
-        abi: vaultNFTABI,
+        abi: usdcTreasuryABI,
         functionName: 'redeemUSDC',
         args: [BigInt(txnId)], // Passing txnId as BigInt
       });

@@ -1,22 +1,26 @@
 import React from 'react';
 
 interface VotingTableProps {
-  lowerLimit: number | null;
-  upperLimit: number | null;
-  endDate: string | null;
-  votingActive: boolean | null;
+  nftPrice: number | null;
+  bondAmount: number | null;
+  bondMaturity: string | null;
+  bondSalePeriodEnd: string | null;
+  totalBondSupply: number | null;
+  remainingBondSupply: number | null;
 }
 
 const VotingTable: React.FC<VotingTableProps> = ({
-  lowerLimit,
-  upperLimit,
-  endDate,
-  votingActive,
+  nftPrice,
+  bondAmount,
+  bondMaturity,
+  bondSalePeriodEnd,
+  totalBondSupply,
+  remainingBondSupply,
 }) => {
-  if (!votingActive) {
+  if (nftPrice === 0) {
     return (
       <div className="w-full bg-green-100 text-green-700 p-4 rounded-md shadow-md text-center">
-        Voting did not start yet
+        No Bond issued
       </div>
     );
   }
@@ -26,21 +30,33 @@ const VotingTable: React.FC<VotingTableProps> = ({
       <table className="min-w-full border border-gray-200 rounded-lg shadow-lg">
         <thead>
           <tr className="bg-gray-100">
-            <th className="px-4 py-2 border">Price</th>
-            <th className="px-4 py-2 border">End of Voting</th>
-            <th className="px-4 py-2 border">Voting Started</th>
+            <th className="px-4 py-2 border">NFT Price (USD)</th>
+            <th className="px-4 py-2 border">Bond Amount</th>
+            <th className="px-4 py-2 border">Bond Maturity</th>
+            <th className="px-4 py-2 border">Bond Sale Period End</th>
+            <th className="px-4 py-2 border">Total Bond Supply</th>
+            <th className="px-4 py-2 border">Remaining Bond Supply</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td className="px-4 py-2 border text-center">
-              {lowerLimit !== null ? `${lowerLimit} USD` : 'Loading...'}
+              {nftPrice !== null ? `${nftPrice} USD` : 'Loading...'}
             </td>
             <td className="px-4 py-2 border text-center">
-              {endDate !== null ? endDate : 'Loading...'}
+              {bondAmount !== null ? `${bondAmount} USD` : 'Loading...'}
             </td>
             <td className="px-4 py-2 border text-center">
-              {votingActive ? 'Yes' : 'No'}
+              {bondMaturity !== null ? bondMaturity : 'Loading...'}
+            </td>
+            <td className="px-4 py-2 border text-center">
+              {bondSalePeriodEnd !== null ? bondSalePeriodEnd : 'Loading...'}
+            </td>
+            <td className="px-4 py-2 border text-center">
+              {totalBondSupply !== null ? totalBondSupply : 'Loading...'}
+            </td>
+            <td className="px-4 py-2 border text-center">
+              {remainingBondSupply !== null ? remainingBondSupply : 'Loading...'}
             </td>
           </tr>
         </tbody>
@@ -50,3 +66,4 @@ const VotingTable: React.FC<VotingTableProps> = ({
 };
 
 export default VotingTable;
+

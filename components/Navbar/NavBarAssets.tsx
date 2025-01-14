@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { FaCaretDown } from 'react-icons/fa'; // Import caret icon from react-icons
 
-const NavBarWallet = () => {
+const NavBarAssets = () => {
   return (
     <li className="relative py-2 lg:py-0 group">
       <button
@@ -10,7 +10,7 @@ const NavBarWallet = () => {
         type="button"
       >
         <span className="flex items-center">
-          Wallet
+          Assets
           <FaCaretDown className="ml-1" />{' '}
           {/* Add caret icon next to the "Wallet" text */}
         </span>
@@ -19,12 +19,12 @@ const NavBarWallet = () => {
         role="menu"
         className="hidden group-hover:block absolute z-10 min-w-[120px] overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg"
       >
-        <Link href="/StablecoinPage">
+        <Link href="/AssetBalance">
           <li
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
           >
-            Assets
+            Balances
           </li>
         </Link>
       </ul>
@@ -32,4 +32,4 @@ const NavBarWallet = () => {
   );
 };
 
-export default NavBarWallet;
+export default NavBarAssets;

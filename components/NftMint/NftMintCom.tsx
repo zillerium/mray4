@@ -2,18 +2,18 @@
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
-import ManageNftIpfs from '@/components/ManageNft/ManageNftIpfs';
+import NftMintIpfs from '@/components/NftMint/NftMintIpfs';
 import NftGraphicCom from '@/components/Nft/NftGraphicCom';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
-const ManageNftCom: React.FC = () => {
+const NftMintCom: React.FC = () => {
   return (
     <div>
       <Navbar />
       <main className="min-h-screen px-8 py-0 pb-12 flex-1 flex flex-col items-center">
         <GetWalletHeader />
         <div className="flex flex-col md:flex-row gap-4 w-full mt-8">
-          <ManageNftIpfs />
+          <NftMintIpfs />
           <NftGraphicCom />
         </div>
       </main>
@@ -21,4 +21,4 @@ const ManageNftCom: React.FC = () => {
   );
 };
 
-export default ManageNftCom;
+export default NftMintCom;

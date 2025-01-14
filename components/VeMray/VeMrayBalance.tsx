@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
-import veMintABI from '@/lib/vaultNFTABI.json'; // Include the correct ABI for VeMint
-import veMintContractAddress from '@/lib/vaultNFTAddress.json'; // VeMint contract address
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // Include the correct ABI for VeMint
+import usdcTreasuryContractAddress from '@/lib/usdcTreasuryAddress.json'; // VeMint contract address
 import CopyText from '@/components/Util/CopyText';
 
 interface VeMrayBalanceProps {
   walletAddress: string;
 }
 
-// Cast the address to the expected type
-const contractAddress = veMintContractAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryContractAddress.address as `0x${string}`;
 
 const VeMrayBalance: React.FC<VeMrayBalanceProps> = ({ walletAddress }) => {
   const [balance, setBalance] = useState<string>(''); // State to store the balance
 
   const { data, error: balanceError } = useContractRead({
     address: contractAddress,
-    abi: veMintABI,
-    functionName: 'veMrayBalance', // Calls the getVeMRayBalance function from your contract
+    abi: usdcTreasuryABI,
+    functionName: 'veMrayBalance', 
     args: [walletAddress],
   });
 

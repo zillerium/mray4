@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
-import vaultContractABI from '@/lib/vaultNFTABI.json'; // ABI for the NftPool contract
-import vaultContractAddress from '@/lib/vaultNFTAddress.json'; // Address for the NftPool contract
+import vaultContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the NftPool contract
+import vaultContractAddress from '@/lib/bondTreasuryAddress.json'; // Address for the NftPool contract
 
 interface UpdatePoolProps {
   nftId: number;

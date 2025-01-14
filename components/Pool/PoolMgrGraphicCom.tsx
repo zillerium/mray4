@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PoolGraphicCom from '@/components/Pool/PoolGraphicCom';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 import GetLockedTotal from '@/components/Pool/GetLockedTotal';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const PoolMgrGraphicCom = () => {
   const [poolData, setPoolData] = useState<[number, number][]>([]);
@@ -14,8 +14,8 @@ const PoolMgrGraphicCom = () => {
   // Read the contract to get all locked NFT details
   const { data, error } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
-    functionName: 'getAllLockedNFTDetails',
+    abi: bondTreasuryABI,
+    functionName: 'getBondedNftPrices',
   });
 
   useEffect(() => {
@@ -24,8 +24,8 @@ const PoolMgrGraphicCom = () => {
         setPoolData([]);
       } else {
         const processedData = data.map(
-          (entry: { lockedValue: bigint; nftId: bigint }) => [
-            parseInt(entry.lockedValue.toString(), 10) / CURRENCY_FACTOR,
+          (entry: { nftPrice: bigint; nftId: bigint }) => [
+            parseInt(entry.nftPrice.toString(), 10) / CURRENCY_FACTOR,
             parseInt(entry.nftId.toString(), 10),
           ],
         ) as [number, number][];

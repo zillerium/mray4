@@ -1,17 +1,17 @@
 import React from 'react';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency'; // Import currency factor
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const GetLockedTotal: React.FC = () => {
   // Fetch the total locked value directly
   const { data, error } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
-    functionName: 'getTotalLockedValue',
+    abi: bondTreasuryABI,
+    functionName: 'getBondTreasuryBalance',
   });
 
   if (error) {

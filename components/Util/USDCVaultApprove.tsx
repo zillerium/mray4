@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useContractWrite } from 'wagmi';
 import usdcProxyABI from '@/lib/usdcProxyABI.json';
 import usdcProxyAddress from '@/lib/usdcProxyAddress.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
+import ShowTxnHash from '@/components/Util/ShowTxnHash';
 
 const USDCVaultApprove: React.FC = () => {
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [approvalAmount, setApprovalAmount] = useState<string>('');
-
   const { data: transactionHash, writeContract } = useContractWrite();
 
   const handleApproveClick = async () => {
@@ -24,18 +24,18 @@ const USDCVaultApprove: React.FC = () => {
         address: usdcProxyAddress.address as `0x${string}`,
         abi: usdcProxyABI,
         functionName: 'approve',
-        args: [vaultNFTAddress.address as `0x${string}`, amountInSmallestUnits],
+        args: [usdcTreasuryAddress.address as `0x${string}`, amountInSmallestUnits],
       });
 
       setTxnStatus('Transaction submitted...');
-      setErrorMessage(null);
+      setError(null);
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.error('Transaction failed:', e.message);
-        setErrorMessage(e.message);
+        setError(e);
       } else {
         console.error('An unknown error occurred.');
-        setErrorMessage('An unknown error occurred.');
+        setError(new Error('An unknown error occurred.'));
       }
       setTxnStatus('Transaction failed');
     }
@@ -66,44 +66,19 @@ const USDCVaultApprove: React.FC = () => {
           disabled={txnStatus === 'Transaction submitted...'}
           style={{ width: '30%' }}
         >
-          {txnStatus === 'Transaction submitted...' ? (
-            'Processing...'
-          ) : (
-            <>Approve</>
-          )}
+          {txnStatus === 'Transaction submitted...' ? 'Processing...' : 'Approve'}
         </button>
       </div>
 
-      {/* Transaction Status and Error Messages */}
-      {(txnStatus || errorMessage || transactionHash) && (
-        <div className="w-full max-w-md bg-gray-100 border border-gray-300 rounded-lg p-4 mt-4">
-          {txnStatus && (
-            <p className="text-gray-700 mb-2">
-              <strong>Status:</strong> {txnStatus}
-            </p>
-          )}
-          {errorMessage && (
-            <p className="text-red-500 mb-2">
-              <strong>Error:</strong> {errorMessage}
-            </p>
-          )}
-          {transactionHash && (
-            <p className="text-green-500 mb-2">
-              <strong>Transaction Hash:</strong>{' '}
-              <a
-                href={`https://sepolia.basescan.org/tx/${transactionHash}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500"
-              >
-                {transactionHash}
-              </a>
-            </p>
-          )}
-        </div>
-      )}
+      {/* Transaction Status, Hash, and Error Messages */}
+      <ShowTxnHash
+        txnStatus={txnStatus}
+        transactionHash={transactionHash}
+        error={error}
+      />
     </div>
   );
 };
 
 export default USDCVaultApprove;
+

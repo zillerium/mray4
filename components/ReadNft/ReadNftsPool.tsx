@@ -2,23 +2,23 @@
 
 import React, { useState } from 'react';
 import { useContractRead } from 'wagmi';
-import vaultNFTABI from '@/lib/vaultNFTABI.json';
-import vaultNFTAddress from '@/lib/vaultNFTAddress.json';
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 import { FaSync } from 'react-icons/fa';
 
 interface ReadNftsPoolProps {
   onNftListUpdate: (nftList: number[]) => void;
 }
 
-const contractAddress = vaultNFTAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
 const ReadNftsPool: React.FC<ReadNftsPoolProps> = ({ onNftListUpdate }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const { error, refetch } = useContractRead({
     address: contractAddress,
-    abi: vaultNFTABI,
-    functionName: 'getAllLockedNFTs',
+    abi: bondTreasuryABI,
+    functionName: 'getAllBondedNfts',
   });
 
   const handleFetchNfts = () => {

@@ -6,7 +6,7 @@ import CreateNftAndIpfs from '@/components/Ipfs/CreateNftAndIpfs';
 import CopyText from '@/components/Util/CopyText';
 import CheckMintingUser from '@/components/Util/CheckMintingUser';
 
-export default function ManageNftIpfs() {
+export default function NftMintIpfs() {
   const { address: userAddress } = useAccount();
 
   const [signed, setSigned] = useState<boolean>(false);

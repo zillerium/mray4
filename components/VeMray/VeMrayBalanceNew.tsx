@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
-import veMintABI from '@/lib/vaultNFTABI.json'; // Include the correct ABI for VeMint
-import veMintContractAddress from '@/lib/vaultNFTAddress.json'; // VeMint contract address
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; 
+import usdcTreasuryContractAddress from '@/lib/usdcTreasuryAddress.json';
 
 const VeMrayBalanceNew: React.FC = () => {
   const { address: connectedWalletAddress } = useAccount();
   const [balance, setBalance] = useState<string | null>('Loading...');
   const [error, setError] = useState<string | null>(null);
 
-  const contractAddress = veMintContractAddress.address as `0x${string}`;
+  const contractAddress = usdcTreasuryContractAddress.address as `0x${string}`;
 
   const { data, error: balanceError } = useContractRead({
     address: contractAddress,
-    abi: veMintABI,
+    abi: usdcTreasuryABI,
     functionName: 'getVeMrayBalance', // Function in your smart contract
     args: [connectedWalletAddress],
   });

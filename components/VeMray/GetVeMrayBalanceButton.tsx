@@ -20,12 +20,11 @@ export default function GetVeMrayBalanceButton() {
 
       {/* Description */}
       <p>
-        <b>Low-risk investments</b>
+        <b>Low-risk and Secure Investments</b>
       </p>
       <p className="mt-4 text-base">
-        Whether you&apos;re looking for a regular yield for your Ether, a say in
-        valuations, or a low-risk option for your investment, investing in Mray
-        offers all these benefits.
+        Whether you&apos;re looking for a regular yield for your USDC, secure investments, or investing in bonds, investing
+in MRAY provides all these benefits.
       </p>
       <br />
 
