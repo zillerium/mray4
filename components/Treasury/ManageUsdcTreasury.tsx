@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ReadInvestorPool from '@/components/Pool/ReadInvestorPool';
-import ReadInvestorPoolData from '@/components/Pool/ReadInvestorPoolData';
+import GetUsdcTreasuryInvestors from '@/components/Treasury/GetUsdcTreasuryInvestors';
+import GetUsdcTreasuryTotal from '@/components/Treasury/GetUsdcTreasuryTotal';
 
-export default function ManageInvestorPool() {
+export default function ManageUsdcTreasury() {
   const [investorList, setInvestorList] = useState<string[]>([]);
   const [selectedInvestor, setSelectedInvestor] = useState<string | null>(null);
 
@@ -39,7 +39,7 @@ export default function ManageInvestorPool() {
       <br />
 
       <div className="flex flex-wrap items-center gap-4 mt-4">
-        <ReadInvestorPool onInvestorListUpdate={handleInvestorListUpdate} />
+        <GetUsdcTreasuryInvestors onInvestorListUpdate={handleInvestorListUpdate} />
         <div className="w-48">
           {/* Dropdown to Display Wallet Addresses */}
           <select
@@ -64,7 +64,7 @@ export default function ManageInvestorPool() {
         {selectedInvestor !== null && (
           <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
             <h2>Selected Wallet: {selectedInvestor}</h2>
-            <ReadInvestorPoolData walletAddress={selectedInvestor} />
+            <GetUsdcTreasuryTotal walletAddress={selectedInvestor} />
           </div>
         )}
       </div>

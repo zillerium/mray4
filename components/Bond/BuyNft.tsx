@@ -3,19 +3,19 @@ import { useWriteContract, useAccount } from 'wagmi';
 import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 
-interface RedeemNftPoolProps {
+interface BuyNftProps {
   nftId: string;
 }
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
+const BuyNft: React.FC<BuyNftProps> = ({ nftId }) => {
   const { isConnected } = useAccount();
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
   const { data: transactionHash, writeContract, error } = useWriteContract();
 
-  const handleRedeemNFTClick = () => {
+  const handleBuyNFTClick = () => {
     if (!nftId) {
       alert('Please provide a valid NFT ID.');
       return;
@@ -25,7 +25,7 @@ const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
       writeContract({
         address: contractAddress,
         abi: bondTreasuryABI,
-        functionName: 'redeemNFT',
+        functionName: 'buyNFT',
         args: [BigInt(nftId)],
       });
 
@@ -38,13 +38,13 @@ const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
 
   return (
     <div className="flex flex-col items-center space-y-4 mt-4">
-      {/* Redeem Button */}
+      {/* Buy Button */}
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={handleRedeemNFTClick}
+        onClick={handleBuyNFTClick}
         disabled={txnStatus === 'Transaction submitted...' || !isConnected}
       >
-        Redeem NFT #{nftId}
+        Buy NFT #{nftId}
       </button>
 
       {/* Status and Transaction Hash */}
@@ -75,4 +75,4 @@ const RedeemNftPool: React.FC<RedeemNftPoolProps> = ({ nftId }) => {
   );
 };
 
-export default RedeemNftPool;
+export default BuyNft;

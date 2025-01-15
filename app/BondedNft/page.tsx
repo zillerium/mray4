@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import ShowNftPool from '@/components/Pool/ShowNftPool';
+import BondedNftCom from '@/components/Treasury/BondedNftCom';
 
-export default function NftPool() {
+export default function BondedNft() {
   return (
     <div>
-      <ShowNftPool />
+      <BondedNftCom />
     </div>
   );
 }

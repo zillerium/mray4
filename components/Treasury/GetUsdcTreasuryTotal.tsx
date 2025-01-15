@@ -1,4 +1,4 @@
-// components/Pool/ReadInvestorPoolData.tsx
+// components/Treasury/GetUsdcTreasuryTotal.tsx
 
 import React, { useState, useEffect } from 'react';
 import { useContractRead } from 'wagmi';
@@ -11,7 +11,7 @@ interface ReadInvestorPoolDataProps {
 
 const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
-const ReadInvestorPoolData: React.FC<ReadInvestorPoolDataProps> = ({
+const GetUsdcTreasuryTotal: React.FC<ReadInvestorPoolDataProps> = ({
   walletAddress,
 }) => {
   const [usdcBalance, setUsdcBalance] = useState<string | null>(null);
@@ -51,4 +51,4 @@ const ReadInvestorPoolData: React.FC<ReadInvestorPoolDataProps> = ({
   );
 };
 
-export default ReadInvestorPoolData;
+export default GetUsdcTreasuryTotal;

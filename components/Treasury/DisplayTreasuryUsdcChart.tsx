@@ -1,11 +1,11 @@
 import React from 'react';
 import CopyText from '@/components/Util/CopyText';
 
-interface InvestorPoolGraphicComProps {
+interface DisplayTreasuryUsdcChartProps {
   poolData: [number, string][]; // Array of tuples with [lockedBalance, walletAddress]
 }
 
-const InvestorPoolGraphicCom: React.FC<InvestorPoolGraphicComProps> = ({
+const DisplayTreasuryUsdcChart: React.FC<DisplayTreasuryUsdcChartProps> = ({
   poolData,
 }) => {
   const totalUSD = poolData.reduce((acc, [usdAmount]) => acc + usdAmount, 0);
@@ -73,4 +73,4 @@ const InvestorPoolGraphicCom: React.FC<InvestorPoolGraphicComProps> = ({
   );
 };
 
-export default InvestorPoolGraphicCom;
+export default DisplayTreasuryUsdcChart;

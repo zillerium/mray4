@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import InvestorPoolGraphicCom from '@/components/Pool/InvestorPoolGraphicCom';
+import DisplayTreasuryUsdcChart from '@/components/Treasury/DisplayTreasuryUsdcChart';
 import { useContractRead } from 'wagmi';
 import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json';
 import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
-import GetInvestorLockedTotal from '@/components/Pool/GetInvestorLockedTotal';
+import GetInvestorLockedTotal from '@/components/Treasury/GetInvestorLockedTotal';
 
 const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
-const InvestorPoolMgrGraphicCom = () => {
+const UsdcTreasuryGraphicCom = () => {
   const [poolData, setPoolData] = useState<[number, string][]>([]); // Array of [usdcBalance, externalWalletAddress]
 
   // Read the contract to get all locked USDC investment details
@@ -50,7 +50,7 @@ const InvestorPoolMgrGraphicCom = () => {
       {/* Donut Chart */}
       <div className="mt-6">
         {poolData.length > 0 ? (
-          <InvestorPoolGraphicCom poolData={poolData} />
+          <DisplayTreasuryUsdcChart poolData={poolData} />
         ) : (
           <p className="text-gray-700 text-lg">No investments in Pool</p>
         )}
@@ -60,4 +60,4 @@ const InvestorPoolMgrGraphicCom = () => {
   );
 };
 
-export default InvestorPoolMgrGraphicCom;
+export default UsdcTreasuryGraphicCom;

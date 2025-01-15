@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface PoolGraphicComProps {
+interface DisplayTreasuryNftChartProps {
   poolData: [number, number][]; // Array of tuples with [ethAmount, nftValue]
 }
 
-const PoolGraphicCom: React.FC<PoolGraphicComProps> = ({ poolData }) => {
+const DisplayTreasuryNftChart: React.FC<DisplayTreasuryNftChartProps> = ({ poolData }) => {
   const totalUSD = poolData.reduce((acc, [usdAmount]) => acc + usdAmount, 0);
   const radius = 80;
   const diameter = 2 * Math.PI * radius;
@@ -67,4 +67,4 @@ const PoolGraphicCom: React.FC<PoolGraphicComProps> = ({ poolData }) => {
   );
 };
 
-export default PoolGraphicCom;
+export default DisplayTreasuryNftChart;

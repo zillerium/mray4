@@ -31,7 +31,7 @@ const NavBarNFTs = () => {
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
           >
-            Upload Docs
+            Upload 
           </li>
         </Link>
       </ul>

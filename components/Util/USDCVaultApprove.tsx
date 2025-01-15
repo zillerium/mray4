@@ -71,11 +71,12 @@ const USDCVaultApprove: React.FC = () => {
       </div>
 
       {/* Transaction Status, Hash, and Error Messages */}
-      <ShowTxnHash
-        txnStatus={txnStatus}
-        transactionHash={transactionHash}
-        error={error}
-      />
+<ShowTxnHash
+  txnStatus={txnStatus}
+  transactionHash={transactionHash ?? null} // Convert undefined to null
+  error={error}
+/>
+
     </div>
   );
 };

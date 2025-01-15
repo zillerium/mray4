@@ -23,7 +23,7 @@ const NavBarBonds = () => {
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
           >
-            Bond Issue
+            Issue
           </li>
         </Link>
         <Link href="/BondBuy">

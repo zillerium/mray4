@@ -6,7 +6,7 @@ import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency'; // Import 
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const GetLockedTotal: React.FC = () => {
+const GetBondTreasuryBalance: React.FC = () => {
   // Fetch the total locked value directly
   const { data, error } = useContractRead({
     address: contractAddress,
@@ -35,4 +35,4 @@ const GetLockedTotal: React.FC = () => {
   return <span>{totalValue > 0 ? `${formattedValue} USD` : '0 USD'}</span>;
 };
 
-export default GetLockedTotal;
+export default GetBondTreasuryBalance;

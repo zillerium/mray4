@@ -1,20 +1,20 @@
-//components/Pool/GetNftApproval.tsx
+//components/Treasury/ClaimMRAY.tsx
 import React from 'react';
 import { useAccount } from 'wagmi';
-import UpdatePool from './UpdatePool';
+import MintMRAY from '@/components/Bond/MintMRAY';
 
 interface GetNftApprovalProps {
   nftId: number;
   nftOwner: string;
 }
 
-const GetNftApproval: React.FC<GetNftApprovalProps> = ({ nftId, nftOwner }) => {
+const ClaimMRAY: React.FC<GetNftApprovalProps> = ({ nftId, nftOwner }) => {
   const { address: connectedWalletAddress } = useAccount();
 
   return (
     <div>
       {nftOwner === connectedWalletAddress ? (
-        <UpdatePool nftId={nftId} />
+        <MintMRAY nftId={nftId} />
       ) : (
         <div className="flex flex-col items-start space-y-2 mt-4">
           <p className="text-sm text-red-500">Only the NFT Owner can Add</p>
@@ -30,4 +30,4 @@ const GetNftApproval: React.FC<GetNftApprovalProps> = ({ nftId, nftOwner }) => {
   );
 };
 
-export default GetNftApproval;
+export default ClaimMRAY;

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import PoolGraphicCom from '@/components/Pool/PoolGraphicCom';
+import DisplayTreasuryNftChart from '@/components/Treasury/DisplayTreasuryNftChart';
 import { useContractRead } from 'wagmi';
 import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
-import GetLockedTotal from '@/components/Pool/GetLockedTotal';
+import GetBondTreasuryBalance from '@/components/Bond/GetBondTreasuryBalance';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const PoolMgrGraphicCom = () => {
+const GetBondTreasuryDetails = () => {
   const [poolData, setPoolData] = useState<[number, number][]>([]);
 
   // Read the contract to get all locked NFT details
@@ -44,14 +44,14 @@ const PoolMgrGraphicCom = () => {
           className="text-3xl md:text-4xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Locked NFT Value <GetLockedTotal />
+          Locked NFT Value <GetBondTreasuryBalance />
         </span>
       </h2>
       <br />
       {/* Donut Chart */}
       <div className="mt-6">
         {poolData.length > 0 ? (
-          <PoolGraphicCom poolData={poolData} />
+          <DisplayTreasuryNftChart poolData={poolData} />
         ) : (
           <p className="text-gray-700 text-lg">No assets in Pool</p>
         )}
@@ -61,4 +61,4 @@ const PoolMgrGraphicCom = () => {
   );
 };
 
-export default PoolMgrGraphicCom;
+export default GetBondTreasuryDetails;

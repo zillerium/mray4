@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import ReadNftsPool from '@/components/ReadNft/ReadNftsPool';
 import ReadNftPoolData from '@/components/ReadNft/ReadNftPoolData';
 import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
-import RedeemNftPool from '@/components/Pool/RedeemNftPool';
-import BuyNftPool from '@/components/Pool/BuyNftPool';
+import RedeemNft from '@/components/Bond/RedeemNft';
+import BuyNft from '@/components/Bond/BuyNft';
 import GetStablecoinBalanceNew from '@/components/Stablecoin/GetStablecoinBalanceNew';
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for the vault contract
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-export default function ManagePool() {
+export default function ManageTreasury() {
   const [nftList, setNftList] = useState<number[]>([]);
   const [selectedNft, setSelectedNft] = useState<number | null>(null);
 
@@ -100,13 +100,13 @@ export default function ManagePool() {
       <div className="flex justify-center flex-wrap items-center">
         {selectedNft !== null && (
           <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
-            <RedeemNftPool nftId={selectedNft.toString()} />
+            <RedeemNft nftId={selectedNft.toString()} />
           </div>
         )}
 
         {selectedNft !== null && (
           <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
-            <BuyNftPool nftId={selectedNft.toString()} />
+            <BuyNft nftId={selectedNft.toString()} />
           </div>
         )}
       </div>

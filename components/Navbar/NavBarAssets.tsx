@@ -10,7 +10,7 @@ const NavBarAssets = () => {
         type="button"
       >
         <span className="flex items-center">
-          Assets
+          Tokens
           <FaCaretDown className="ml-1" />{' '}
           {/* Add caret icon next to the "Wallet" text */}
         </span>

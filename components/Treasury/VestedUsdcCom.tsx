@@ -1,13 +1,12 @@
-// ShowNftPool.tsx
 'use client';
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
-import ManagePool from '@/components/Pool/ManagePool';
+import ManageUsdcTreasury from '@/components/Treasury/ManageUsdcTreasury';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
-import PoolMgrGraphicCom from '@/components/Pool/PoolMgrGraphicCom';
+import UsdcTreasuryGraphicCom from '@/components/Treasury/UsdcTreasuryGraphicCom';
 
-const ShowNftPool: React.FC = () => {
+const VestedUsdcCom: React.FC = () => {
   return (
     <div>
       <Navbar />
@@ -15,12 +14,12 @@ const ShowNftPool: React.FC = () => {
         <GetWalletHeader />
 
         <div className="flex flex-col md:flex-row gap-4 w-full mt-8">
-          <ManagePool />
-          <PoolMgrGraphicCom />
+          <ManageUsdcTreasury />
+          <UsdcTreasuryGraphicCom />
         </div>
       </main>
     </div>
   );
 };
 
-export default ShowNftPool;
+export default VestedUsdcCom;

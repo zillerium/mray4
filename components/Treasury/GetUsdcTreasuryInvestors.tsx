@@ -1,4 +1,4 @@
-// components/ReadInvestorPool.tsx
+// components/GetUsdcTreasuryInvestors.tsx
 
 import React, { useState } from 'react';
 import { useContractRead } from 'wagmi';
@@ -12,7 +12,7 @@ interface ReadInvestorPoolProps {
 
 const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
-const ReadInvestorPool: React.FC<ReadInvestorPoolProps> = ({
+const GetUsdcTreasuryInvestors: React.FC<ReadInvestorPoolProps> = ({
   onInvestorListUpdate,
 }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -50,4 +50,4 @@ const ReadInvestorPool: React.FC<ReadInvestorPoolProps> = ({
   );
 };
 
-export default ReadInvestorPool;
+export default GetUsdcTreasuryInvestors;

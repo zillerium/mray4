@@ -1,7 +1,7 @@
 // ./components/VotesSummary.tsx
 
 import React from 'react';
-import GetNftApproval from '@/components/Pool/GetNftApproval';
+import ClaimMRAY from '@/components/Bond/ClaimMRAY';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 interface VotesSummaryProps {
@@ -40,8 +40,8 @@ const VotesSummary: React.FC<VotesSummaryProps> = ({
         <span className="font-semibold">Total Weighted Votes (in USD):</span>{' '}
         {weightedAverageEth.toFixed(2)}
       </p>
-      {/* Pass the converted price in wei to the GetNftApproval component */}
-      <GetNftApproval nftId={nftId} nftOwner={nftOwner} />
+      {/* Pass the converted price in wei to the ClaimMRAY component */}
+      <ClaimMRAY nftId={nftId} nftOwner={nftOwner} />
     </div>
   );
 };
