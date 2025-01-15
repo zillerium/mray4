@@ -44,7 +44,7 @@ const GetBondTreasuryDetails = () => {
           className="text-3xl md:text-4xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Locked NFT Value <GetBondTreasuryBalance />
+         NFT Treasury Value <GetBondTreasuryBalance />
         </span>
       </h2>
       <br />
@@ -53,7 +53,7 @@ const GetBondTreasuryDetails = () => {
         {poolData.length > 0 ? (
           <DisplayTreasuryNftChart poolData={poolData} />
         ) : (
-          <p className="text-gray-700 text-lg">No assets in Pool</p>
+          <p className="text-gray-700 text-lg">No assets in USDC Treasury</p>
         )}
       </div>
       {error && <p className="text-red-500">Error fetching pool data</p>}

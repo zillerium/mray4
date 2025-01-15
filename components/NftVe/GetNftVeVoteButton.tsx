@@ -59,17 +59,17 @@ export default function GetNftVeVoteButton() {
                   color: '#230b59',
                 }}
               >
-                Voting on NFT Valuations
+                Buy an NFT Bond # 
               </span>
               {selectedToken !== null && (
                 <DisplayNFTNumber selectedToken={selectedToken} />
               )}
             </h2>
             <br />
-            <b>Investors value NFTs</b>
+            <b>Purchasing USDCs are Treasury Locked</b>
             <p className="mt-4 text-base">
-              Valuations are independently done by investors who have staked in
-              the Mray project.
+             Purchasing a bond will lock the USDCs into the Treasury and ERC20 MRAY tokens are issued. The USDC is never spent.
+
             </p>
             <br />
             <div className="flex flex-wrap items-center gap-4 mt-4">

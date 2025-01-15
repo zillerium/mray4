@@ -32,7 +32,7 @@ export default function ManageTreasury() {
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Mray&apos;s NFT Vault
+          NFT Treasury
         </span>
         {selectedNft !== null && (
           <DisplayNFTNumber selectedToken={selectedNft} />

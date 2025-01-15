@@ -36,7 +36,7 @@ const BondIssueCom: React.FC = () => {
             className="text-2xl font-semibold"
             style={{ fontFamily: 'Open Sans', color: '#4d5898' }}
           >
-            START THE NFT VALUATION VOTE
+            ISSUE AN NFT BOND
           </h2>
         </div>
 
@@ -44,19 +44,19 @@ const BondIssueCom: React.FC = () => {
           {[
             {
               header: '1. Select your NFT',
-              text: 'Select your NFT from the registered NFTs.',
+              text: 'Select your NFT.',
             },
             {
-              header: '2. Set Valuation and Date',
-              text: 'Set the price and end voting date.',
+              header: '2. Set the Bond Financials',
+              text: 'Set the price, coupon rate, and buying period.',
             },
             {
-              header: '3. Start the Vote',
-              text: 'Set the end date for voting and start voting.',
+              header: '3. Issue the Bond',
+              text: 'Bond once issued can be purchased.',
             },
             {
-              header: '4. Approve the Vault',
-              text: 'Approve the Vault to manage your NFT.',
+              header: '4. Approve the Treasury',
+              text: 'Approve the Treasury to manage the Bond.',
             },
           ].map(({ header, text }, index) => (
             <DisplayHelpHeadings
@@ -101,7 +101,7 @@ const BondIssueCom: React.FC = () => {
 
           <div className="bg-blue-100 p-4 rounded-lg shadow-md text-center">
             <h3 className="text-lg font-semibold">
-              2 & 3. Set Valuation and Start Voting
+              2 & 3. Set the Financials and Issue
             </h3>
             <SetNftVeVoteCom
               tokenNumber={selectedToken?.toString() ?? ''}
