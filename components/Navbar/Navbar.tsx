@@ -3,7 +3,6 @@ import CustomButton from '@/components/Navbar/CustomButton';
 import NavBarNFTs from '@/components/Navbar/NavBarNFTs';
 import NavBarBonds from '@/components/Navbar/NavBarBonds';
 import NavBarTreasury from '@/components/Navbar/NavBarTreasury';
-import NavBarAUMs from '@/components/Navbar/NavBarAUMs';
 import NavBarAssets from '@/components/Navbar/NavBarAssets';
 import NavBarAdmin from '@/components/Navbar/NavBarAdmin';
 
