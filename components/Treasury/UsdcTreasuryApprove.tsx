@@ -55,20 +55,16 @@ const USDCVaultApprove: React.FC = () => {
           style={{ marginRight: '0.5rem' }}
         />
 
-        {/* Button */}
-        <button
-          className={`flex items-center justify-center bg-blue-500 text-white font-bold px-6 py-2 rounded-full ${
-            txnStatus === 'Transaction submitted...'
-              ? 'opacity-50 cursor-not-allowed'
-              : ''
-          }`}
+<button
+  className="flex items-center justify-center bg-blue-500 text-white font-bold px-6 py-2 rounded-full"
+
           onClick={handleApproveClick}
-          disabled={txnStatus === 'Transaction submitted...'}
-          style={{ width: '30%' }}
-        >
-          {txnStatus === 'Transaction submitted...' ? 'Processing...' : 'Approve'}
-        </button>
-      </div>
+    style={{ width: '30%' }}
+  >
+    Approve
+  </button>
+ </div>
+
 
       {/* Transaction Status, Hash, and Error Messages */}
 <ShowTxnHash

@@ -21,7 +21,7 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
 }) => {
   const { address, isConnected } = useAccount();
   const [usdcTxnsData, setUsdcTxnsData] = useState<UsdcTransaction[] | null>(
-    null,
+    null
   );
 
   const { data: usdcWalletTxnsData, error: usdcWalletTxnsError } =
@@ -37,8 +37,8 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
       Array.isArray(data) &&
       data.every(
         (item) =>
-          typeof item.lockedUsdc === 'bigint' &&
-          typeof item.expiryTimestamp === 'bigint',
+          typeof item.usdcDepositAmount === 'bigint' &&
+          typeof item.usdcVestingPeriod === 'bigint'
       )
     );
   }
@@ -50,8 +50,14 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
       setErrorMessage(null);
     }
 
-    if (usdcWalletTxnsData && isTransactionArray(usdcWalletTxnsData)) {
-      setUsdcTxnsData(usdcWalletTxnsData);
+    if (usdcWalletTxnsData) {
+      console.log("usdcWalletTxnsData raw:", usdcWalletTxnsData);
+
+      if (isTransactionArray(usdcWalletTxnsData)) {
+        setUsdcTxnsData(usdcWalletTxnsData);
+      } else {
+        console.error("Invalid data format:", usdcWalletTxnsData);
+      }
     }
   }, [usdcWalletTxnsData, usdcWalletTxnsError, setErrorMessage]);
 
@@ -72,10 +78,11 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
               <tr key={index}>
                 <td className="px-4 py-2 border">{index + 1}</td>
                 <td className="px-4 py-2 border">
-                  {(Number(txn.lockedUsdc) / 10 ** 6).toFixed(2)} USDC
+                  
+                  {(Number(txn.usdcDepositAmount) / 10 ** 6).toFixed(2)} USDC
                 </td>
                 <td className="px-4 py-2 border">
-                  <TimestampToDate timestamp={txn.expiryTimestamp} />
+                  <TimestampToDate timestamp={txn.usdcVestingPeriod} />
                 </td>
                 <td className="px-4 py-2 border">
                   <RedeemUsdcTokens txnId={index + 1} />
@@ -92,3 +99,4 @@ const UsdcTransactionsTable: React.FC<UsdcTransactionsTableProps> = ({
 };
 
 export default UsdcTransactionsTable;
+
