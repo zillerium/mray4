@@ -1,15 +1,14 @@
+// FundingTable.tsx
 import React from 'react';
-import CopyText from '@/components/Util/CopyText';
 
-interface VotesTableProps {
-  votesData: {
-    voter: string;
-    votes: number;
-    price: number;
+interface FundingTableProps {
+  fundingTxns: {
+    walletAddress: string;
+    amount: number;
   }[];
 }
 
-const VotesTable: React.FC<VotesTableProps> = ({ votesData }) => {
+const FundingTable: React.FC<FundingTableProps> = ({ fundingTxns }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-full w-full table-auto divide-y divide-gray-200">
@@ -19,24 +18,18 @@ const VotesTable: React.FC<VotesTableProps> = ({ votesData }) => {
               Wallet Address
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Number of Votes
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Price
+              Amount
             </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {votesData.map((vote, index) => (
+          {fundingTxns.map((txn, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <CopyText copiedText={vote?.voter?.toString()} />
+                {txn.walletAddress}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {vote?.votes?.toString()}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {vote?.price?.toString()}
+                {txn.amount.toFixed(2)}
               </td>
             </tr>
           ))}
@@ -46,4 +39,5 @@ const VotesTable: React.FC<VotesTableProps> = ({ votesData }) => {
   );
 };
 
-export default VotesTable;
+export default FundingTable;
+

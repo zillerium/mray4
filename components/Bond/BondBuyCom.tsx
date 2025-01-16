@@ -3,8 +3,8 @@ import { FaSync } from 'react-icons/fa';
 import { useAccount } from 'wagmi';
 import BuyBondDetails from '@/components/Bond/BuyBondDetails';
 import DisplayLockedMsg from '@/components/Util/DisplayLockedMsg';
-import VeVotesCastBal from '@/components/VeVotes/VeVotesCastBal';
-import TokenHolderVeVoting from '@/components/VeVotes/TokenHolderVeVoting';
+import BondFundingTxns from '@/components/Bond/BondFundingTxns';
+import BuyBondWallet from '@/components/Bond/BuyBondWallet';
 import ReadAllNfts from '@/components/ReadNft/ReadAllNfts';
 import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
 import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
@@ -104,7 +104,7 @@ export default function BondBuyCom() {
                 )}
                 {votingActive && !nftLockedStatus && (
                   <div>
-                    <TokenHolderVeVoting nftId={selectedToken} />
+                    <BuyBondWallet nftId={selectedToken} />
                   </div>
                 )}
                 {nftLockedStatus && <DisplayLockedMsg />}
@@ -135,11 +135,10 @@ export default function BondBuyCom() {
           {/* NFT Voting and Details */}
           {selectedToken !== null && isConnected && nftOwner !== null && (
             <>
-              <VeVotesCastBal
-                nftOwner={nftOwner}
-                nftId={selectedToken}
-                onVotesCastChange={() => {}}
-              />
+<BondFundingTxns
+  nftOwner={nftOwner}
+  nftId={selectedToken}
+/>
             </>
           )}
         </div>

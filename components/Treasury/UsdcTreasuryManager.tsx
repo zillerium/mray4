@@ -1,11 +1,11 @@
 import React from 'react';
-import VeMrayBalanceInvestor from '@/components/VeMray/VeMrayBalanceInvestor';
+import VeMrayBalanceInvestor from '@/components/Treasury/VeMrayBalanceInvestor';
 import { useAccount } from 'wagmi';
-import BuyUSDCVeTokens from '@/components/VeMray/BuyUSDCVeTokens';
+import BuyUSDCVeTokens from '@/components/Treasury/BuyUSDCVeTokens';
 import GetUSDCWalletBalance from '@/components/Util/GetUSDCWalletBalance';
 import USDCVaultApprove from '@/components/Util/USDCVaultApprove';
-import GetUsdcWalletLockedBalance from '@/components/Usdc/GetUsdcWalletLockedBalance';
-import GetUsdcAllowance from '@/components/Usdc/GetUsdcAllowance';
+import GetUsdcWalletLockedBalance from '@/components/Treasury/GetUsdcWalletLockedBalance';
+import GetUsdcAllowance from '@/components/Treasury/GetUsdcAllowance';
 
 export default function UsdcTreasuryManager() {
   const { address: connectedWalletAddress } = useAccount(); // Get the connected wallet

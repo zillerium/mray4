@@ -4,13 +4,13 @@ import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // Import ABI for veTo
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Import contract address for veToken valuation contract
 import { reformatCurrency } from '@/components/Util/ReformatCurrency';
 
-interface TokenHolderVeVotingProps {
+interface BuyBondWalletProps {
   nftId: number; // Expecting a number since it's parsed before passed
 }
 
 const vaultContractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
+const BuyBondWallet: React.FC<BuyBondWalletProps> = ({ nftId }) => {
   const [price, setPrice] = useState<string>(''); // State to store the vote price
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
@@ -37,7 +37,7 @@ const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
       writeContract({
         address: vaultContractAddress,
         abi: bondTreasuryABI,
-        functionName: 'invest',
+        functionName: 'fundBond',
         args: [nftId, Number(reformattedPrice)], // Pass the NFT ID and the price
       });
 
@@ -75,4 +75,4 @@ const TokenHolderVeVoting: React.FC<TokenHolderVeVotingProps> = ({ nftId }) => {
   );
 };
 
-export default TokenHolderVeVoting;
+export default BuyBondWallet;

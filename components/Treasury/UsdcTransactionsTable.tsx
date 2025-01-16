@@ -3,7 +3,7 @@ import { useAccount, useContractRead } from 'wagmi';
 import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json';
 import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 import TimestampToDate from '@/components/Util/TimestampToDate';
-import RedeemUsdcTokens from '@/components/Usdc/RedeemUsdcTokens';
+import RedeemUsdcTokens from '@/components/Treasury/RedeemUsdcTokens';
 
 interface UsdcTransaction {
   lockedUsdc: bigint; // Corrected field name
