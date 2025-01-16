@@ -6,14 +6,14 @@ import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for
 import { FaExternalLinkAlt } from 'react-icons/fa'; // Import FontAwesome icon
 import CopyText from '@/components/Util/CopyText';
 
-interface NftVeApproveVaultProps {
+interface ApproveBondTreasuryProps {
   tokenId: string;
 }
 
 const nftAddress = uniContractAddress.address as `0x${string}`;
 const vaultAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
+const ApproveBondTreasury: React.FC<ApproveBondTreasuryProps> = ({ tokenId }) => {
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
   const { data: transactionHash, writeContract, error } = useWriteContract();
@@ -80,4 +80,4 @@ const NftVeApproveVault: React.FC<NftVeApproveVaultProps> = ({ tokenId }) => {
   );
 };
 
-export default NftVeApproveVault;
+export default ApproveBondTreasury;

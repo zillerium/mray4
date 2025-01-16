@@ -1,7 +1,7 @@
 import React from 'react';
-import SVGSquareStablecoin from '@/components/Stablecoin/SVGSquareStablecoin'; // Import the SVG component
+import DisplayTokenBalances from '@/components/Tokens/DisplayTokenBalances';
 
-const ShowStableCoinImageBalance = () => {
+const TokenBalances = () => {
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2
@@ -12,16 +12,15 @@ const ShowStableCoinImageBalance = () => {
           className="text-3xl md:text-4xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Your Assets
+          Balances
         </span>
       </h2>
       <br />
-      {/* Donut Chart */}
       <div className="mt-6">
-        <SVGSquareStablecoin />
+        <DisplayTokenBalances />
       </div>
     </div>
   );
 };
 
-export default ShowStableCoinImageBalance;
+export default TokenBalances;

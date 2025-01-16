@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import NftMintCom from '@/components/NftMint/NftMintCom';
+import NftMintCom from '@/components/Nft/NftMintCom';
 
 export default function NftMint() {
   return (

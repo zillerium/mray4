@@ -6,7 +6,7 @@ import CopyText from '@/components/Util/CopyText';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { reformatCurrency } from '@/components/Util/ReformatCurrency';
 
-interface SetNftVeVoteComProps {
+interface BondIssueProps {
   tokenNumber: string;
   ownedNft: boolean;
 }
@@ -19,7 +19,7 @@ function convertToUnixTimestamp(dateStr: string): number {
   return Math.floor(new Date(Date.UTC(year, month - 1, day)).getTime() / 1000);
 }
 
-const SetNftVeVoteCom: React.FC<SetNftVeVoteComProps> = ({
+const BondIssue: React.FC<BondIssueProps> = ({
   tokenNumber,
   ownedNft,
 }) => {
@@ -48,7 +48,7 @@ const SetNftVeVoteCom: React.FC<SetNftVeVoteComProps> = ({
       writeContract({
         address: contractAddress,
         abi: bondTreasuryContractABI,
-        functionName: 'startNftInvestmentPeriod',
+        functionName: 'startBondSale',
         args: [
           Number(tokenNumber),
           reformattedLowerLimit,
@@ -91,14 +91,14 @@ const SetNftVeVoteCom: React.FC<SetNftVeVoteComProps> = ({
           onClick={handleSubmit}
           disabled={txnStatus === 'Transaction submitted...'}
         >
-          Submit Valuation and Start Voting
+          Issue NFT Bond
         </button>
       ) : (
         <button
           className="bg-gray-300 text-gray-600 px-4 py-2 rounded w-full max-w-md cursor-not-allowed"
           disabled
         >
-          Submit Valuation and Start Voting
+         Issue NFT Bond
         </button>
       )}
 
@@ -130,4 +130,4 @@ const SetNftVeVoteCom: React.FC<SetNftVeVoteComProps> = ({
   );
 };
 
-export default SetNftVeVoteCom;
+export default BondIssue;

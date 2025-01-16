@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import GetNftVeVoteButton from '@/components/NftVe/GetNftVeVoteButton';
+import BondBuyCom from '@/components/Bond/BondBuyCom';
 
-export default function NftVeVote() {
+export default function BondBuy() {
   return (
     <div>
-      <GetNftVeVoteButton />
+      <BondBuyCom />
     </div>
   );
 }

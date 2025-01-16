@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ShowStablecoinBal() {
+export default function TokensText() {
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       {/* Header */}
@@ -12,7 +12,7 @@ export default function ShowStablecoinBal() {
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          Enjoy
+          Make
         </span>{' '}
         <span
           className="text-4xl md:text-5xl leading-none italic tracking-tight"
@@ -24,22 +24,19 @@ export default function ShowStablecoinBal() {
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          mRay Assets in your wallet
+          Illiquid Assets Liquid
         </span>
       </h2>
       <br />
 
-      {/* ERC20 Car Token */}
       <p>
-        <b>ERC20 Car Token</b>
+        <b>Quick and Without Risk</b>
       </p>
       <p className="mt-4 text-base">
-        Once your tokens are minted, they are in your wallet to spend and use as
-        you like, 24/7. You can redeem your NFT any time before expiration.
+        Bond your NFT, and get minted MRAY tokens, fully backed by USDC reserves.
       </p>
       <br />
 
-      {/* Large Text Section */}
       <div className="flex justify-center mt-8">
         <p
           className="text-2xl md:text-3xl leading-snug text-center"
@@ -51,9 +48,9 @@ export default function ShowStablecoinBal() {
             padding: '0 40px',
           }}
         >
-          {'"Liquidity via Mray is clean and simple, illiquid NFTs can be '}
-          <b>instantly transformed into liquid</b>
-          {' ERC20 tokens, straight into your wallet."'}
+          {'"NFTs are bonded, and made liquid with '}
+          <b>fully backed MRAY tokens</b>
+          {' reliable and secure."'}
         </p>
       </div>
     </div>

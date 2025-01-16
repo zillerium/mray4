@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { useAccount, useContractRead } from 'wagmi';
+import { useContractRead } from 'wagmi';
 import mintContractABI from '@/lib/mintContractABI.json';
 import mintContractAddress from '@/lib/mintContractAddress.json';
+import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 const stablecoinAddress = mintContractAddress.address as `0x${string}`;
 
-const GetStablecoinBalance: React.FC = () => {
-  const { address: connectedWalletAddress } = useAccount();
+interface GetMrayTokenBalanceProps {
+  walletAddress: string; // Accept wallet address as a prop
+}
+
+const GetMrayTokenBalance: React.FC<GetMrayTokenBalanceProps> = ({
+  walletAddress,
+}) => {
   const [balance, setBalance] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch stablecoin balance for the connected wallet address
   const { data: stablecoinBalance, error: balanceError } = useContractRead({
     address: stablecoinAddress,
     abi: mintContractABI,
-    functionName: 'balanceOf',
-    args: [connectedWalletAddress],
+    functionName: 'stablecoinBalance',
+    args: [walletAddress], // Use the passed walletAddress
   });
 
   useEffect(() => {
-    if (stablecoinBalance) {
-      setBalance(stablecoinBalance.toString());
-    } else if (balanceError) {
+    if (stablecoinBalance === null || stablecoinBalance === undefined) {
+      setBalance('0');
+    } else if (stablecoinBalance) {
+      setBalance((Number(stablecoinBalance) / CURRENCY_FACTOR).toFixed(2));
+    }
+    if (balanceError) {
       setError('Error fetching stablecoin balance');
+    } else {
+      setError(null);
     }
   }, [stablecoinBalance, balanceError]);
 
@@ -35,4 +45,4 @@ const GetStablecoinBalance: React.FC = () => {
   );
 };
 
-export default GetStablecoinBalance;
+export default GetMrayTokenBalance;

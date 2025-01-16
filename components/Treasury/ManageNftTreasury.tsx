@@ -4,12 +4,12 @@ import ReadNftPoolData from '@/components/ReadNft/ReadNftPoolData';
 import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
 import RedeemNft from '@/components/Bond/RedeemNft';
 import BuyNft from '@/components/Bond/BuyNft';
-import GetStablecoinBalanceNew from '@/components/Stablecoin/GetStablecoinBalanceNew';
+import GetMrayTokenBalance from '@/components/Tokens/GetMrayTokenBalance';
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for the vault contract
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-export default function ManageTreasury() {
+export default function ManageNftTreasury() {
   const [nftList, setNftList] = useState<number[]>([]);
   const [selectedNft, setSelectedNft] = useState<number | null>(null);
 
@@ -40,24 +40,23 @@ export default function ManageTreasury() {
       </h2>
       <br />
       <p>
-        <b>Mray&apos;s Pool of Locked NFTs</b>
+        <b>Bonded NFTs</b>
       </p>
       <p className="mt-4 text-base">
-        Our NFT pool has locked a range of NFTs which act as a safe asset base
+       Bonded NFTs have minted MRAY tokens and USDC reserves
         for RWAs.
       </p>
       <div className="w-full h-px bg-gray-300 mb-2"></div>
 
-      {/* Total Locked Mray Tokens */}
       <div className="mt-2">
         {/* Line above and below */}
         <div className="border-t border-b py-4">
           <div className="flex items-center justify-between">
             <p className="font-bold text-2xl text-purple-900">
-              Locked Assets (Mray)
+              Mray Tokens For Bonded NFTs
             </p>
             <div className="px-6 py-3 bg-green-100 text-green-800 text-3xl font-extrabold rounded-md">
-              <GetStablecoinBalanceNew walletAddress={contractAddress} />
+              <GetMrayTokenBalance walletAddress={contractAddress} />
             </div>
           </div>
         </div>

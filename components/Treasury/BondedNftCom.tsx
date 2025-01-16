@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
-import ManageTreasury from '@/components/Treasury/ManageTreasury';
+import ManageNftTreasury from '@/components/Treasury/ManageNftTreasury';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 import GetBondTreasuryDetails from '@/components/Bond/GetBondTreasuryDetails';
 
@@ -15,7 +15,7 @@ const BondedNftCom: React.FC = () => {
         <GetWalletHeader />
 
         <div className="flex flex-col md:flex-row gap-4 w-full mt-8">
-          <ManageTreasury />
+          <ManageNftTreasury />
           <GetBondTreasuryDetails />
         </div>
       </main>

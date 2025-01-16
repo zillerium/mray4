@@ -2,11 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import { useAccount } from 'wagmi';
-import GetStablecoinBalanceNew from '@/components/Stablecoin/GetStablecoinBalanceNew';
-import VeMrayBalanceNew from '@/components/VeMray/VeMrayBalanceNew';
-import GetUsdcStablecoinLockedBalance from '@/components/Usdc/GetUsdcStablecoinLockedBalance';
+import GetMrayTokenBalance from '@/components/Tokens/GetMrayTokenBalance';
+import GetVeMrayBalance from '@/components/Tokens/GetVeMrayBalance';
+import GetWalletUsdcTreasuryBalance from '@/components/Tokens/GetWalletUsdcTreasuryBalance';
 
-const SVGSquareStablecoin = () => {
+const DisplayTokenBalances = () => {
   const { isConnected, address } = useAccount();
 
   return (
@@ -27,7 +27,6 @@ const SVGSquareStablecoin = () => {
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Square Background */}
         <rect
           x="0"
           y="0"
@@ -51,7 +50,7 @@ const SVGSquareStablecoin = () => {
               height: '100%',
             }}
           >
-            {/* Row 1: Stablecoin */}
+            {/* Row 1: MRAY Balance */}
             <div
               style={{
                 display: 'flex',
@@ -62,14 +61,14 @@ const SVGSquareStablecoin = () => {
               <span>Mray Tokens</span>
               <span style={{ color: '#4f46e5' }}>
                 {isConnected && address ? (
-                  <GetStablecoinBalanceNew walletAddress={address} />
+                  <GetMrayTokenBalance walletAddress={address} />
                 ) : (
                   <span>0</span>
                 )}
               </span>
             </div>
 
-            {/* Row 2: veMray Tokens */}
+            {/* Row 2: veMray Balance */}
             <div
               style={{
                 display: 'flex',
@@ -78,9 +77,9 @@ const SVGSquareStablecoin = () => {
                 marginTop: '6px', // Balanced spacing
               }}
             >
-              <span>veMray Tokens</span>
+              <span>VeMray Tokens</span>
               <span style={{ color: '#4f46e5' }}>
-                {isConnected ? <VeMrayBalanceNew /> : <span>0</span>}
+                {isConnected ? <GetVeMrayBalance /> : <span>0</span>}
               </span>
             </div>
 
@@ -93,10 +92,10 @@ const SVGSquareStablecoin = () => {
                 marginTop: '6px', // Balanced spacing
               }}
             >
-              <span>Locked USDC</span>
+              <span>Treasury USDC</span>
               <span style={{ color: '#4f46e5' }}>
                 {isConnected && address ? (
-                  <GetUsdcStablecoinLockedBalance walletAddress={address} />
+                  <GetWalletUsdcTreasuryBalance walletAddress={address} />
                 ) : (
                   <span>0</span>
                 )}
@@ -125,4 +124,4 @@ const SVGSquareStablecoin = () => {
   );
 };
 
-export default SVGSquareStablecoin;
+export default DisplayTokenBalances;

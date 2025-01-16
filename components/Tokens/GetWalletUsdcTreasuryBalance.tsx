@@ -3,7 +3,7 @@ import { useContractRead } from 'wagmi';
 import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // ABI for the vault contract
 import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json'; // Address for the vault contract
 
-const GetUsdcStablecoinLockedBalance: React.FC<{ walletAddress: string }> = ({
+const GetWalletUsdcTreasuryBalance: React.FC<{ walletAddress: string }> = ({
   walletAddress,
 }) => {
   const [lockedBalance, setLockedBalance] = useState<string | null>(
@@ -44,4 +44,4 @@ const GetUsdcStablecoinLockedBalance: React.FC<{ walletAddress: string }> = ({
   return <span>{displayBalance}</span>;
 };
 
-export default GetUsdcStablecoinLockedBalance;
+export default GetWalletUsdcTreasuryBalance;

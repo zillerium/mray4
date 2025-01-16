@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface VotingTableProps {
+interface BondTableProps {
   nftPrice: number | null;
   bondAmount: number | null;
   bondMaturity: string | null;
@@ -9,7 +9,7 @@ interface VotingTableProps {
   remainingBondSupply: number | null;
 }
 
-const VotingTable: React.FC<VotingTableProps> = ({
+const BondTable: React.FC<BondTableProps> = ({
   nftPrice,
   bondAmount,
   bondMaturity,
@@ -65,5 +65,5 @@ const VotingTable: React.FC<VotingTableProps> = ({
   );
 };
 
-export default VotingTable;
+export default BondTable;
 

@@ -7,7 +7,7 @@ import USDCVaultApprove from '@/components/Util/USDCVaultApprove';
 import GetUsdcWalletLockedBalance from '@/components/Usdc/GetUsdcWalletLockedBalance';
 import GetUsdcAllowance from '@/components/Usdc/GetUsdcAllowance';
 
-export default function GetVeMrayBalanceButton() {
+export default function UsdcTreasuryManager() {
   const { address: connectedWalletAddress } = useAccount(); // Get the connected wallet
   const walletAddress = connectedWalletAddress ?? ''; // Default to empty string if undefined
 

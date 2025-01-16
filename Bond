@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
 import nftVeValContractABI from "@/lib/bondTreasuryABI.json";
 import nftVeValContractAddress from "@/lib/bondTreasuryAddress.json";
-import VotingTable from './VotingTable';
+import BondTable from '@/components/Bond/BondTable';
 
 const contractAddress = nftVeValContractAddress.address as `0x${string}`;
 
@@ -68,7 +68,7 @@ const NftVeVoteDetails: React.FC<NftVeVoteDetailsProps> = ({ nftId, onVotingStat
   }
 
   return (
-    <VotingTable
+    <BondTable
       nftPrice={nftPrice}
       bondAmount={bondAmount}
       bondMaturity={bondMaturity}

@@ -5,9 +5,9 @@ import ReadAllNfts from '@/components/ReadNft/ReadAllNfts';
 import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
 import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
 import Navbar from '@/components/Navbar/Navbar';
-import SetNftVeVoteCom from '@/components/NftVe/SetNftVeVoteCom';
-import NftVeApproveVault from '@/components/NftVe/NftVeApproveVault';
-import DisplayHelpHeadings from '@/components/BondIssue/DisplayHelpHeadings';
+import BondIssue from '@/components/Bond/BondIssue';
+import ApproveBondTreasury from '@/components/Treasury/ApproveBondTreasury';
+import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
 const BondIssueCom: React.FC = () => {
@@ -103,7 +103,7 @@ const BondIssueCom: React.FC = () => {
             <h3 className="text-lg font-semibold">
               2 & 3. Set the Financials and Issue
             </h3>
-            <SetNftVeVoteCom
+            <BondIssue
               tokenNumber={selectedToken?.toString() ?? ''}
               ownedNft={nftOwner === userAddress}
             />
@@ -120,14 +120,14 @@ const BondIssueCom: React.FC = () => {
             <div className="flex items-center justify-center space-x-4 mt-4">
               {nftOwner === userAddress ? (
                 // Render active "Approve the Vault" button if connected wallet matches NFT owner
-                <NftVeApproveVault tokenId={selectedToken?.toString() ?? ''} />
+                <ApproveBondTreasury tokenId={selectedToken?.toString() ?? ''} />
               ) : (
                 // Render greyed-out button if connected wallet does not match NFT owner
                 <button
                   className="bg-gray-300 text-gray-600 px-4 py-2 rounded cursor-not-allowed"
                   disabled
                 >
-                  Approve the Vault
+                  Approve the Bond Treasury
                 </button>
               )}
             </div>

@@ -3,7 +3,7 @@ import CustomButton from '@/components/Navbar/CustomButton';
 import NavBarNFTs from '@/components/Navbar/NavBarNFTs';
 import NavBarBonds from '@/components/Navbar/NavBarBonds';
 import NavBarTreasury from '@/components/Navbar/NavBarTreasury';
-import NavBarAssets from '@/components/Navbar/NavBarAssets';
+import NavBarTokens from '@/components/Navbar/NavBarTokens';
 import NavBarAdmin from '@/components/Navbar/NavBarAdmin';
 
 const Navbar = () => {
@@ -54,7 +54,7 @@ const Navbar = () => {
           <ul className="text-xl text-center items-center gap-x-3 pt-4 lg:text-lg lg:flex lg:pt-0">
             {' '}
             {/* Reduced gap */}
-            <NavBarAssets />
+            <NavBarTokens />
             <NavBarNFTs />
             <NavBarBonds />
             <NavBarTreasury />

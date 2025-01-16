@@ -18,7 +18,7 @@ const NavBarTreasury = () => {
         role="menu"
         className="hidden group-hover:block absolute z-10 min-w-[120px] overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg"
       >
-        <Link href="/TreasuryDeposit">
+        <Link href="/UsdcTreasuryDashboard">
           <li
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"

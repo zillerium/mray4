@@ -3,7 +3,7 @@ import { useAccount, useContractRead } from 'wagmi';
 import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; 
 import usdcTreasuryContractAddress from '@/lib/usdcTreasuryAddress.json';
 
-const VeMrayBalanceNew: React.FC = () => {
+const GetVeMrayBalance: React.FC = () => {
   const { address: connectedWalletAddress } = useAccount();
   const [balance, setBalance] = useState<string | null>('Loading...');
   const [error, setError] = useState<string | null>(null);
@@ -45,4 +45,4 @@ const VeMrayBalanceNew: React.FC = () => {
   return <span>{displayBalance}</span>;
 };
 
-export default VeMrayBalanceNew;
+export default GetVeMrayBalance;

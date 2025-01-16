@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import BondIssueCom from '@/components/BondIssue/BondIssueCom';
+import BondIssueCom from '@/components/Bond/BondIssueCom';
 
 const BondIssue: React.FC = () => {
   return (

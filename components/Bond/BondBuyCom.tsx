@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaSync } from 'react-icons/fa';
 import { useAccount } from 'wagmi';
-import NftVeVoteDetails from '@/components/NftVe/NftVeVoteDetails';
+import BuyBondDetails from '@/components/Bond/BuyBondDetails';
 import DisplayLockedMsg from '@/components/Util/DisplayLockedMsg';
 import VeVotesCastBal from '@/components/VeVotes/VeVotesCastBal';
 import TokenHolderVeVoting from '@/components/VeVotes/TokenHolderVeVoting';
@@ -13,7 +13,7 @@ import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
 import Navbar from '@/components/Navbar/Navbar';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
-export default function GetNftVeVoteButton() {
+export default function BondBuyCom() {
   const { isConnected } = useAccount();
   const [tokenList, setTokenList] = useState<number[]>([]);
   const [selectedToken, setSelectedToken] = useState<number | null>(null);
@@ -97,7 +97,7 @@ export default function GetNftVeVoteButton() {
             {selectedToken !== null && isConnected && (
               <>
                 {!nftLockedStatus && (
-                  <NftVeVoteDetails
+                  <BuyBondDetails
                     nftId={selectedToken}
                     onVotingStateChange={handleVotingStateChange} // Pass state change handler
                   />

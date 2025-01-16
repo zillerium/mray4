@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import UsdcTransactionsTable from './UsdcTransactionsTable'; // Import TransactionsTable component
+import UsdcTransactionsTable from '@/components/Treasury/UsdcTransactionsTable'; // Import TransactionsTable component
 import { useAccount } from 'wagmi';
 
-export default function GetVeMrayWalletTxns() {
+export default function UsdcTreasuryTxns() {
   const { isConnected } = useAccount();
   const [loadTransactions, setLoadTransactions] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // State for centralized error
