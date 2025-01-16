@@ -11,8 +11,6 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
   const [lockedBalance, setLockedBalance] = useState<string | null>(null);
 
   const {
-    data: usdcBalanceData,
-    error: usdcBalanceError,
     refetch,
   } = useContractRead({
     address: contractAddress,

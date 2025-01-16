@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useContractRead } from 'wagmi';
 import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // ABI for NftVault contract
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Contract address for NftVault
-import CopyText from '@/components/Util/CopyText';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 interface ReadNftBondDataProps {

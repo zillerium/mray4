@@ -9,17 +9,13 @@ const GetBondWalletTreasuryBalance: React.FC<{ walletAddress: string }> = ({
   walletAddress,
 }) => {
   const [treasuryBalance, setTreasuryBalance] = useState<string | null>(null);
+const { refetch } = useContractRead({
+  address: contractAddress,
+  abi: usdcTreasuryABI,
+  functionName: 'getBondTreasuryWalletBalance',
+  args: [walletAddress],
+});
 
-  const {
-    data: bondBalanceData,
-    error: bondBalanceError,
-    refetch,
-  } = useContractRead({
-    address: contractAddress,
-    abi: usdcTreasuryABI,
-    functionName: 'getBondTreasuryWalletBalance',
-    args: [walletAddress],
-  });
 
   const handleGetBalanceClick = async () => {
     try {

@@ -6,6 +6,7 @@ import GetBondWalletTreasuryBalance from '@/components/Treasury/GetBondWalletTre
 import GetUSDCWalletBalance from '@/components/Util/GetUSDCWalletBalance';
 import UsdcTreasuryApprove from '@/components/Treasury/UsdcTreasuryApprove';
 import GetUsdcWalletLockedBalance from '@/components/Treasury/GetUsdcWalletLockedBalance';
+import GetUsdcTotalTreasuryBalance from '@/components/Treasury/GetUsdcTotalTreasuryBalance';
 import GetUsdcAllowance from '@/components/Treasury/GetUsdcAllowance';
 
 export default function UsdcTreasuryManager() {
@@ -14,9 +15,16 @@ export default function UsdcTreasuryManager() {
 
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
-      <h2 className="text-3xl md:text-4xl font-normal leading-tight">
-        USDC Treasury
-      </h2>
+<div className="flex justify-between items-center">
+  <h2 className="text-3xl md:text-4xl font-normal leading-tight">
+    USDC Treasury
+  </h2>
+  <h2 className="text-3xl md:text-4xl font-normal leading-tight">
+    <GetUsdcTotalTreasuryBalance />
+  </h2>
+</div>
+
+
       <br />
 
       <p>
