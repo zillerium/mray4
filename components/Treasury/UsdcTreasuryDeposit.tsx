@@ -17,7 +17,7 @@ const UsdcTreasuryDeposit: React.FC = () => {
   const depositUsdc = () => {
     try {
       const usdcAmountBigInt = BigInt(Number(usdcAmount) * 10 ** 6); // Adjust for USDC decimals
-
+console.log("amount to transfer ----", usdcAmountBigInt);
       writeContract({
         address: contractAddress,
         abi: usdcTreasuryABI,
