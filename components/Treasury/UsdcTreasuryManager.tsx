@@ -1,9 +1,10 @@
 import React from 'react';
 import VeMrayBalanceInvestor from '@/components/Treasury/VeMrayBalanceInvestor';
 import { useAccount } from 'wagmi';
-import BuyUSDCVeTokens from '@/components/Treasury/BuyUSDCVeTokens';
+import UsdcTreasuryDeposit from '@/components/Treasury/UsdcTreasuryDeposit';
+import GetBondWalletTreasuryBalance from '@/components/Treasury/GetBondWalletTreasuryBalance';
 import GetUSDCWalletBalance from '@/components/Util/GetUSDCWalletBalance';
-import USDCVaultApprove from '@/components/Util/USDCVaultApprove';
+import UsdcTreasuryApprove from '@/components/Treasury/UsdcTreasuryApprove';
 import GetUsdcWalletLockedBalance from '@/components/Treasury/GetUsdcWalletLockedBalance';
 import GetUsdcAllowance from '@/components/Treasury/GetUsdcAllowance';
 
@@ -26,13 +27,12 @@ export default function UsdcTreasuryManager() {
       </p>
       <br />
 
-      {/* Buy veTokens Section */}
       <div className="flex flex-col items-center">
-        <BuyUSDCVeTokens />
+        <UsdcTreasuryDeposit />
       </div>
       <br />
       <div className="flex flex-col items-center">
-        <USDCVaultApprove />
+        <UsdcTreasuryApprove />
       </div>
 
       <div className="flex flex-col items-center">
@@ -43,6 +43,11 @@ export default function UsdcTreasuryManager() {
       {/* Locked USDC Balance Button */}
       <div className="flex flex-col items-center">
         <GetUsdcWalletLockedBalance walletAddress={walletAddress} />
+      </div>
+
+      <br />
+      <div className="flex flex-col items-center">
+        <GetBondWalletTreasuryBalance walletAddress={walletAddress} />
       </div>
       <br />
       {/* Wallet Address Input and veMRay Balance Button */}

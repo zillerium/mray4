@@ -7,7 +7,7 @@ import { FaDollarSign } from 'react-icons/fa'; // Import icon library for USDC i
 
 const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
-const BuyUSDCVeTokens: React.FC = () => {
+const UsdcTreasuryDeposit: React.FC = () => {
   const [usdcAmount, setUsdcAmount] = useState<string>('');
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -112,4 +112,4 @@ const BuyUSDCVeTokens: React.FC = () => {
   );
 };
 
-export default BuyUSDCVeTokens;
+export default UsdcTreasuryDeposit;
