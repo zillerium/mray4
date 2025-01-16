@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useContractRead } from 'wagmi';
 import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // ABI for the vault contract
 import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json'; // Address for the vault contract
@@ -10,26 +10,29 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
 }) => {
   const [lockedBalance, setLockedBalance] = useState<string | null>(null);
 
-  const { data: usdcBalanceData, error: usdcBalanceError } = useContractRead({
+  const {
+    data: usdcBalanceData,
+    error: usdcBalanceError,
+    refetch,
+  } = useContractRead({
     address: contractAddress,
     abi: usdcTreasuryABI,
-    functionName: 'getAllUsdcInvestors',
+    functionName: 'getUsdcTreasuryWalletBalance',
     args: [walletAddress],
   });
 
-  useEffect(() => {
-    if (usdcBalanceData) {
-      setLockedBalance((Number(usdcBalanceData) / 10 ** 6).toFixed(2)); // Convert to USDC format
-    } else if (usdcBalanceError) {
-      console.log('Error fetching USDC wallet balance');
-    } else {
-      setLockedBalance(null);
-    }
-  }, [usdcBalanceData, usdcBalanceError]);
-
-  const handleGetBalanceClick = () => {
-    if (usdcBalanceError) {
-      console.error('Error fetching balance:', usdcBalanceError);
+  const handleGetBalanceClick = async () => {
+    try {
+      const result = await refetch();
+      if (result.data) {
+        const formattedBalance = (Number(result.data) / 10 ** 6).toFixed(2); // Convert to USDC format
+        setLockedBalance(formattedBalance);
+      } else {
+        setLockedBalance('0.00');
+      }
+    } catch (e) {
+      console.error('Error fetching USDC Treasury balance:', e);
+      setLockedBalance('0.00');
     }
   };
 
@@ -42,7 +45,7 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
       }}
     >
       {/* Title */}
-      <span className="text-xl font-bold text-gray-700">Locked USDC:</span>
+      <span className="text-xl font-bold text-gray-700">Free Treasury USDC:</span>
 
       {/* Balance */}
       <span className="text-xl font-bold text-gray-900">
@@ -66,3 +69,4 @@ const GetUsdcWalletLockedBalance: React.FC<{ walletAddress: string }> = ({
 };
 
 export default GetUsdcWalletLockedBalance;
+

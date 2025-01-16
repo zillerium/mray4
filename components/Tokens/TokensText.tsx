@@ -12,7 +12,7 @@ export default function TokensText() {
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          Make
+          Balances for 
         </span>{' '}
         <span
           className="text-4xl md:text-5xl leading-none italic tracking-tight"
@@ -24,16 +24,16 @@ export default function TokensText() {
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          Illiquid Assets Liquid
+          MRAY Assets
         </span>
       </h2>
       <br />
 
       <p>
-        <b>Quick and Without Risk</b>
+        <b>Collateralized Liquidity</b>
       </p>
       <p className="mt-4 text-base">
-        Bond your NFT, and get minted MRAY tokens, fully backed by USDC reserves.
+        All Treasury assets are locked creating stability and certainty.
       </p>
       <br />
 
@@ -48,9 +48,9 @@ export default function TokensText() {
             padding: '0 40px',
           }}
         >
-          {'"NFTs are bonded, and made liquid with '}
-          <b>fully backed MRAY tokens</b>
-          {' reliable and secure."'}
+          {'"MRAY tokens are '}
+          <b>fully backed by USDC reserves</b>
+          {' and bonded NFTs."'}
         </p>
       </div>
     </div>

@@ -10,27 +10,19 @@ const HomePageDesc = () => (
       className="text-3xl md:text-4xl font-normal leading-tight"
       style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
     >
-      <span className="text-4xl md:text-5xl">Give</span>{' '}
-      <span className="text-4xl md:text-5xl italic">all</span>{' '}
-      <span className="text-4xl md:text-5xl">your RWAs</span>
+      <span className="text-4xl md:text-5xl">Liquidity</span>{' '}
+      <span className="text-4xl md:text-5xl italic">for</span>{' '}
+      <span className="text-4xl md:text-5xl">your NFTs</span>
       <br />
-      <span
-        className="text-4xl md:text-5xl font-black leading-none tracking-tight"
-        style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
-      >
-        a place for liquidity.
-      </span>
     </h2>
 
     {/* Description Text */}
     <p className="mt-4 text-base">
-      Whether you&apos;re a collector, investor, or just trying to make the most
-      of your RWAs, we&apos;ve got a brilliantly easy way to build liquidity.{' '}
+      Your NFTs can be very valuable but illiquid. Their value is inaccessible to you.{' '}
       <span className="font-semibold">
-        Have industry-leading liquidity on your RWAs
+       We unlock your NFT value with a secure no-risk protocol
       </span>
-      , take advantage of today&apos;s financial instruments, invest for the
-      long-term with financial engineering automation, and more.
+      , using bonds and a Treasury.
     </p>
 
     {/* Get Started Button */}

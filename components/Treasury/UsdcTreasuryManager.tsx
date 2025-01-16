@@ -14,17 +14,15 @@ export default function UsdcTreasuryManager() {
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2 className="text-3xl md:text-4xl font-normal leading-tight">
-        Smarter Investments for Regular Yields
+        USDC Treasury
       </h2>
       <br />
 
-      {/* Description */}
       <p>
-        <b>Low-risk and Secure Investments</b>
+        <b>Dashboard for USDC Management</b>
       </p>
       <p className="mt-4 text-base">
-        Whether you&apos;re looking for a regular yield for your USDC, secure investments, or investing in bonds, investing
-in MRAY provides all these benefits.
+        Deposit, Redeem, and Approve USDC Management for the USDC Treasury.
       </p>
       <br />
 

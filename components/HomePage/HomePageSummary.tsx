@@ -7,7 +7,7 @@ const HomePageSummary = () => (
       className="text-3xl md:text-4xl font-normal leading-tight mb-6"
       style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
     >
-      Ready for new liquidity for your RWAs?
+      Ready for liquidity for your NFTs?
     </h2>
 
     {/* Stats Row */}
@@ -19,7 +19,7 @@ const HomePageSummary = () => (
         >
           $3M+
         </span>
-        <span className="text-base">NFTs</span>
+        <span className="text-base">Value</span>
       </div>
 
       {/* Vertical divider line for separation */}
@@ -32,7 +32,7 @@ const HomePageSummary = () => (
         >
           $3M+
         </span>
-        <span className="text-base">Issued</span>
+        <span className="text-base">Supplied</span>
       </div>
 
       <div className="hidden md:block h-10 border-l border-gray-400 mx-4" />
@@ -44,7 +44,7 @@ const HomePageSummary = () => (
         >
           20+
         </span>
-        <span className="text-base">Valuations</span>
+        <span className="text-base">Bonds</span>
       </div>
     </div>
   </div>

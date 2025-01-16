@@ -14,7 +14,7 @@ const HomePageNFTDesc = () => (
       className="mb-2 inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold text-black"
       style={{ backgroundColor: '#bdc6f5' }}
     >
-      Instant Liquidity
+      NFT Liquidity
     </div>
 
     {/* Title */}
@@ -22,33 +22,31 @@ const HomePageNFTDesc = () => (
       className="text-4xl md:text-5xl font-black leading-none tracking-tight"
       style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
     >
-      Convert your NFT into ERC20 tokens
+      Have NFTs for your RWAs
     </h2>
 
     {/* Description */}
     <p className="mt-4 text-base">
-      Lock your NFT into a vault for instant ERC20 tokens. Easy to access, no
-      strings attached. Short or long-term locking available. Redeem your NFT
-      anytime.
+      Transform your NFT into US Dollars via an NFT Bond and a Treasury. You remain in control.
     </p>
 
     {/* Feature List in a two-by-two grid with icons */}
     <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base text-gray-800">
       <div className="flex items-center gap-2">
         <CurrencyDollarIcon className="h-6 w-6 text-blue-600" />
-        <span>Immediate ERC20 tokens</span>
+        <span>No Risk</span>
       </div>
       <div className="flex items-center gap-2">
         <ArrowsRightLeftIcon className="h-6 w-6 text-blue-600" />
-        <span>No limits on withdrawals or deposits</span>
+        <span>Secure</span>
       </div>
       <div className="flex items-center gap-2">
         <HandThumbUpIcon className="h-6 w-6 text-blue-600" />
-        <span>Owner Valuations agreed by Investors</span>
+        <span>Customizable</span>
       </div>
       <div className="flex items-center gap-2">
         <WalletIcon className="h-6 w-6 text-blue-600" />
-        <span>Direct to your wallet</span>
+        <span>Electronic</span>
       </div>
     </div>
 

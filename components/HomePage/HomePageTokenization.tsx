@@ -6,13 +6,13 @@ const HomePageTokenization = () => (
       className="text-xl font-semibold text-center mb-2"
       style={{ color: '#230b59', opacity: '0.5' }}
     >
-      Wallet
+      NFT Bonds
     </h3>
     <p className="text-center" style={{ opacity: '0.5' }}>
-      ERC20 and NFTs for your wallet
+      Security via bonding
     </p>
     <p className="text-center" style={{ opacity: '0.5' }}>
-      Tradeable tokens
+      Liquidity by Reserves
     </p>
   </div>
 );

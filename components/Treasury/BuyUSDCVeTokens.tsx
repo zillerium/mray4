@@ -77,7 +77,6 @@ const BuyUSDCVeTokens: React.FC = () => {
             'Processing...'
           ) : (
             <>
-              <FaDollarSign className="mr-2" />
               Deposit
             </>
           )}

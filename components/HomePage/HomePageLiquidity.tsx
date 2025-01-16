@@ -6,13 +6,13 @@ const HomePageLiquidity = () => (
       className="text-xl font-semibold text-center mb-2"
       style={{ color: '#230b59', opacity: '0.5' }}
     >
-      Liquidity Pool
+      Treasury
     </h3>
     <p className="text-center" style={{ opacity: '0.5' }}>
-      NFTs locked in a vault
+      USDC vaults fund NFTs
     </p>
     <p className="text-center" style={{ opacity: '0.5' }}>
-      ERC20 tokens minted
+      NFTs can be redeemed later
     </p>
   </div>
 );

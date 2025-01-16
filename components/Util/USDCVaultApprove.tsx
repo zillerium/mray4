@@ -48,7 +48,7 @@ const USDCVaultApprove: React.FC = () => {
         {/* Input Field */}
         <input
           type="number"
-          placeholder="Enter USDC Amount"
+          placeholder="USDC Amount"
           value={approvalAmount}
           onChange={(e) => setApprovalAmount(e.target.value)}
           className="border border-gray-300 rounded-lg p-2 w-2/3 text-lg"

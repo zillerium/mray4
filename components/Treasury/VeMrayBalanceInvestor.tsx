@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useContractRead, useAccount } from 'wagmi';
-import veMintABI from '@/lib/bondTreasuryABI.json'; // ABI for VeMint
-import veMintContractAddress from '@/lib/bondTreasuryAddress.json'; // VeMint contract address
+import usdcTreasuryABI from '@/lib/usdcTreasuryABI.json'; // ABI for VeMint
+import usdcTreasuryContractAddress from '@/lib/usdcTreasuryAddress.json'; // VeMint contract address
 
-const contractAddress = veMintContractAddress.address as `0x${string}`;
+const contractAddress = usdcTreasuryContractAddress.address as `0x${string}`;
 
 const VeMrayBalanceInvestor: React.FC = () => {
   const { address: connectedWalletAddress } = useAccount(); // Get the connected wallet
@@ -15,8 +15,8 @@ const VeMrayBalanceInvestor: React.FC = () => {
     refetch,
   } = useContractRead({
     address: contractAddress,
-    abi: veMintABI,
-    functionName: 'veMrayBalance', // Fetch the veMRAY balance
+    abi: usdcTreasuryABI,
+    functionName: 'getVeMrayBalance',
     args: [connectedWalletAddress],
   });
 
