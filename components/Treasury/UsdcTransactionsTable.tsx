@@ -6,8 +6,8 @@ import TimestampToDate from '@/components/Util/TimestampToDate';
 import RedeemUsdcTokens from '@/components/Treasury/RedeemUsdcTokens';
 
 interface UsdcTransaction {
-  lockedUsdc: bigint; // Corrected field name
-  expiryTimestamp: bigint;
+  usdcDepositAmount: bigint; // Corrected field name
+  usdcVestingPeriod: bigint;
 }
 
 interface UsdcTransactionsTableProps {
