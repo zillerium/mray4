@@ -6,11 +6,11 @@ import BondTable from '@/components/Bond/BondTable';
 
 const contractAddress = nftVeValContractAddress.address as `0x${string}`;
 
-interface BuyBondManagerProps {
+interface BuyBondDetailsProps {
   nftId: string | number;
   onVotingStateChange?: (active: boolean) => void; // Optional prop
 }
-const BuyBondManager: React.FC<BuyBondManagerProps> = ({ nftId, onVotingStateChange }) => {
+const BuyBondDetails: React.FC<BuyBondDetailsProps> = ({ nftId, onVotingStateChange }) => {
 
   const [nftPrice, setNftPrice] = useState<number | null>(null);
   const [bondAmount, setBondAmount] = useState<number | null>(null);
@@ -23,50 +23,57 @@ const BuyBondManager: React.FC<BuyBondManagerProps> = ({ nftId, onVotingStateCha
   const { data, error: bondDetailsError } = useContractRead({
     address: contractAddress,
     abi: nftVeValContractABI,
-    functionName: 'getBondedNftDetails',
+    functionName: 'getBondAndNftDetails',
     args: [nftId],
   });
 
-  useEffect(() => {
-    if (data !== undefined && data !== null) {
-      try {
-        const {
-          nftPrice,
+useEffect(() => {
+  if (data !== undefined && data !== null) {
+    try {
+      const {
+        bondDetails: {
           bondAmount,
           bondMaturity,
           bondSalePeriodEnd,
           totalBondSupply,
           remainingBondSupply,
-        } = data as {
-          nftPrice: number;
-          bondAmount: number;
-          bondMaturity: number;
-          bondSalePeriodEnd: number;
-          totalBondSupply: number;
-          remainingBondSupply: number;
+        },
+        nftDetails: { nftPrice },
+      } = data as {
+        bondDetails: {
+          bondAmount: BigInt;
+          bondMaturity: BigInt;
+          bondSalePeriodEnd: BigInt;
+          totalBondSupply: BigInt;
+          remainingBondSupply: BigInt;
         };
+        nftDetails: {
+          nftPrice: BigInt;
+        };
+      };
 
-        setNftPrice(nftPrice);
-        setBondAmount(bondAmount);
-        setBondMaturity(new Date(bondMaturity * 1000).toISOString().split('T')[0]);
-        setBondSalePeriodEnd(new Date(bondSalePeriodEnd * 1000).toISOString().split('T')[0]);
-        setTotalBondSupply(totalBondSupply);
-        setRemainingBondSupply(remainingBondSupply);
-        setError(null); // Clear any errors
-      } catch (e) {
-        console.error('Error parsing bond details:', e);
-        setError('Error processing bond details');
-      }
-    } else if (bondDetailsError) {
-      console.error('Error fetching bond details:', bondDetailsError.message);
-      setError('Error fetching bond details');
+      // Convert BigInt to number explicitly
+      setNftPrice(Number(nftPrice));
+      setBondAmount(Number(bondAmount));
+      setBondMaturity(new Date(Number(bondMaturity) * 1000).toISOString().split('T')[0]);
+      setBondSalePeriodEnd(new Date(Number(bondSalePeriodEnd) * 1000).toISOString().split('T')[0]);
+      setTotalBondSupply(Number(totalBondSupply));
+      setRemainingBondSupply(Number(remainingBondSupply));
+      setError(null); // Clear any errors
+    } catch (e) {
+      console.error('Error parsing bond details:', e);
+      setError('Error processing bond details');
     }
-  }, [data, bondDetailsError]);
+  } else if (bondDetailsError) {
+    console.error('Error fetching bond details:', bondDetailsError.message);
+    setError('Error fetching bond details');
+  }
+}, [data, bondDetailsError]);
 
   if (error) {
     return <p className="text-red-500">{error}</p>;
   }
-
+console.log(" data ==== ", data)
   return (
     <BondTable
       nftPrice={nftPrice}
@@ -79,5 +86,5 @@ const BuyBondManager: React.FC<BuyBondManagerProps> = ({ nftId, onVotingStateCha
   );
 };
 
-export default BuyBondManager;
+export default BuyBondDetails;
 

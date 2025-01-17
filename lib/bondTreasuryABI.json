@@ -626,6 +626,131 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_nftId",
+				"type": "uint256"
+			}
+		],
+		"name": "getBondAndNftDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "bondId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondMaturity",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondCouponRate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalBondSupply",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "remainingBondSupply",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondSalePeriodEnd",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondPeriod",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "bondIssued",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "bondFullyFunded",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "bondAccepted",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "bondRedeemed",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct BondTreasuryContract.Bond",
+						"name": "bondDetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "nftId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nftPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "nftOwner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "nftOriginalOwner",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "nftIsBonded",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nftMaturity",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct BondTreasuryContract.NftTreasury",
+						"name": "nftDetails",
+						"type": "tuple"
+					}
+				],
+				"internalType": "struct BondTreasuryContract.BondedNftDetails",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "bondId",
 				"type": "uint256"
 			}
