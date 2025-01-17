@@ -26,7 +26,7 @@ const NavBarNFTs = () => {
             Mint
           </li>
         </Link>
-        <Link href="/NftUploadDocs">
+        <Link href="/NftUpload">
           <li
             role="menuitem"
             className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
