@@ -59,7 +59,7 @@ export default function BondBuyCom() {
                   color: '#230b59',
                 }}
               >
-                Buy an NFT Bond # 
+                Bond for NFT # 
               </span>
               {selectedToken !== null && (
                 <DisplayNFTNumber selectedToken={selectedToken} />

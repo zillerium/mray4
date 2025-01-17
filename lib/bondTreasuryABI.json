@@ -304,25 +304,6 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"name": "allNftsInTreasury",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
@@ -330,7 +311,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "bondBuyers",
+		"name": "bondBuyerList",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -450,11 +431,6 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "bool",
-				"name": "bondIssued",
-				"type": "bool"
-			},
-			{
 				"internalType": "uint256",
 				"name": "bondMaturity",
 				"type": "uint256"
@@ -480,14 +456,24 @@
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
+				"name": "bondPeriod",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "bondIssued",
+				"type": "bool"
+			},
+			{
 				"internalType": "bool",
 				"name": "bondFullyFunded",
 				"type": "bool"
 			},
 			{
-				"internalType": "uint256",
-				"name": "bondPeriod",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "bondAccepted",
+				"type": "bool"
 			},
 			{
 				"internalType": "bool",
@@ -496,6 +482,24 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_nftId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_bondSalePeriodEnd",
+				"type": "uint256"
+			}
+		],
+		"name": "cancelBondSale",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -514,6 +518,19 @@
 	{
 		"inputs": [],
 		"name": "defaultCouponRate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "defaultNftMaturityPeriod",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -575,6 +592,56 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "bondId",
+				"type": "uint256"
+			}
+		],
+		"name": "getAllBuyersAndInvestments",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "investment",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct BondTreasuryContract.BuyerInfo[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "bondId",
+				"type": "uint256"
+			}
+		],
+		"name": "getBondBuyers",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getBondTreasuryBalance",
 		"outputs": [
@@ -610,11 +677,6 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "bool",
-						"name": "bondIssued",
-						"type": "bool"
-					},
-					{
 						"internalType": "uint256",
 						"name": "bondMaturity",
 						"type": "uint256"
@@ -640,14 +702,24 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "bondPeriod",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "bondIssued",
+						"type": "bool"
+					},
+					{
 						"internalType": "bool",
 						"name": "bondFullyFunded",
 						"type": "bool"
 					},
 					{
-						"internalType": "uint256",
-						"name": "bondPeriod",
-						"type": "uint256"
+						"internalType": "bool",
+						"name": "bondAccepted",
+						"type": "bool"
 					},
 					{
 						"internalType": "bool",
@@ -689,6 +761,30 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "bondId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "buyer",
+				"type": "address"
+			}
+		],
+		"name": "getBuyerInvestment",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getDefaultBondPeriod",
 		"outputs": [
@@ -718,28 +814,16 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_nftId",
+				"name": "bondId",
 				"type": "uint256"
 			}
 		],
-		"name": "getFundingTxns",
+		"name": "getTotalBondInvestment",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "walletAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct BondTreasuryContract.FundingTxn[]",
+				"internalType": "uint256",
 				"name": "",
-				"type": "tuple[]"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -762,16 +846,11 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_nftId",
 				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
-		"name": "isBondBuyer",
+		"name": "isBondActive",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -809,6 +888,30 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "nftBondStatus",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isActive",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bondId",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "nftContract",
 		"outputs": [
@@ -816,44 +919,6 @@
 				"internalType": "contract UnifiedNFT",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "nftHasActiveBond",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "nftToBond",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -880,11 +945,6 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "bool",
-				"name": "nftLocked",
-				"type": "bool"
-			},
-			{
 				"internalType": "address",
 				"name": "nftOwner",
 				"type": "address"
@@ -896,8 +956,13 @@
 			},
 			{
 				"internalType": "bool",
-				"name": "nftBonded",
+				"name": "nftIsBonded",
 				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "nftMaturity",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -1033,6 +1098,25 @@
 		"name": "startBondSale",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "totalBondInvestment",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{

@@ -4,7 +4,7 @@ import bondTreasuryContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the
 import bondTreasuryContractAddress from '@/lib/bondTreasuryAddress.json'; // Contract address
 import CopyText from '@/components/Util/CopyText';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-import { reformatCurrency } from '@/components/Util/ReformatCurrency';
+import ShowTxnHash from '@/components/Util/ShowTxnHash'; // Utility component for showing transaction hash
 
 interface BondIssueProps {
   tokenNumber: string;
@@ -23,27 +23,28 @@ const BondIssue: React.FC<BondIssueProps> = ({
   tokenNumber,
   ownedNft,
 }) => {
-  const [lowerLimit, setLowerLimit] = useState<string>('');
+  const [nftPrice, setNftPrice] = useState<string>('');
+  const [bondCouponRate, setBondCouponRate] = useState<string>(''); // New field
   const [endDate, setEndDate] = useState<string>('');
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
   const { data: transactionHash, writeContract, error } = useWriteContract();
 
   const handleSubmit = async () => {
-    if (!tokenNumber || !lowerLimit || !endDate) {
+    if (!tokenNumber || !nftPrice || !bondCouponRate || !endDate) {
       alert('Please fill in all fields.');
       return;
     }
 
     try {
       const unixTimestamp = convertToUnixTimestamp(endDate);
+      const nftPriceUsdc = Math.floor(parseFloat(nftPrice) * 1e6); // USDC has 6 decimals
+      const couponRateInBasisPoints = Math.floor(parseFloat(bondCouponRate) * 100); // Convert to basis points
 
-      const reformattedLowerLimit = reformatCurrency(lowerLimit);
-
-      if (reformattedLowerLimit === null) {
-        alert('Please enter a price.');
-        return;
-      }
+     console.log("--- tokenNumber --- ", tokenNumber);
+     console.log("---- nftPriceusdc ----", nftPriceUsdc);
+console.log("--- couponRateInBasisPoints --- ", couponRateInBasisPoints);
+console.log(" --- unixTimestamp ---- ", unixTimestamp);
 
       writeContract({
         address: contractAddress,
@@ -51,7 +52,8 @@ const BondIssue: React.FC<BondIssueProps> = ({
         functionName: 'startBondSale',
         args: [
           Number(tokenNumber),
-          reformattedLowerLimit,
+          nftPriceUsdc,
+          couponRateInBasisPoints,
           unixTimestamp,
         ],
       });
@@ -65,17 +67,26 @@ const BondIssue: React.FC<BondIssueProps> = ({
 
   return (
     <div className="flex flex-col items-center space-y-4 mt-4">
-      {/* Valuation Input Fields */}
+      {/* Input Fields */}
       <div className="flex flex-col items-start space-y-2 w-full max-w-md">
         <label className="text-gray-700">Price (USDC):</label>
         <input
           type="number"
           className="border rounded px-2 py-1 w-full"
           placeholder="Price"
-          value={lowerLimit}
-          onChange={(e) => setLowerLimit(e.target.value)}
+          value={nftPrice}
+          onChange={(e) => setNftPrice(e.target.value)}
         />
-        <label className="text-gray-700">Voting End Date:</label>
+        <label className="text-gray-700">Bond Coupon Rate (%):</label>
+        <input
+          type="number"
+          step="0.01"
+          className="border rounded px-2 py-1 w-full"
+          placeholder="Coupon Rate"
+          value={bondCouponRate}
+          onChange={(e) => setBondCouponRate(e.target.value)}
+        />
+        <label className="text-gray-700">Bond Sale End Date:</label>
         <input
           type="date"
           className="border rounded px-2 py-1 w-full"
@@ -98,36 +109,18 @@ const BondIssue: React.FC<BondIssueProps> = ({
           className="bg-gray-300 text-gray-600 px-4 py-2 rounded w-full max-w-md cursor-not-allowed"
           disabled
         >
-         Issue NFT Bond
+          Issue NFT Bond
         </button>
       )}
-
-      {/* Status and Transaction Info */}
-      <div className="w-full max-w-md">
-        {txnStatus && (
-          <div className="text-gray-600 text-sm mt-2">{txnStatus}</div>
-        )}
-        {transactionHash && (
-          <div className="text-sm mt-2 flex items-center">
-            Transaction Hash: <CopyText copiedText={transactionHash} />{' '}
-            <a
-              href={`https://sepolia.basescan.org/tx/${transactionHash}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 text-blue-500"
-            >
-              <FaExternalLinkAlt className="inline-block" />
-            </a>
-          </div>
-        )}
-        {error && (
-          <div className="text-red-500 text-sm mt-2">
-            Error: {error.message}
-          </div>
-        )}
-      </div>
+     {/* Show Transaction Status or Errors */}
+      <ShowTxnHash
+        txnStatus={txnStatus}
+        transactionHash={transactionHash ? transactionHash.toString() : null}
+        error={error}
+      />
     </div>
   );
 };
 
 export default BondIssue;
+

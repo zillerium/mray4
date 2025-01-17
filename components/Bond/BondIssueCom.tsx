@@ -8,9 +8,11 @@ import Navbar from '@/components/Navbar/Navbar';
 import BondIssue from '@/components/Bond/BondIssue';
 import ApproveBondTreasury from '@/components/Treasury/ApproveBondTreasury';
 import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
+import GetBondStatus from '@/components/Bond/GetBondStatus';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
 const BondIssueCom: React.FC = () => {
+  const [bondActive, setBondActive] = useState<boolean>(false); // New state
   const { address: userAddress } = useAccount();
   const [nftOwner, setNftOwner] = useState<string | null>(null); // New state
   const [tokenList, setTokenList] = useState<number[]>([]);
@@ -90,7 +92,10 @@ const BondIssueCom: React.FC = () => {
               </div>
             </div>
             {selectedToken !== null && (
+
               <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
+                {/* Display Bond Status */}
+                <GetBondStatus nftId={selectedToken} onBondStatusFetched={setBondActive} /> {/* Pass callback */}
                 <ReadNftByTokenNumberOwner
                   tokenNumber={selectedToken.toString()}
                   onOwnerFetched={setNftOwner} // New callback
@@ -103,10 +108,11 @@ const BondIssueCom: React.FC = () => {
             <h3 className="text-lg font-semibold">
               2 & 3. Set the Financials and Issue
             </h3>
-            <BondIssue
-              tokenNumber={selectedToken?.toString() ?? ''}
-              ownedNft={nftOwner === userAddress}
-            />
+<BondIssue
+  tokenNumber={selectedToken?.toString() ?? ''}
+  ownedNft={nftOwner === userAddress && !bondActive} // Check for ownership and bond status
+/>
+
           </div>
           {/* Step 2 & 3: Set Valuation & Approve Vault */}
           <div className="bg-blue-100 p-4 rounded-lg shadow-md text-center">
