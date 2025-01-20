@@ -23,23 +23,26 @@ const BondFundingTxns: React.FC<{
   const { data, isLoading } = useContractRead({
     address: contractAddress,
     abi: bondContractABI,
-    functionName: 'getFundingTxns',
+    functionName: 'getAllBuyersAndInvestments',
     args: [nftId],
   });
 
-  useEffect(() => {
-    if (data) {
-      const txns = (data as FundingTxn[]).map((txn) => ({
-        walletAddress: txn.walletAddress,
-        amount: Number(txn.amount),
-      }));
-      setFundingTxns(txns);
-    }
+  console.log("  buying ===", data); 
 
-    if (error) {
-      setError('Error fetching funding transactions.');
-    }
-  }, [data, error]);
+useEffect(() => {
+  if (data) {
+    const txns = (data as Array<{ buyer: string; investment: bigint }>).map((txn) => ({
+      walletAddress: txn.buyer,
+      amount: Number(txn.investment) / 1e6,
+    }));
+    setFundingTxns(txns);
+  }
+
+  if (error) {
+    setError('Error fetching funding transactions.');
+  }
+}, [data, error]);
+
 
   const totalFunding = fundingTxns.reduce((total, txn) => total + txn.amount, 0);
 

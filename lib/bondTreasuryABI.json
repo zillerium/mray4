@@ -25,125 +25,6 @@
 				"type": "uint256"
 			},
 			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "bondAmount",
-				"type": "uint256"
-			}
-		],
-		"name": "BondFullyFunded",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "investor",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "BondInvestment",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "bondId",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			}
-		],
-		"name": "BondRedeemed",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "bondId",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "bondAmount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "bondSalePeriodEnd",
-				"type": "uint256"
-			}
-		],
-		"name": "BondSaleStarted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "minter",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "bondAmount",
-				"type": "uint256"
-			}
-		],
-		"name": "NftBondedAndTokensMinted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
 				"indexed": true,
 				"internalType": "address",
 				"name": "owner",
@@ -157,113 +38,6 @@
 			}
 		],
 		"name": "NftLocked",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "NftRedeemed",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "redeemer",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "mrayAmount",
-				"type": "uint256"
-			}
-		],
-		"name": "NftRedeemed",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "nftId",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "buyer",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "salePrice",
-				"type": "uint256"
-			}
-		],
-		"name": "NftSold",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "UsdcTransferredFromVault",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "UsdcTransferredToVault",
 		"type": "event"
 	},
 	{
@@ -595,7 +369,7 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "bondId",
+				"name": "_nftId",
 				"type": "uint256"
 			}
 		],
@@ -761,6 +535,87 @@
 				"internalType": "address[]",
 				"name": "",
 				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_nftId",
+				"type": "uint256"
+			}
+		],
+		"name": "getBondOrDefault",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "bondId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bondAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bondMaturity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bondCouponRate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBondSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainingBondSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bondSalePeriodEnd",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bondPeriod",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "bondIssued",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "bondFullyFunded",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "bondAccepted",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "bondRedeemed",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct BondTreasuryContract.Bond",
+				"name": "",
+				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",

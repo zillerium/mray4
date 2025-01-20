@@ -21,6 +21,7 @@ export default function BondBuyCom() {
   const [votingActive, setVotingActive] = useState<boolean>(false); // New state
   const [nftOwner, setNftOwner] = useState<string | null>(null);
   const [nftLockedStatus, setNftLockedStatus] = useState<boolean | null>(null);
+  const [showAllTxns, setShowAllTxns] = useState(false);
 
   const handleTokenListUpdate = (newTokenList: number[]) => {
     setTokenList(newTokenList);
@@ -37,6 +38,9 @@ export default function BondBuyCom() {
   const loadNfts = () => {
     if (!isLoaded) setIsLoaded(true);
   };
+
+console.log("voting active --- ", votingActive);
+console.log("nftLockedStatus --- ", nftLockedStatus);
 
   return (
     <div>
@@ -102,7 +106,7 @@ export default function BondBuyCom() {
                     onVotingStateChange={handleVotingStateChange} // Pass state change handler
                   />
                 )}
-                {votingActive && !nftLockedStatus && (
+                {!nftLockedStatus && (
                   <div>
                     <BuyBondWallet nftId={selectedToken} />
                   </div>
@@ -131,16 +135,22 @@ export default function BondBuyCom() {
         </div>
 
         <hr className="w-full border-t border-gray-300 my-6" />
-        <div className="w-full">
-          {/* NFT Voting and Details */}
-          {selectedToken !== null && isConnected && nftOwner !== null && (
-            <>
-<BondFundingTxns
-  nftOwner={nftOwner}
-  nftId={selectedToken}
-/>
-            </>
-          )}
+    <div className="flex flex-col items-center">
+{selectedToken !== null && isConnected  && (
+<button
+  onClick={() => setShowAllTxns(!showAllTxns)}
+  className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
+>
+  Show all Txns
+</button>
+)}
+
+{showAllTxns && selectedToken !== null && isConnected  && (
+<BondFundingTxns nftOwner={nftOwner ?? ''} nftId={selectedToken} />
+
+)}
+
+
         </div>
         <hr className="w-full border-t border-gray-300 my-6" />
       </main>

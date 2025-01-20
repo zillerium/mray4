@@ -18,21 +18,27 @@ const FundingTable: React.FC<FundingTableProps> = ({ fundingTxns }) => {
               Wallet Address
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Amount
+              USD Amount
             </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {fundingTxns.map((txn, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {txn.walletAddress}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {txn.amount.toFixed(2)}
-              </td>
-            </tr>
-          ))}
+
+{fundingTxns.map((txn, index) => (
+  <tr key={index}>
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+      {txn.walletAddress}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {new Intl.NumberFormat('en-US', {
+        style: 'decimal',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(txn.amount)}
+    </td>
+  </tr>
+))}
+
         </tbody>
       </table>
     </div>

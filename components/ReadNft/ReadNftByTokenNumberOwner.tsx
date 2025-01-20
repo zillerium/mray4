@@ -35,7 +35,7 @@ const ReadNftByTokenNumberOwner: React.FC<ReadNftByTokenNumberProps> = ({
 
   const renderOwnershipStatus = () => {
     if (nftOwner === vaultAddress) {
-      return <span className="ml-2 font-bold text-red-500">LOCKED</span>;
+      return <span className="ml-2 font-bold text-red-500">BONDED</span>;
     }
     if (!isConnected) {
       return null; // End without showing any message

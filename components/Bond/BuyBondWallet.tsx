@@ -62,7 +62,7 @@ const BuyBondWallet: React.FC<BuyBondWalletProps> = ({ nftId }) => {
         onClick={handleVoteClick}
         disabled={txnStatus === 'Transaction submitted...'}
       >
-        Vote Price
+       Buy Bond
       </button>
 
       {/* Display the transaction status message directly */}

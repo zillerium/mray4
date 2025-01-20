@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
-import vaultContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the NftPool contract
-import vaultContractAddress from '@/lib/bondTreasuryAddress.json'; // Address for the NftPool contract
+import bondContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the NftPool contract
+import bondContractAddress from '@/lib/bondTreasuryAddress.json'; // Address for the NftPool contract
 
 interface UpdatePoolProps {
   nftId: number;
 }
 
-const contractAddress = vaultContractAddress.address as `0x${string}`;
+const contractAddress = bondContractAddress.address as `0x${string}`;
 
 const UpdatePool: React.FC<UpdatePoolProps> = ({ nftId }) => {
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
@@ -25,8 +25,8 @@ const UpdatePool: React.FC<UpdatePoolProps> = ({ nftId }) => {
     try {
       writeContract({
         address: contractAddress,
-        abi: vaultContractABI,
-        functionName: 'lockNFTAndMintTokens',
+        abi: bondContractABI,
+        functionName: 'lockNftAndMintMrayTokens',
         args: [nftId],
       });
 
@@ -44,7 +44,7 @@ const UpdatePool: React.FC<UpdatePoolProps> = ({ nftId }) => {
         onClick={handleAddToPoolClick}
         disabled={txnStatus === 'Transaction submitted...'}
       >
-        Submit to Pool
+        Accept Funding
       </button>
       {txnStatus && <div className="text-lg">{txnStatus}</div>}
       {error && <div className="text-red-500">Error: {error.message}</div>}
