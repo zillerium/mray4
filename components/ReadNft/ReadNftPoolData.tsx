@@ -1,59 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import { useContractRead } from 'wagmi';
-import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // ABI for NftVault contract
-import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Contract address for NftVault
+import nftVeValContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the contract
+import nftVeValContractAddress from '@/lib/bondTreasuryAddress.json'; // Contract address for the contract
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
-interface ReadNftBondDataProps {
+interface ReadNftPoolDataProps {
   nftId: number;
 }
 
-const contractAddress = bondTreasuryAddress.address as `0x${string}`;
+const contractAddress = nftVeValContractAddress.address as `0x${string}`;
 
 // Helper function to format numbers with commas
 const formatNumber = (num: number): string => {
   return new Intl.NumberFormat('en-US').format(num);
 };
 
-const ReadNftBondData: React.FC<ReadNftBondDataProps> = ({ nftId }) => {
+const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
   const [bondData, setBondData] = useState<{
     nftPrice: string;
-    bondAmount: string;
-    bondMaturity: string;
-    bondCouponRate: string;
+    bondAmount?: string;
+    bondMaturity?: string;
+    bondCouponRate?: string;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch the bond data for the specified NFT ID
+  // Fetch the bond and NFT details for the specified NFT ID
   const { data: bondDetailsData, error: bondDetailsError } = useContractRead({
     address: contractAddress,
-    abi: bondTreasuryABI,
-    functionName: 'getBondedNftDetails', // Ensure this function fetches bond details
+    abi: nftVeValContractABI,
+    functionName: 'getBondAndNftDetails',
     args: [nftId],
   });
 
   // Update the bond data or error state based on the result
   useEffect(() => {
     if (bondDetailsData) {
-      const {
-        nftPrice,
-        bondAmount,
-        bondMaturity,
-        bondCouponRate,
-      } = bondDetailsData as {
-        nftPrice: string;
-        bondAmount: string;
-        bondMaturity: string;
-        bondCouponRate: string;
-      };
+      try {
+        const {
+          bondDetails: { bondAmount, bondMaturity, bondCouponRate },
+          nftDetails: { nftPrice },
+        } = bondDetailsData as {
+          bondDetails: {
+            bondAmount: BigInt;
+            bondMaturity: BigInt;
+            bondCouponRate: BigInt;
+          };
+          nftDetails: {
+            nftPrice: BigInt;
+          };
+        };
 
-      setBondData({
-        nftPrice: formatNumber(Number(nftPrice) / CURRENCY_FACTOR),
-        bondAmount: formatNumber(Number(bondAmount) / CURRENCY_FACTOR),
-        bondMaturity: new Date(Number(bondMaturity) * 1000).toLocaleString(),
-        bondCouponRate: (Number(bondCouponRate) / 100).toFixed(2) + '%',
-      });
-      setError(null);
+        setBondData({
+          nftPrice: formatNumber(Number(nftPrice) / CURRENCY_FACTOR),
+          bondAmount: bondAmount ? formatNumber(Number(bondAmount) / CURRENCY_FACTOR) : undefined,
+          bondMaturity: bondMaturity
+            ? new Date(Number(bondMaturity) * 1000).toLocaleString()
+            : undefined,
+          bondCouponRate: bondCouponRate
+            ? (Number(bondCouponRate) / 100).toFixed(2) + '%'
+            : undefined,
+        });
+        setError(null);
+      } catch (e) {
+        console.error('Error parsing bond details:', e);
+        setError('Error parsing bond data');
+      }
     } else if (bondDetailsError) {
       setError('Error fetching bond data');
     }
@@ -74,18 +85,24 @@ const ReadNftBondData: React.FC<ReadNftBondDataProps> = ({ nftId }) => {
               <td className="border px-4 py-2">NFT Price (USD)</td>
               <td className="border px-4 py-2">{bondData.nftPrice}</td>
             </tr>
-            <tr>
-              <td className="border px-4 py-2">Bond Amount (USD)</td>
-              <td className="border px-4 py-2">{bondData.bondAmount}</td>
-            </tr>
-            <tr>
-              <td className="border px-4 py-2">Bond Maturity</td>
-              <td className="border px-4 py-2">{bondData.bondMaturity}</td>
-            </tr>
-            <tr>
-              <td className="border px-4 py-2">Bond Coupon Rate</td>
-              <td className="border px-4 py-2">{bondData.bondCouponRate}</td>
-            </tr>
+            {bondData.bondAmount && (
+              <tr>
+                <td className="border px-4 py-2">Bond Amount (USD)</td>
+                <td className="border px-4 py-2">{bondData.bondAmount}</td>
+              </tr>
+            )}
+            {bondData.bondMaturity && (
+              <tr>
+                <td className="border px-4 py-2">Bond Maturity</td>
+                <td className="border px-4 py-2">{bondData.bondMaturity}</td>
+              </tr>
+            )}
+            {bondData.bondCouponRate && (
+              <tr>
+                <td className="border px-4 py-2">Bond Coupon Rate</td>
+                <td className="border px-4 py-2">{bondData.bondCouponRate}</td>
+              </tr>
+            )}
           </tbody>
         </table>
       ) : error ? (
@@ -97,5 +114,5 @@ const ReadNftBondData: React.FC<ReadNftBondDataProps> = ({ nftId }) => {
   );
 };
 
-export default ReadNftBondData;
+export default ReadNftPoolData;
 
