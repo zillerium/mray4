@@ -32,7 +32,7 @@ const UsdcTreasuryGraphicCom = () => {
       }
     }
   }, [data]);
- console.log(" error ====> ", error)
+ console.log(" error ====> ", error, data)
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2

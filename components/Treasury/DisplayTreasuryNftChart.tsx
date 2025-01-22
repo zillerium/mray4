@@ -16,7 +16,7 @@ const DisplayTreasuryNftChart: React.FC<DisplayTreasuryNftChartProps> = ({ poolD
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(amount);
-
+console.log(" format usdc === ", poolData)
   return (
     <div className="flex w-full h-auto items-center justify-center space-x-8">
       {/* Donut Chart */}

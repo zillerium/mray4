@@ -67,7 +67,6 @@ export default function ManageNftTreasury() {
         <ReadNftsPool onNftListUpdate={handleNftListUpdate} />
 
         <div className="w-48">
-          {/* Dropdown to Display Locked NFTs */}
           <select
             id="nftDropdown"
             className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded"
@@ -87,7 +86,6 @@ export default function ManageNftTreasury() {
       </div>
 
       <div className="flex justify-center flex-wrap items-center">
-        {/* Display Selected NFT ID */}
         {selectedNft !== null && (
           <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
             <h2>Selected NFT is {selectedNft}</h2>

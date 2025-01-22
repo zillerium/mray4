@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useContractRead } from 'wagmi';
-import nftVeValContractABI from "@/lib/bondTreasuryABI.json";
-import nftVeValContractAddress from "@/lib/bondTreasuryAddress.json";
+import bondContractABI from "@/lib/bondTreasuryABI.json";
+import bondContractAddress from "@/lib/bondTreasuryAddress.json";
 import BondTable from '@/components/Bond/BondTable';
 
-const contractAddress = nftVeValContractAddress.address as `0x${string}`;
+const contractAddress = bondContractAddress.address as `0x${string}`;
 
 interface BuyBondDetailsProps {
   nftId: string | number;
@@ -22,10 +22,12 @@ const BuyBondDetails: React.FC<BuyBondDetailsProps> = ({ nftId, onVotingStateCha
 
   const { data, error: bondDetailsError } = useContractRead({
     address: contractAddress,
-    abi: nftVeValContractABI,
+    abi: bondContractABI,
     functionName: 'getBondAndNftDetails',
     args: [nftId],
   });
+
+console.log(" data in bond buy ==== ", data)
 
   useEffect(() => {
     if (data) {

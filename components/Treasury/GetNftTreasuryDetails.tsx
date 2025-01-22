@@ -8,7 +8,7 @@ import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const GetBondTreasuryDetails = () => {
+const GetNftTreasuryDetails = () => {
   const [poolData, setPoolData] = useState<[number, number][]>([]);
 
   // Read the contract to get all locked NFT details
@@ -63,4 +63,4 @@ console.log(" chart ============== ", poolData)
   );
 };
 
-export default GetBondTreasuryDetails;
+export default GetNftTreasuryDetails;

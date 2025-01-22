@@ -1,13 +1,12 @@
-// BondNftCom.tsx
 'use client';
 
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
-import ManageNftTreasury from '@/components/Treasury/ManageNftTreasury';
+import ManageBondTreasury from '@/components/Treasury/ManageBondTreasury';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
-import GetNftTreasuryDetails from '@/components/Treasury/GetNftTreasuryDetails';
+import UsdcTreasuryGraphicCom from '@/components/Treasury/UsdcTreasuryGraphicCom';
 
-const BondedNftCom: React.FC = () => {
+const BondTreasuryCom: React.FC = () => {
   return (
     <div>
       <Navbar />
@@ -15,12 +14,12 @@ const BondedNftCom: React.FC = () => {
         <GetWalletHeader />
 
         <div className="flex flex-col md:flex-row gap-4 w-full mt-8">
-          <ManageNftTreasury />
-          <GetNftTreasuryDetails />
+          <ManageBondTreasury />
+          <UsdcTreasuryGraphicCom />
         </div>
       </main>
     </div>
   );
 };
 
-export default BondedNftCom;
+export default BondTreasuryCom;

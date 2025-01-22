@@ -20,7 +20,7 @@ const DisplayTreasuryUsdcChart: React.FC<DisplayTreasuryUsdcChartProps> = ({
       minimumFractionDigits: 2,
       maximumFractionDigits: 6,
     }).format(amount / 1_000_000); // Divide by 1e6 to scale from base USDC
-
+console.log("console log ====== ", poolData);
   return (
     <div className="flex w-full h-auto items-center justify-center space-x-8">
       {/* Donut Chart */}

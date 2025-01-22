@@ -44,7 +44,7 @@ const UpdatePool: React.FC<UpdatePoolProps> = ({ nftId }) => {
         onClick={handleAddToPoolClick}
         disabled={txnStatus === 'Transaction submitted...'}
       >
-        Accept Funding
+        Accept Funding 
       </button>
       {txnStatus && <div className="text-lg">{txnStatus}</div>}
       {error && <div className="text-red-500">Error: {error.message}</div>}

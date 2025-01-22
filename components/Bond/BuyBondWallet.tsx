@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
-import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // Import ABI for veToken valuation contract
-import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Import contract address for veToken valuation contract
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // Import ABI for the bond treasury contract
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Import contract address for bond treasury
 import { reformatCurrency } from '@/components/Util/ReformatCurrency';
+import ShowTxnHash from '@/components/Util/ShowTxnHash'; // Import the ShowTxnHash component
 
 interface BuyBondWalletProps {
   nftId: number; // Expecting a number since it's parsed before passed
@@ -33,7 +34,7 @@ const BuyBondWallet: React.FC<BuyBondWalletProps> = ({ nftId }) => {
     setTxnStatus('Processing your transaction...'); // Set the message immediately after clicking the button
 
     try {
-      // Call the vote function on the veToken smart contract
+      // Call the fundBond function on the bond treasury contract
       writeContract({
         address: vaultContractAddress,
         abi: bondTreasuryABI,
@@ -62,17 +63,18 @@ const BuyBondWallet: React.FC<BuyBondWalletProps> = ({ nftId }) => {
         onClick={handleVoteClick}
         disabled={txnStatus === 'Transaction submitted...'}
       >
-       Buy Bond
+        Buy Bond
       </button>
 
-      {/* Display the transaction status message directly */}
-      {txnStatus && <div className="text-lg mt-2">{txnStatus}</div>}
-      {transactionHash && (
-        <div className="text-lg mt-2">Transaction Hash: {transactionHash}</div>
-      )}
-      {error && <div className="text-red-500 mt-2">Error: {error.message}</div>}
+      {/* Use ShowTxnHash to display transaction hash and status */}
+      <ShowTxnHash
+        txnStatus={txnStatus}
+        transactionHash={transactionHash ? transactionHash.toString() : null}
+        error={error}
+      />
     </div>
   );
 };
 
 export default BuyBondWallet;
+

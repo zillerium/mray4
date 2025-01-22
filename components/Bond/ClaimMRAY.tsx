@@ -24,19 +24,22 @@ const ClaimMRAY: React.FC<GetNftApprovalProps> = ({ nftId, nftOwner }) => {
   const { data: bondData, isLoading } = useContractRead({
     address: contractAddress,
     abi: bondTreasuryContractABI,
-    functionName: 'getBondOrDefault',
+    functionName: 'isBondActive',
     args: [nftId],
   });
 
-
+console.log("data from active == ", bondData);
 useEffect(() => {
-  const bond = bondData as { bondFullyFunded?: boolean } | undefined; // Type assertion for bondData
-  if (bond?.bondFullyFunded !== undefined) {
-    setBondFullyFunded(bond.bondFullyFunded);
+console.log("data bbbbbbb from active == ", bondData);
+  if (typeof bondData === 'boolean') {
+    setBondFullyFunded(bondData); // Directly use bondData if it's a boolean
+  } else {
+    console.error('Unexpected data type for bondData:', bondData);
   }
 }, [bondData]);
 
 
+console.log("data from active fully funded == ", bondFullyFunded);
 
   return (
     <div>
