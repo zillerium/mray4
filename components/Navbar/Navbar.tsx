@@ -58,7 +58,7 @@ const Navbar = () => {
             <NavBarNFTs />
             <NavBarBonds />
             <NavBarTreasury />
-            <NavBarAdmin /> {/* New Admin Navbar */}
+            <NavBarAdmin />
             <li className="py-2 lg:py-0 lg:ml-6">
               <CustomButton />
             </li>

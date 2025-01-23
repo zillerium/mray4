@@ -25,6 +25,14 @@ const NavBarAdmin = () => {
             NFT Admin
           </li>
         </Link>
+        <Link href="/Help">
+          <li
+            role="menuitem"
+            className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
+          >
+            Help
+          </li>
+        </Link>
       </ul>
     </li>
   );
