@@ -33,6 +33,14 @@ const NavBarAdmin = () => {
             Help
           </li>
         </Link>
+        <Link href="/Explore">
+          <li
+            role="menuitem"
+            className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
+          >
+            Explore
+          </li>
+        </Link>
       </ul>
     </li>
   );

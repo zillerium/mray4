@@ -34,12 +34,13 @@ const HelpCom: React.FC = () => {
       <main className="min-h-screen px-8 py-0 pb-12 flex-1 flex flex-col items-center">
         <GetWalletHeader />
 
-        <h1
-          className="flex items-center justify-center text-3xl md:text-4xl font-bold leading-tight mb-8"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
-        >
-          When it comes to liquidity and bonds, everyone has questions.
-        </h1>
+<h1
+  className="flex items-center justify-center text-4xl md:text-5xl font-normal leading-tight mb-8 text-center"
+  style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
+>
+  When it comes to liquidity and bonds, everyone has questions.
+</h1>
+
 
         {/* FAQ Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">

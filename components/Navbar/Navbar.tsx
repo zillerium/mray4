@@ -5,6 +5,7 @@ import NavBarBonds from '@/components/Navbar/NavBarBonds';
 import NavBarTreasury from '@/components/Navbar/NavBarTreasury';
 import NavBarTokens from '@/components/Navbar/NavBarTokens';
 import NavBarAdmin from '@/components/Navbar/NavBarAdmin';
+import NavBarBalances from '@/components/Navbar/NavBarBalances';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -58,6 +59,7 @@ const Navbar = () => {
             <NavBarNFTs />
             <NavBarBonds />
             <NavBarTreasury />
+            <NavBarBalances />
             <NavBarAdmin />
             <li className="py-2 lg:py-0 lg:ml-6">
               <CustomButton />
