@@ -49,20 +49,6 @@ export default function ManageNftTreasury() {
       </p>
       <div className="w-full h-px bg-gray-300 mb-2"></div>
 
-      <div className="mt-2">
-        {/* Line above and below */}
-        <div className="border-t border-b py-4">
-          <div className="flex items-center justify-between">
-            <p className="font-bold text-2xl text-purple-900">
-              Free MRAY tokens
-            </p>
-            <div className="px-6 py-3 bg-green-100 text-green-800 text-3xl font-extrabold rounded-md">
-              <GetMrayTokenBalance walletAddress={contractAddress} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-px bg-gray-300 mb-2"></div>
 
       <div className="flex flex-wrap items-center gap-4 mt-4">
         <ReadNftsPool onNftListUpdate={handleNftListUpdate} />

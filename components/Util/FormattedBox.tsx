@@ -4,16 +4,28 @@ interface FormattedBoxProps {
   label: string;
   value: React.ReactNode;
   backgroundColor: string;
+  className?: string;
 }
 
-const FormattedBox: React.FC<FormattedBoxProps> = ({ label, value, backgroundColor }) => {
+const FormattedBox: React.FC<FormattedBoxProps> = ({
+  label,
+  value,
+  backgroundColor,
+  className,
+}) => {
   return (
     <div
-      className="mb-2 inline-flex flex-col items-center justify-center px-4 py-2 rounded-lg text-lg font-semibold text-black shadow-lg"
+      className={`p-4 rounded-lg shadow-md ${className}`}
       style={{ backgroundColor }}
     >
-      <span className="text-sm font-medium mb-1">{label}</span>
-      <span>{value}</span>
+      <div className="text-center">
+        <span className="text-xl md:text-2xl font-bold text-black block mt-1">
+          {label}
+        </span>
+        <span className="text-base md:text-lg font-medium text-black block">
+          {value}
+        </span>
+      </div>
     </div>
   );
 };
