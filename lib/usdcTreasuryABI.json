@@ -159,11 +159,50 @@
 	},
 	{
 		"inputs": [],
+		"name": "getBondTreasuryWalletBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "bondBalance",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getTreasuryBalance",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTreasuryTotalWalletBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "totalBalance",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUsdcTreasuryWalletBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "usdcBalance",
 				"type": "uint256"
 			}
 		],
@@ -229,6 +268,19 @@
 			}
 		],
 		"name": "getVeMrayBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getWalletCount",
 		"outputs": [
 			{
 				"internalType": "uint256",

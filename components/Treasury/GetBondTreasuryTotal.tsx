@@ -5,19 +5,19 @@ import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 
 const contractAddress = usdcTreasuryAddress.address as `0x${string}`;
 
-const GetInvestorLockedTotal: React.FC = () => {
-  // Fetch the total locked USDC value
+const GetBondTreasuryTotal: React.FC = () => {
+  // Fetch the total bond treasury balance
   const { data, error } = useContractRead({
     address: contractAddress,
     abi: usdcTreasuryABI,
-    functionName: 'getUsdcTreasuryWalletBalance',
+    functionName: 'getBondTreasuryWalletBalance',
   });
 
   if (error) {
     // Display a controlled error message
     return (
       <span className="text-red-500">
-        Error fetching USDC Contract Balance (All Vaults)
+        Error fetching Bond Treasury Total Balance
       </span>
     );
   }
@@ -27,7 +27,7 @@ const GetInvestorLockedTotal: React.FC = () => {
     return <span>Loading...</span>;
   }
 
-  // Adjust total value to account for 6 decimal places of USDC
+  // Adjust total value to account for 6 decimal places
   const totalValue = data.toString();
   const adjustedValue = Number(totalValue) / 1_000_000;
   // Format the adjusted value with up to 6 decimal places
@@ -41,4 +41,5 @@ const GetInvestorLockedTotal: React.FC = () => {
   );
 };
 
-export default GetInvestorLockedTotal;
+export default GetBondTreasuryTotal;
+
