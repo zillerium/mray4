@@ -3,7 +3,7 @@ import DisplayTreasuryNftChart from '@/components/Treasury/DisplayTreasuryNftCha
 import { useContractRead } from 'wagmi';
 import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
-import GetBondTreasuryBalance from '@/components/Bond/GetBondTreasuryBalance';
+import GetNftTreasuryBalance from '@/components/Treasury/GetNftTreasuryBalance';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
@@ -46,7 +46,7 @@ console.log(" chart ============== ", poolData)
           className="text-3xl md:text-4xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-         NFT Treasury Value <GetBondTreasuryBalance />
+         NFT Treasury Value <GetNftTreasuryBalance />
         </span>
       </h2>
       <br />

@@ -25,22 +25,22 @@
 	},
 	{
 		"inputs": [],
-		"name": "getAllBondAmounts",
+		"name": "getAllBondInfo",
 		"outputs": [
 			{
 				"components": [
 					{
 						"internalType": "uint256",
-						"name": "nftId",
+						"name": "bondId",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "nftPrice",
+						"name": "bondAmount",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct BondQueryTreasuryContract.nftBondedValue[]",
+				"internalType": "struct BondReader.BondInfo[]",
 				"name": "",
 				"type": "tuple[]"
 			}

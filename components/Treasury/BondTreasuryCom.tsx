@@ -4,7 +4,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import ManageBondTreasury from '@/components/Treasury/ManageBondTreasury';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
-import UsdcTreasuryGraphicCom from '@/components/Treasury/UsdcTreasuryGraphicCom';
+import GetBondTreasuryDetails from '@/components/Treasury/GetBondTreasuryDetails';
 
 const BondTreasuryCom: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const BondTreasuryCom: React.FC = () => {
 
         <div className="flex flex-col md:flex-row gap-4 w-full mt-8">
           <ManageBondTreasury />
-          <UsdcTreasuryGraphicCom />
+          <GetBondTreasuryDetails />
         </div>
       </main>
     </div>
