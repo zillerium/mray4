@@ -22,7 +22,7 @@ const GetMrayTokenBalance: React.FC<GetMrayTokenBalanceProps> = ({
     functionName: 'stablecoinBalance',
     args: [walletAddress], // Use the passed walletAddress
   });
-
+console.log(" stablecoin balance === 2", stablecoinBalance)
   useEffect(() => {
     if (stablecoinBalance === null || stablecoinBalance === undefined) {
       setBalance('0');

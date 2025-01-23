@@ -5,7 +5,7 @@ import DisplayNFTNumber from '@/components/Nft/DisplayNFTNumber';
 import RedeemNft from '@/components/Bond/RedeemNft';
 import BuyNft from '@/components/Bond/BuyNft';
 import GetMrayTokenBalance from '@/components/Tokens/GetMrayTokenBalance';
-import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for the vault contract
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
@@ -25,14 +25,15 @@ export default function ManageNftTreasury() {
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2
-        className="text-3xl md:text-4xl font-normal leading-tight"
+              className="flex items-center space-x-4 text-3xl md:text-4xl font-normal leading-tight"
+
         style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
       >
         <span
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          NFT Treasury
+          NFT Treasury # 
         </span>
         {selectedNft !== null && (
           <DisplayNFTNumber selectedToken={selectedNft} />
@@ -53,7 +54,7 @@ export default function ManageNftTreasury() {
         <div className="border-t border-b py-4">
           <div className="flex items-center justify-between">
             <p className="font-bold text-2xl text-purple-900">
-              Mray Tokens For Bonded NFTs
+              Free MRAY tokens
             </p>
             <div className="px-6 py-3 bg-green-100 text-green-800 text-3xl font-extrabold rounded-md">
               <GetMrayTokenBalance walletAddress={contractAddress} />

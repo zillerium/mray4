@@ -22,14 +22,14 @@ export default function ManageBondTreasury() {
   return (
     <div className="flex-1 bg-gray-200 p-6 rounded-lg shadow-md">
       <h2
-        className="text-3xl md:text-4xl font-normal leading-tight"
+              className="flex items-center space-x-4 text-3xl md:text-4xl font-normal leading-tight"
         style={{ fontFamily: "'Cormorant Garamond', serif", color: '#230b59' }}
       >
         <span
           className="text-4xl md:text-5xl font-black leading-none tracking-tight"
           style={{ fontFamily: "'Montserrat', sans-serif", color: '#230b59' }}
         >
-          Bond Treasury
+          Bond Treasury # 
         </span>
         {selectedBond !== null && (
           <DisplayBondNumber selectedToken={selectedBond} />

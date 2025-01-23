@@ -50,6 +50,14 @@ const NavBarTreasury = () => {
             Bond
           </li>
         </Link>
+        <Link href="/TreasuryBalanceSheet">
+          <li
+            role="menuitem"
+            className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
+          >
+            All
+          </li>
+        </Link>
       </ul>
     </li>
   );
