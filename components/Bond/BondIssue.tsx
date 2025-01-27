@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useWriteContract } from 'wagmi';
 import bondTreasuryContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the contract
@@ -7,9 +8,14 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import ShowTxnHash from '@/components/Util/ShowTxnHash'; // Utility component for showing transaction hash
 
 interface BondIssueProps {
-  tokenNumber: string;
-  ownedNft: boolean;
+    tokenNumber: string;
+    ownedNft: boolean;
+    nftPrice: string; // New prop for NFT price
+    setNftPrice: React.Dispatch<React.SetStateAction<string>>; // Callback for NFT price
+    bondCouponRate: string; // New prop for bond coupon rate
+    setBondCouponRate: React.Dispatch<React.SetStateAction<string>>; // Callback for bond coupon rate
 }
+
 
 const contractAddress = bondTreasuryContractAddress.address as `0x${string}`;
 
@@ -20,11 +26,13 @@ function convertToUnixTimestamp(dateStr: string): number {
 }
 
 const BondIssue: React.FC<BondIssueProps> = ({
-  tokenNumber,
-  ownedNft,
+    tokenNumber,
+    ownedNft,
+    nftPrice,
+    setNftPrice,
+    bondCouponRate,
+    setBondCouponRate,
 }) => {
-  const [nftPrice, setNftPrice] = useState<string>('');
-  const [bondCouponRate, setBondCouponRate] = useState<string>(''); // New field
   const [endDate, setEndDate] = useState<string>('');
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
@@ -70,23 +78,27 @@ console.log(" --- unixTimestamp ---- ", unixTimestamp);
       {/* Input Fields */}
       <div className="flex flex-col items-start space-y-2 w-full max-w-md">
         <label className="text-gray-700">Price (USDC):</label>
-        <input
-          type="number"
-          className="border rounded px-2 py-1 w-full"
-          placeholder="Price"
-          value={nftPrice}
-          onChange={(e) => setNftPrice(e.target.value)}
-        />
+        
+<input
+    type="number"
+    className="border rounded px-2 py-1 w-full"
+    placeholder="Price"
+    value={nftPrice} // Use prop
+    onChange={(e) => setNftPrice(e.target.value)} // Update via callback
+/>
         <label className="text-gray-700">Bond Coupon Rate (%):</label>
-        <input
-          type="number"
-          step="0.01"
-          className="border rounded px-2 py-1 w-full"
-          placeholder="Coupon Rate"
-          value={bondCouponRate}
-          onChange={(e) => setBondCouponRate(e.target.value)}
-        />
-        <label className="text-gray-700">Bond Sale End Date:</label>
+
+<input
+    type="number"
+    step="0.01"
+    className="border rounded px-2 py-1 w-full"
+    placeholder="Coupon Rate"
+    value={bondCouponRate} // Use prop
+    onChange={(e) => setBondCouponRate(e.target.value)} // Update via callback
+/>
+
+
+<label className="text-gray-700">Bond Sale End Date:</label>
         <input
           type="date"
           className="border rounded px-2 py-1 w-full"

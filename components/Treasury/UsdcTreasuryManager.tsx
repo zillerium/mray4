@@ -4,6 +4,8 @@ import { useAccount } from 'wagmi';
 import UsdcTreasuryDeposit from '@/components/Treasury/UsdcTreasuryDeposit';
 import GetBondWalletTreasuryBalance from '@/components/Treasury/GetBondWalletTreasuryBalance';
 import GetUSDCWalletBalance from '@/components/Util/GetUSDCWalletBalance';
+import GetUsdcFeeBalance from '@/components/Treasury/GetUsdcFeeBalance';
+import GetInvestorBalance from '@/components/Treasury/GetInvestorBalance';
 import UsdcTreasuryApprove from '@/components/Treasury/UsdcTreasuryApprove';
 import GetUsdcWalletLockedBalance from '@/components/Treasury/GetUsdcWalletLockedBalance';
 import GetUsdcTotalTreasuryBalance from '@/components/Treasury/GetUsdcTotalTreasuryBalance';
@@ -43,6 +45,7 @@ export default function UsdcTreasuryManager() {
         <UsdcTreasuryApprove />
       </div>
 
+      <br />
       <div className="flex flex-col items-center">
         <GetUsdcAllowance walletAddress={walletAddress} />
       </div>
@@ -51,6 +54,14 @@ export default function UsdcTreasuryManager() {
       {/* Locked USDC Balance Button */}
       <div className="flex flex-col items-center">
         <GetUsdcWalletLockedBalance walletAddress={walletAddress} />
+      </div>
+      <br />
+      <div className="flex flex-col items-center">
+        <GetUsdcFeeBalance walletAddress={walletAddress} />
+      </div>
+      <br />
+      <div className="flex flex-col items-center">
+        <GetInvestorBalance walletAddress={walletAddress} />
       </div>
 
       <br />

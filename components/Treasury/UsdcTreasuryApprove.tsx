@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useContractWrite } from 'wagmi';
-import usdcProxyABI from '@/lib/usdcProxyABI.json';
-import usdcProxyAddress from '@/lib/usdcProxyAddress.json';
+import usdcABI from '@/lib/usdcABI.json';
+import usdcAddress from '@/lib/usdcAddress.json';
 import usdcTreasuryAddress from '@/lib/usdcTreasuryAddress.json';
 import ShowTxnHash from '@/components/Util/ShowTxnHash';
 
@@ -10,19 +10,20 @@ const USDCVaultApprove: React.FC = () => {
   const [error, setError] = useState<Error | null>(null);
   const [approvalAmount, setApprovalAmount] = useState<string>('');
   const { data: transactionHash, writeContract } = useContractWrite();
-
+ console.log("testing approve click ====");
   const handleApproveClick = async () => {
     if (!approvalAmount || isNaN(Number(approvalAmount))) {
       alert('Please enter a valid amount.');
       return;
     }
 
+ console.log("in func === testing approve click ====");
     const amountInSmallestUnits = BigInt(Number(approvalAmount) * 10 ** 6);
 
     try {
       writeContract({
-        address: usdcProxyAddress.address as `0x${string}`,
-        abi: usdcProxyABI,
+        address: usdcAddress.address as `0x${string}`,
+        abi: usdcABI,
         functionName: 'approve',
         args: [usdcTreasuryAddress.address as `0x${string}`, amountInSmallestUnits],
       });

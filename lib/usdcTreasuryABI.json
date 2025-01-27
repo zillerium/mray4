@@ -95,6 +95,30 @@
 				"internalType": "uint256",
 				"name": "usdcVestingPeriod",
 				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "usdcFees",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "feesWallets",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "usdcFeeBalance",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -171,6 +195,42 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_wallet",
+				"type": "address"
+			}
+		],
+		"name": "getFeesUsdcWalletTxnDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "usdcDepositAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "usdcVestingPeriod",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "usdcFees",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct UsdcTreasuryContract.usdcDepositTreasuryTransaction[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getTreasuryBalance",
 		"outputs": [
@@ -190,6 +250,44 @@
 			{
 				"internalType": "uint256",
 				"name": "totalBalance",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "wallet",
+				"type": "address"
+			}
+		],
+		"name": "getUsdcFeeBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "wallet",
+				"type": "address"
+			}
+		],
+		"name": "getUsdcInvestorBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -249,6 +347,11 @@
 						"internalType": "uint256",
 						"name": "usdcVestingPeriod",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "usdcFees",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct UsdcTreasuryContract.usdcDepositTreasuryTransaction[]",
@@ -335,6 +438,25 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"name": "investorWallets",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "usdcInvestorBalance",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			},
 			{
 				"internalType": "uint256",
@@ -370,6 +492,35 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "payFees",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_depositTxnId",
 				"type": "uint256"
 			}
@@ -388,19 +539,6 @@
 			}
 		],
 		"name": "setBondTreasuryContractAddress",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_factor",
-				"type": "uint256"
-			}
-		],
-		"name": "setUnixTimeConversionFactor",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -506,6 +644,32 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "treasuryFeesBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_usdcDepositAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "treasuryFeesUsdcDeposit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -516,6 +680,25 @@
 		"name": "treasuryUsdcDeposit",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "txnFeeCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -566,6 +749,19 @@
 			}
 		],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "usdcSmallVestingPeriod",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -654,6 +850,19 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_investor",
+				"type": "address"
+			}
+		],
+		"name": "withdrawUsdcGain",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

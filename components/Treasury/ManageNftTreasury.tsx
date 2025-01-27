@@ -88,11 +88,6 @@ export default function ManageNftTreasury() {
           </div>
         )}
 
-        {selectedNft !== null && (
-          <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
-            <BuyNft nftId={selectedNft.toString()} />
-          </div>
-        )}
       </div>
     </div>
   );

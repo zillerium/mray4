@@ -9,6 +9,7 @@ import BondIssue from '@/components/Bond/BondIssue';
 import ApproveBondTreasury from '@/components/Treasury/ApproveBondTreasury';
 import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
 import GetBondStatus from '@/components/Bond/GetBondStatus';
+import GetFees from '@/components/Bond/GetFees';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
 const BondIssueCom: React.FC = () => {
@@ -17,13 +18,16 @@ const BondIssueCom: React.FC = () => {
   const [nftOwner, setNftOwner] = useState<string | null>(null); // New state
   const [tokenList, setTokenList] = useState<number[]>([]);
   const [selectedToken, setSelectedToken] = useState<number | null>(null);
+  const [nftPrice, setNftPrice] = useState<string>(''); // For price
+  const [bondCouponRate, setBondCouponRate] = useState<string>(''); // For coupon rate
+
   const handleTokenListUpdate = (newTokenList: number[]) =>
     setTokenList(newTokenList);
 
   const handleSelectToken = (token: number) => {
     setSelectedToken(token); // Explicitly using setSelectedToken
   };
-
+console.log("nft ======>", nftPrice)
   return (
     <div>
       {/* Navbar */}
@@ -111,7 +115,22 @@ const BondIssueCom: React.FC = () => {
 <BondIssue
   tokenNumber={selectedToken?.toString() ?? ''}
   ownedNft={nftOwner === userAddress && !bondActive} // Check for ownership and bond status
+    nftPrice={nftPrice} // Pass price
+    setNftPrice={setNftPrice} // Callback for price
+    bondCouponRate={bondCouponRate} // Pass coupon rate
+    setBondCouponRate={setBondCouponRate} // Callback for coupon rate
 />
+   {/* Button or Full GetFees Component */}
+      {nftPrice && bondCouponRate ? (
+        <GetFees nftPrice={nftPrice} bondCouponRate={bondCouponRate} />
+      ) : (
+        <button
+          className="bg-gray-300 text-gray-600 px-4 py-2 rounded mt-4 cursor-not-allowed"
+          disabled
+        >
+          Get Fees
+        </button>
+      )}
 
           </div>
           {/* Step 2 & 3: Set Valuation & Approve Vault */}
