@@ -2,6 +2,8 @@
 
 import Navbar from '@/components/Navbar/Navbar';
 import GetWalletHeader from '@/components/Util/GetWalletHeader'; // Import the new header
+import GetBondPeriod from '@/components/Bond/GetBondPeriod'; // Import the new header
+import SetBondPeriod from '@/components/Admin/SetBondPeriod'; // Import the new header
 
 export default function GenAdminCom() {
   return (
@@ -27,7 +29,7 @@ export default function GenAdminCom() {
                 color: '#230b59',
               }}
             >
-              Project Admin 
+              Project Admin
             </span>
           </h2>
         </div>
@@ -37,9 +39,25 @@ export default function GenAdminCom() {
           </p>
         </div>
 
-        <div>
+        {/* Get Bond Period Section */}
+        <div className="w-full max-w-4xl mt-8">
+          <hr className="border-gray-300 mb-6" />
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            Get Bond Period
+          </h3>
+          <GetBondPeriod />
+        </div>
+
+        {/* Set Bond Period Section */}
+        <div className="w-full max-w-4xl mt-8">
+          <hr className="border-gray-300 mb-6" />
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            Set Bond Period
+          </h3>
+          <SetBondPeriod />
         </div>
       </main>
     </div>
   );
 }
+

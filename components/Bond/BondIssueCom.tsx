@@ -4,6 +4,7 @@ import { useAccount } from 'wagmi';
 import { Key } from 'lucide-react'; // Key icon for ownership
 import ReadAllNfts from '@/components/ReadNft/ReadAllNfts';
 import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
+import DisplayHeading from '@/components/Util/DisplayHeading';
 import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
 import Navbar from '@/components/Navbar/Navbar';
 import BondIssue from '@/components/Bond/BondIssue';
@@ -86,7 +87,7 @@ console.log("nft ======>", nftPrice)
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mt-4">
           {/* Step 1: Select NFT */}
           <div className="bg-blue-100 p-4 rounded-lg shadow-md text-center">
-            <h3 className="text-lg font-semibold">1. Select your NFT</h3>
+            <DisplayHeading headingText="1. Select NFT" />
             <div className="flex items-center justify-center space-x-4 mt-4">
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded flex items-center"
@@ -118,9 +119,7 @@ console.log("nft ======>", nftPrice)
           </div>
 
           <div className="bg-blue-100 p-4 rounded-lg shadow-md text-center">
-            <h3 className="text-lg font-semibold">
-              2 & 3. Set the Financials and Issue
-            </h3>
+            <DisplayHeading headingText="2. and 3. Issue Bond" />
 <GetBondPeriod />
       <GetCR onCrChange={setCollateralizationRatio} />
 <BondIssue
@@ -147,8 +146,8 @@ console.log("nft ======>", nftPrice)
           </div>
           {/* Step 2 & 3: Set Valuation & Approve Vault */}
           <div className="bg-blue-100 p-4 rounded-lg shadow-md text-center">
-            <h3 className="text-lg font-semibold mt-6">4. Approve the Vault</h3>
 
+            <DisplayHeading headingText="4. Approve Treasury" />
             {nftOwner && (
 <div className="px-6 py-3 bg-stone-50 text-blue-600 text-1xl font-extrabold rounded-md mt-4 flex flex-col items-center">
   <span>NFT Owner:</span>
