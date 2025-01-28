@@ -21,11 +21,13 @@ const UsdcFeesTxnTable: React.FC<UsdcFeesTxnTableProps> = ({ setErrorMessage }) 
 
   const { data: feesUsdcWalletTxnsData, error: feesUsdcWalletTxnsError } =
     useContractRead({
-      address: isConnected && address ? contractAddress : undefined,
+      address: contractAddress,
       abi: usdcTreasuryABI,
       functionName: 'getFeesUsdcWalletTxnDetails',
-      args: isConnected && address ? [address] : [],
+      args: [address],
     });
+console.log(" feesUsdcWalletTxnsData data array ==== ",feesUsdcWalletTxnsData  );
+console.log(" address feesUsdcWalletTxnsData data array ==== ",address);
 
   function isTransactionArray(data: unknown): data is UsdcTransaction[] {
     return (

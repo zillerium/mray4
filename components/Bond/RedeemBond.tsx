@@ -4,21 +4,21 @@ import bondTreasuryABI from '@/lib/bondTreasuryABI.json';
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json';
 import ShowTxnHash from '@/components/Util/ShowTxnHash';
 
-interface RedeemNftProps {
-  nftId: string;
+interface RedeemBondProps {
+  bondId: string;
 }
 
 const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-const RedeemNft: React.FC<RedeemNftProps> = ({ nftId }) => {
+const RedeemBond: React.FC<RedeemBondProps> = ({ bondId }) => {
   const { isConnected } = useAccount();
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
   const { data: transactionHash, writeContract, error } = useWriteContract();
 
-  const handleRedeemNFTClick = () => {
-    if (!nftId) {
-      alert('Please provide a valid NFT ID.');
+  const handleRedeemBondClick = () => {
+    if (!bondId) {
+      alert('Please provide a valid Bond ID.');
       return;
     }
 
@@ -26,8 +26,8 @@ const RedeemNft: React.FC<RedeemNftProps> = ({ nftId }) => {
       writeContract({
         address: contractAddress,
         abi: bondTreasuryABI,
-        functionName: 'redeemNFT',
-        args: [BigInt(nftId)],
+        functionName: 'redeemBond',
+        args: [BigInt(bondId)],
       });
 
       setTxnStatus('Transaction submitted...');
@@ -42,10 +42,10 @@ const RedeemNft: React.FC<RedeemNftProps> = ({ nftId }) => {
       {/* Redeem Button */}
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={handleRedeemNFTClick}
+        onClick={handleRedeemBondClick}
         disabled={txnStatus === 'Transaction submitted...' || !isConnected}
       >
-        Redeem NFT #{nftId}
+        Redeem Bond #{bondId}
       </button>
 
       {/* Status and Transaction Hash */}
@@ -60,5 +60,5 @@ const RedeemNft: React.FC<RedeemNftProps> = ({ nftId }) => {
   );
 };
 
-export default RedeemNft;
+export default RedeemBond;
 

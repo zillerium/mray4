@@ -3,7 +3,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
-import NavigationBox from './NavigationBox';
+import NavigationBox from '@/components/Explore/NavigationBox';
 
 const ExploreCom: React.FC = () => {
   return (

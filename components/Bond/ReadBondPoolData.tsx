@@ -12,7 +12,7 @@ interface ReadBondPoolDataProps {
 const contractAddress = bondContractAddress.address as `0x${string}`;
 
 const formatNumber = (num: number): string => {
-  return new Intl.NumberFormat('en-US').format(num);
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 };
 
 const ReadBondPoolData: React.FC<ReadBondPoolDataProps> = ({ bondId }) => {
@@ -81,6 +81,22 @@ const ReadBondPoolData: React.FC<ReadBondPoolDataProps> = ({ bondId }) => {
     }
   }, [bondDetailsData, bondDetailsError]);
 
+  const renderRedeemStatus = (bondMaturity?: string) => {
+    if (!bondMaturity) return null;
+
+    const maturityDate = new Date(bondMaturity);
+    const currentDate = new Date();
+    const isRedeemable = currentDate > maturityDate;
+
+    return (
+      <div>
+         <div className={`ml-2 font-bold ${isRedeemable ? 'text-green-500' : 'text-red-500'}`}>
+            {isRedeemable ? 'Yes' : 'No'}
+         </div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col items-center space-y-4 mt-4">
       {bondData ? (
@@ -114,6 +130,12 @@ const ReadBondPoolData: React.FC<ReadBondPoolDataProps> = ({ bondId }) => {
               <tr>
                 <td className="border px-4 py-2">Bond Maturity</td>
                 <td className="border px-4 py-2">{bondData.bondMaturity}</td>
+              </tr>
+            )}
+            {bondData.bondMaturity && (
+              <tr>
+                <td className="border px-4 py-2">Redeem Possible</td>
+                <td className="border px-4 py-2">{renderRedeemStatus(bondData.bondMaturity)}</td>
               </tr>
             )}
             {bondData.bondCouponRate && (

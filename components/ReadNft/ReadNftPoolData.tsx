@@ -1,33 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useContractRead } from 'wagmi';
-import nftVeValContractABI from '@/lib/bondTreasuryABI.json'; // ABI for the contract
-import nftVeValContractAddress from '@/lib/bondTreasuryAddress.json'; // Contract address for the contract
+import bondTreasuryABI from '@/lib/bondTreasuryABI.json'; // ABI for the contract
+import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Contract address for the contract
+import CopyText from '@/components/Util/CopyText';
 import { CURRENCY_FACTOR } from '@/components/Util/ReformatCurrency';
 
 interface ReadNftPoolDataProps {
   nftId: number;
 }
 
-const contractAddress = nftVeValContractAddress.address as `0x${string}`;
+const contractAddress = bondTreasuryAddress.address as `0x${string}`;
 
-// Helper function to format numbers with commas
+// Helper function to format numbers with commas as USD
 const formatNumber = (num: number): string => {
-  return new Intl.NumberFormat('en-US').format(num);
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 };
 
 const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
   const [bondData, setBondData] = useState<{
+    bondId: number;
     nftPrice: string;
     bondAmount?: string;
-    bondMaturity?: string;
-    bondCouponRate?: string;
+    bondYield?: string;
+    nftOwner: string;
+    nftOriginalOwner: string;
   } | null>(null);
+
   const [error, setError] = useState<string | null>(null);
 
   // Fetch the bond and NFT details for the specified NFT ID
   const { data: bondDetailsData, error: bondDetailsError } = useContractRead({
     address: contractAddress,
-    abi: nftVeValContractABI,
+    abi: bondTreasuryABI,
     functionName: 'getBondAndNftDetails',
     args: [nftId],
   });
@@ -37,28 +41,28 @@ const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
     if (bondDetailsData) {
       try {
         const {
-          bondDetails: { bondAmount, bondMaturity, bondCouponRate },
-          nftDetails: { nftPrice },
+          bondDetails: { bondId, bondAmount, bondYield },
+          nftDetails: { nftPrice, nftOwner, nftOriginalOwner },
         } = bondDetailsData as {
           bondDetails: {
+            bondId: BigInt;
             bondAmount: BigInt;
-            bondMaturity: BigInt;
-            bondCouponRate: BigInt;
+            bondYield: BigInt;
           };
           nftDetails: {
             nftPrice: BigInt;
+            nftOwner: string;
+            nftOriginalOwner: string;
           };
         };
 
         setBondData({
+          bondId: Number(bondId),
           nftPrice: formatNumber(Number(nftPrice) / CURRENCY_FACTOR),
           bondAmount: bondAmount ? formatNumber(Number(bondAmount) / CURRENCY_FACTOR) : undefined,
-          bondMaturity: bondMaturity
-            ? new Date(Number(bondMaturity) * 1000).toLocaleString()
-            : undefined,
-          bondCouponRate: bondCouponRate
-            ? (Number(bondCouponRate) / 100).toFixed(2) + '%'
-            : undefined,
+          bondYield: bondYield ? formatNumber(Number(bondYield) / CURRENCY_FACTOR) : undefined,
+          nftOwner,
+          nftOriginalOwner,
         });
         setError(null);
       } catch (e) {
@@ -82,6 +86,10 @@ const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
           </thead>
           <tbody>
             <tr>
+              <td className="border px-4 py-2">Bond ID</td>
+              <td className="border px-4 py-2">{bondData.bondId}</td>
+            </tr>
+            <tr>
               <td className="border px-4 py-2">NFT Price (USD)</td>
               <td className="border px-4 py-2">{bondData.nftPrice}</td>
             </tr>
@@ -91,18 +99,24 @@ const ReadNftPoolData: React.FC<ReadNftPoolDataProps> = ({ nftId }) => {
                 <td className="border px-4 py-2">{bondData.bondAmount}</td>
               </tr>
             )}
-            {bondData.bondMaturity && (
+            {bondData.bondYield && (
               <tr>
-                <td className="border px-4 py-2">Bond Maturity</td>
-                <td className="border px-4 py-2">{bondData.bondMaturity}</td>
+                <td className="border px-4 py-2">Bond Yield (USD)</td>
+                <td className="border px-4 py-2">{bondData.bondYield}</td>
               </tr>
             )}
-            {bondData.bondCouponRate && (
-              <tr>
-                <td className="border px-4 py-2">Bond Coupon Rate</td>
-                <td className="border px-4 py-2">{bondData.bondCouponRate}</td>
-              </tr>
-            )}
+            <tr>
+              <td className="border px-4 py-2">NFT Owner</td>
+              <td className="border px-4 py-2">
+                <CopyText copiedText={bondData.nftOwner} />
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">NFT Original Owner</td>
+              <td className="border px-4 py-2">
+                <CopyText copiedText={bondData.nftOriginalOwner} />
+              </td>
+            </tr>
           </tbody>
         </table>
       ) : error ? (
