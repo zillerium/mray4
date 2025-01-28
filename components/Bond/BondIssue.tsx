@@ -86,7 +86,7 @@ console.log(" --- unixTimestamp ---- ", unixTimestamp);
     value={nftPrice} // Use prop
     onChange={(e) => setNftPrice(e.target.value)} // Update via callback
 />
-        <label className="text-gray-700">Bond Coupon Rate (%):</label>
+        <label className="text-gray-700">Annual Bond Coupon Rate (%):</label>
 
 <input
     type="number"

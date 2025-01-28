@@ -41,6 +41,14 @@ const NavBarAdmin = () => {
             Explore
           </li>
         </Link>
+        <Link href="/GenAdmin">
+          <li
+            role="menuitem"
+            className="cursor-pointer p-2 text-base hover:bg-[#f3f4f6] transition-colors"
+          >
+            Gen Admin
+          </li>
+        </Link>
       </ul>
     </li>
   );

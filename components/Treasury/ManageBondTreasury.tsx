@@ -89,7 +89,7 @@ export default function ManageBondTreasury() {
         <RedeemBond bondId={selectedBond.toString()} />
       </div>
       <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
-        <div className="w-full px-4 py-2 text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 shadow-md">
+        <div className="w-full px-4 py-2 text-center text-white rounded-lg ">
           <NavigationBox href="/BondedNft" title="Check NFT" />
         </div>
       </div>

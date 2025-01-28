@@ -6,6 +6,8 @@ import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
 import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
 import Navbar from '@/components/Navbar/Navbar';
 import BondIssue from '@/components/Bond/BondIssue';
+import GetBondPeriod from '@/components/Bond/GetBondPeriod';
+import GetCR from '@/components/Bond/GetCR';
 import ApproveBondTreasury from '@/components/Treasury/ApproveBondTreasury';
 import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
 import GetBondStatus from '@/components/Bond/GetBondStatus';
@@ -97,7 +99,7 @@ console.log("nft ======>", nftPrice)
             </div>
             {selectedToken !== null && (
 
-              <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
+              <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg ">
                 {/* Display Bond Status */}
                 <GetBondStatus nftId={selectedToken} onBondStatusFetched={setBondActive} /> {/* Pass callback */}
                 <ReadNftByTokenNumberOwner
@@ -112,6 +114,8 @@ console.log("nft ======>", nftPrice)
             <h3 className="text-lg font-semibold">
               2 & 3. Set the Financials and Issue
             </h3>
+<GetBondPeriod />
+<GetCR />
 <BondIssue
   tokenNumber={selectedToken?.toString() ?? ''}
   ownedNft={nftOwner === userAddress && !bondActive} // Check for ownership and bond status
