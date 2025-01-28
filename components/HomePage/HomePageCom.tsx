@@ -6,6 +6,7 @@ import HomePageImage from './HomePageImage';
 import HomeCarCapital from './HomeCarCapital';
 import HomePageSummary from './HomePageSummary';
 import HomePageNFTDesc from './HomePageNFTDesc';
+import HomePromoMsg from './HomePromoMsg';
 import HomePageNFTImage from './HomePageNFTImage';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 
@@ -29,6 +30,7 @@ export default function HomePageCom() {
         </div>
 
         {/* HomeCarCapital and HomePageSummary Components */}
+        <HomePromoMsg />
         <HomeCarCapital />
         <HomePageSummary />
       </main>
