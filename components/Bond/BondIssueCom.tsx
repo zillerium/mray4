@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaSync } from 'react-icons/fa';
 import { useAccount } from 'wagmi';
+import { Key } from 'lucide-react'; // Key icon for ownership
 import ReadAllNfts from '@/components/ReadNft/ReadAllNfts';
 import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
 import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
@@ -15,6 +16,7 @@ import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
 import GetBondStatus from '@/components/Bond/GetBondStatus';
 import GetFees from '@/components/Bond/GetFees';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
+import bondTreasuryContractAddress from '@/lib/bondTreasuryAddress.json'; // Treasury contract address
 
 const BondIssueCom: React.FC = () => {
   const [bondActive, setBondActive] = useState<boolean>(false); // New state
@@ -25,6 +27,8 @@ const BondIssueCom: React.FC = () => {
   const [nftPrice, setNftPrice] = useState<string>(''); // For price
   const [bondCouponRate, setBondCouponRate] = useState<string>(''); // For coupon rate
   const [collateralizationRatio, setCollateralizationRatio] = useState<string>(''); // New state for CR
+
+   const bondContractAddress = bondTreasuryContractAddress.address as `0x${string}`;
 
   const handleTokenListUpdate = (newTokenList: number[]) =>
     setTokenList(newTokenList);
@@ -166,14 +170,27 @@ console.log("nft ======>", nftPrice)
                 </button>
               )}
             </div>
+
 <div className="flex items-center justify-center space-x-4 mt-4">
   {selectedToken !== null ? (
-    // Pass only if selectedToken is a valid number
-    <CheckTreasuryApproval nftId={selectedToken} />
+    nftOwner === bondContractAddress ? (
+      // If the bond treasury owns the NFT, show the key icon
+      <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-500">
+          <Key className="text-white w-5 h-5" />
+        </div>
+        <p className="text-yellow-500 font-bold">Owned by Treasury</p>
+      </div>
+    ) : (
+      // Otherwise, check treasury approval
+      <CheckTreasuryApproval nftId={selectedToken} />
+    )
   ) : (
     <p className="text-gray-500">No NFT selected for approval check.</p>
   )}
 </div>
+
+
 
           </div>
         </div>

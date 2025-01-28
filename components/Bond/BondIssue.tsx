@@ -98,9 +98,12 @@ console.log(" --- unixTimestamp ---- ", unixTimestamp);
     value={nftPrice} // Use prop
     onChange={(e) => setNftPrice(e.target.value)} // Update via callback
 />
-  <div className="px-6 py-3 bg-sky-200 text-blue-600 text-3xl font-extrabold rounded-md mt-4">
-          Bond Amount: {Intl.NumberFormat('en-US').format(calculateBondAmount())} USD
-        </div>
+
+<div className="px-6 py-3 bg-sky-200 text-blue-600 text-3xl font-extrabold rounded-md mt-4 flex items-center justify-center text-center w-full">
+  Bond Amount: {Intl.NumberFormat('en-US').format(calculateBondAmount())} USD
+</div>
+
+
 
         <label className="text-gray-700">Annual Bond Coupon Rate (%):</label>
 

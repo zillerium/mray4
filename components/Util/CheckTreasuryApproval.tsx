@@ -4,6 +4,7 @@ import UnifiedNFTABI from '@/lib/uniContractABI.json'; // ABI for UnifiedNFT con
 import UnifiedNFTAddress from '@/lib/uniContractAddress.json'; // Contract address for UnifiedNFT
 import bondTreasuryContractAddress from '@/lib/bondTreasuryAddress.json'; // Treasury contract address
 import CopyText from '@/components/Util/CopyText'; // Component to shorten address display
+import { Check, X } from 'lucide-react'; // Tick and cross icons from Lucide React
 
 interface CheckTreasuryApprovalProps {
   nftId: number; // ID of the NFT to check
@@ -33,19 +34,27 @@ const CheckTreasuryApproval: React.FC<CheckTreasuryApprovalProps> = ({ nftId }) 
   }, [data, isError, bondContractAddress]);
 
   return (
-    <div>
+  <div>
       {isLoading && <p>Checking Treasury Approval for NFT {nftId}...</p>}
       {!isLoading && isApproved !== null && (
-        <div>
+        <div className="flex items-center space-x-4">
+          {isApproved ? (
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100">
+                <Check className="text-green-500 w-5 h-5" />
+              </div>
+              <p className="text-green-500">Approved</p>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-100">
+                <X className="text-red-500 w-5 h-5" />
+              </div>
+              <p className="text-red-500">Not Approved</p>
+            </div>
+          )}
           <p>
-            Treasury is{' '}
-            <span className={isApproved ? 'text-green-500' : 'text-red-500'}>
-              {isApproved ? 'Approved' : 'Not Approved'}
-            </span>{' '}
-            for NFT {nftId}.
-          </p>
-          <p>
-            Bond Treasury: <CopyText copiedText={bondContractAddress} />
+            Contract Address: <CopyText copiedText={bondContractAddress} />
           </p>
         </div>
       )}
@@ -55,6 +64,7 @@ const CheckTreasuryApproval: React.FC<CheckTreasuryApprovalProps> = ({ nftId }) 
         </p>
       )}
     </div>
+  
   );
 };
 
