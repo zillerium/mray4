@@ -6,8 +6,10 @@ import DisplayNftsDropDown from '@/components/Nft/DisplayNftsDropDown';
 import ReadNftByTokenNumberOwner from '@/components/ReadNft/ReadNftByTokenNumberOwner';
 import Navbar from '@/components/Navbar/Navbar';
 import BondIssue from '@/components/Bond/BondIssue';
+import CopyText from '@/components/Util/CopyText';
 import GetBondPeriod from '@/components/Bond/GetBondPeriod';
 import GetCR from '@/components/Bond/GetCR';
+import CheckTreasuryApproval from '@/components/Util/CheckTreasuryApproval';
 import ApproveBondTreasury from '@/components/Treasury/ApproveBondTreasury';
 import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
 import GetBondStatus from '@/components/Bond/GetBondStatus';
@@ -22,6 +24,7 @@ const BondIssueCom: React.FC = () => {
   const [selectedToken, setSelectedToken] = useState<number | null>(null);
   const [nftPrice, setNftPrice] = useState<string>(''); // For price
   const [bondCouponRate, setBondCouponRate] = useState<string>(''); // For coupon rate
+  const [collateralizationRatio, setCollateralizationRatio] = useState<string>(''); // New state for CR
 
   const handleTokenListUpdate = (newTokenList: number[]) =>
     setTokenList(newTokenList);
@@ -115,7 +118,7 @@ console.log("nft ======>", nftPrice)
               2 & 3. Set the Financials and Issue
             </h3>
 <GetBondPeriod />
-<GetCR />
+      <GetCR onCrChange={setCollateralizationRatio} />
 <BondIssue
   tokenNumber={selectedToken?.toString() ?? ''}
   ownedNft={nftOwner === userAddress && !bondActive} // Check for ownership and bond status
@@ -123,6 +126,7 @@ console.log("nft ======>", nftPrice)
     setNftPrice={setNftPrice} // Callback for price
     bondCouponRate={bondCouponRate} // Pass coupon rate
     setBondCouponRate={setBondCouponRate} // Callback for coupon rate
+    collateralizationRatio={collateralizationRatio} // Pass CR
 />
    {/* Button or Full GetFees Component */}
       {nftPrice && bondCouponRate ? (
@@ -142,9 +146,11 @@ console.log("nft ======>", nftPrice)
             <h3 className="text-lg font-semibold mt-6">4. Approve the Vault</h3>
 
             {nftOwner && (
-              <p className="text-sm text-gray-700 mb-2">
-                NFT Owner: {nftOwner}
-              </p>
+<div className="px-6 py-3 bg-stone-50 text-blue-600 text-1xl font-extrabold rounded-md mt-4 flex flex-col items-center">
+  <span>NFT Owner:</span>
+                 <CopyText copiedText={nftOwner} />
+        </div>
+
             )}
             <div className="flex items-center justify-center space-x-4 mt-4">
               {nftOwner === userAddress ? (
@@ -160,6 +166,15 @@ console.log("nft ======>", nftPrice)
                 </button>
               )}
             </div>
+<div className="flex items-center justify-center space-x-4 mt-4">
+  {selectedToken !== null ? (
+    // Pass only if selectedToken is a valid number
+    <CheckTreasuryApproval nftId={selectedToken} />
+  ) : (
+    <p className="text-gray-500">No NFT selected for approval check.</p>
+  )}
+</div>
+
           </div>
         </div>
       </main>

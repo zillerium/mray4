@@ -54,7 +54,7 @@ console.log(" bondCouponrate  ==============",bondCouponRate)
         <p>Loading fees...</p>
       ) : fees ? (
         <div className="px-6 py-3 bg-green-100 text-green-800 text-3xl font-extrabold rounded-md mt-4">
-          {fees} USDC
+          Fees: {fees} USDC
         </div>
       ) : error ? (
         <p className="text-red-500 mt-4">{error}</p>

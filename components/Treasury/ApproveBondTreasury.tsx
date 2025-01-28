@@ -5,6 +5,7 @@ import uniContractAddress from '@/lib/uniContractAddress.json'; // Address for t
 import bondTreasuryAddress from '@/lib/bondTreasuryAddress.json'; // Address for the Vault contract
 import { FaExternalLinkAlt } from 'react-icons/fa'; // Import FontAwesome icon
 import CopyText from '@/components/Util/CopyText';
+import ShowTxnHash from '@/components/Util/ShowTxnHash'; // Standardized component for transaction status
 
 interface ApproveBondTreasuryProps {
   tokenId: string;
@@ -51,31 +52,12 @@ const ApproveBondTreasury: React.FC<ApproveBondTreasuryProps> = ({ tokenId }) =>
       >
         Approve NFT {tokenId}
       </button>
-
-      {/* Status and Transaction Info */}
-      <div className="w-full max-w-md">
-        {txnStatus && (
-          <div className="text-gray-600 text-sm mt-2">{txnStatus}</div>
-        )}
-        {transactionHash && (
-          <div className="text-sm mt-2 flex items-center">
-            Transaction Hash: <CopyText copiedText={transactionHash} />{' '}
-            <a
-              href={`https://sepolia.basescan.org/tx/${transactionHash}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 text-blue-500"
-            >
-              <FaExternalLinkAlt className="inline-block" />
-            </a>
-          </div>
-        )}
-        {error && (
-          <div className="text-red-500 text-sm mt-2">
-            Error: {error.message}
-          </div>
-        )}
-      </div>
+    {/* Transaction Status, Hash, and Error Messages */}
+      <ShowTxnHash
+        txnStatus={txnStatus}
+        transactionHash={transactionHash ?? null} // Convert undefined to null
+        error={error}
+      />
     </div>
   );
 };

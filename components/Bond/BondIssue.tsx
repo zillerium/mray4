@@ -14,6 +14,7 @@ interface BondIssueProps {
     setNftPrice: React.Dispatch<React.SetStateAction<string>>; // Callback for NFT price
     bondCouponRate: string; // New prop for bond coupon rate
     setBondCouponRate: React.Dispatch<React.SetStateAction<string>>; // Callback for bond coupon rate
+    collateralizationRatio: string; // New prop for collateralization ratio
 }
 
 
@@ -32,11 +33,22 @@ const BondIssue: React.FC<BondIssueProps> = ({
     setNftPrice,
     bondCouponRate,
     setBondCouponRate,
+collateralizationRatio,
 }) => {
   const [endDate, setEndDate] = useState<string>('');
   const [txnStatus, setTxnStatus] = useState<string | null>(null);
 
   const { data: transactionHash, writeContract, error } = useWriteContract();
+
+  const calculateBondAmount = () => {
+    const crValue = parseFloat(collateralizationRatio);
+    const priceValue = parseFloat(nftPrice);
+    if (!isNaN(crValue) && !isNaN(priceValue)) {
+      return (crValue * priceValue) / 100;
+    }
+    return 0;
+  };
+
 
   const handleSubmit = async () => {
     if (!tokenNumber || !nftPrice || !bondCouponRate || !endDate) {
@@ -77,7 +89,7 @@ console.log(" --- unixTimestamp ---- ", unixTimestamp);
     <div className="flex flex-col items-center space-y-4 mt-4">
       {/* Input Fields */}
       <div className="flex flex-col items-start space-y-2 w-full max-w-md">
-        <label className="text-gray-700">Price (USDC):</label>
+        <label className="text-gray-700">NFT Price (USDC):</label>
         
 <input
     type="number"
@@ -86,6 +98,10 @@ console.log(" --- unixTimestamp ---- ", unixTimestamp);
     value={nftPrice} // Use prop
     onChange={(e) => setNftPrice(e.target.value)} // Update via callback
 />
+  <div className="px-6 py-3 bg-sky-200 text-blue-600 text-3xl font-extrabold rounded-md mt-4">
+          Bond Amount: {Intl.NumberFormat('en-US').format(calculateBondAmount())} USD
+        </div>
+
         <label className="text-gray-700">Annual Bond Coupon Rate (%):</label>
 
 <input

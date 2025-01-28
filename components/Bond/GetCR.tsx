@@ -5,7 +5,11 @@ import bondTreasuryContractAddress from '@/lib/bondTreasuryAddress.json';
 
 const contractAddress = bondTreasuryContractAddress.address as `0x${string}`;
 
-const GetCR: React.FC = () => {
+interface GetCRProps {
+  onCrChange: (crValue: string) => void;
+}
+
+const GetCR: React.FC<GetCRProps> = ({ onCrChange }) => {
   const [cr, setCr] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,11 +21,13 @@ const GetCR: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      setCr(`${Number(data)} %`); // Format CR as percentage
+      const formattedCr = `${Number(data)} %`;
+      setCr(formattedCr); // Format CR as percentage
+      onCrChange(formattedCr); // Pass CR value to parent
     } else if (!data && error) {
       setError('Failed to fetch collateralization ratio from the contract.');
     }
-  }, [data, error]);
+  }, [data, error, onCrChange]);
 
   return (
     <div className="flex flex-col items-center mt-1">
