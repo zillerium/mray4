@@ -30,7 +30,7 @@ const ApproveERC20Treasury: React.FC<ApproveERC20Props> = ({ amount }) => {
         address: mintAddress,
         abi: mintContractABI,
         functionName: 'increaseApproval',
-        args: [bondAddress, BigInt(Number(amount) * 10 ** 6)], // Convert to 6 decimals
+        args: [bondAddress, BigInt(Number(amount))], // Convert to 6 decimals
       });
 
       setTxnStatus('Transaction submitted...');
