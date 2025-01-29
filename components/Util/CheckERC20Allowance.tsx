@@ -26,7 +26,7 @@ const CheckERC20Allowance: React.FC<CheckERC20AllowanceProps> = ({ userAddress }
 
   useEffect(() => {
     if (data !== undefined) {
-      setAllowance(Number(data) / CURRENCY_FACTOR); // Convert from smallest unit (MRAY has 6 decimals)
+      setAllowance(Number(data) ); // Convert from smallest unit (MRAY has 6 decimals)
     } else if (isError) {
       setAllowance(null); // Reset in case of error
     }
@@ -38,12 +38,22 @@ const CheckERC20Allowance: React.FC<CheckERC20AllowanceProps> = ({ userAddress }
       {!isLoading && allowance !== null && (
         <div className="flex items-center space-x-4">
           {allowance > 0 ? (
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100">
-                <Check className="text-green-500 w-5 h-5" />
-              </div>
-              <p className="text-green-500">Approved: {allowance.toLocaleString()} MRAY</p>
-            </div>
+           <div className="flex items-center space-x-2">
+  {/* Icon */}
+  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100">
+    <Check className="text-green-500 w-5 h-5" />
+  </div>
+
+  {/* Text Block */}
+  <div className="flex flex-col">
+    {/* Original text with commas */}
+    <p className="text-green-500">Approved: {allowance.toLocaleString()} MRAY</p>
+<br />    {/* New line without commas */}
+    <p className="text-green-500">Approved: {allowance} MRAY</p>
+  </div>
+</div>
+ 
+
           ) : (
             <div className="flex items-center space-x-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-100">

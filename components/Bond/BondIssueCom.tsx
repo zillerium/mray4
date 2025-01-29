@@ -17,6 +17,7 @@ import DisplayHelpHeadings from '@/components/Bond/DisplayHelpHeadings';
 import GetBondStatus from '@/components/Bond/GetBondStatus';
 import GetFees from '@/components/Bond/GetFees';
 import ApproveERC20Treasury from '@/components/Treasury/ApproveERC20Treasury';
+import UnApproveERC20Treasury from '@/components/Treasury/UnApproveERC20Treasury';
 import GetWalletHeader from '@/components/Util/GetWalletHeader';
 import CheckERC20Allowance from '@/components/Util/CheckERC20Allowance';
 import bondTreasuryContractAddress from '@/lib/bondTreasuryAddress.json'; // Treasury contract address
@@ -222,6 +223,14 @@ const calculateBondAmount = () => {
 <div className="flex items-center justify-center space-x-4 mt-4">
   {userAddress && (
     <CheckERC20Allowance userAddress={userAddress} />
+  )}
+</div>
+<div className="flex flex-col items-center space-y-4 mt-4">
+  {/* Render CheckERC20Allowance */}
+
+  {/* Render UnApproveERC20Treasury */}
+  {userAddress && (
+    <UnApproveERC20Treasury />
   )}
 </div>
           </div>
