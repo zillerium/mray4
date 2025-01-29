@@ -20,10 +20,10 @@ const ReadBondPool: React.FC<ReadBondPoolProps> = ({ onBondListUpdate }) => {
   });
 
   const handleFetchBonds = () => {
-console.log("fetched bonds ========")
+    console.log('fetched bonds ========');
     refetch().then((result) => {
-  console.log("Refetch result:", result); // Log the full result object
-      console.log("Data returned:", result.data); // Log the data property explicitly
+      console.log('Refetch result:', result); // Log the full result object
+      console.log('Data returned:', result.data); // Log the data property explicitly
 
       if (result.data && Array.isArray(result.data)) {
         const bondList = result.data.map((id: string | number | bigint) =>

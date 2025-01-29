@@ -4,7 +4,8 @@ import Navbar from '@/components/Navbar/Navbar';
 import GetWalletHeader from '@/components/Util/GetWalletHeader'; // Import the new header
 import GetBondPeriod from '@/components/Bond/GetBondPeriod'; // Import the new header
 import SetBondPeriod from '@/components/Admin/SetBondPeriod'; // Import the new header
-
+import GetContractAddresses from '@/components/Admin/GetContractAddresses'; // Import the new header
+import ManageContractApprovals from '@/components/Admin/ManageContractApprovals';
 export default function GenAdminCom() {
   return (
     <div>
@@ -56,6 +57,22 @@ export default function GenAdminCom() {
           </h3>
           <SetBondPeriod />
         </div>
+        <div className="w-full max-w-4xl mt-8">
+          <hr className="border-gray-300 mb-6" />
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            Contracts
+          </h3>
+          <GetContractAddresses />
+        </div>
+        <div className="w-full max-w-4xl mt-8">
+          <hr className="border-gray-300 mb-6" />
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            Approvals 
+          </h3>
+          <ManageContractApprovals />
+        </div>
+
+
       </main>
     </div>
   );

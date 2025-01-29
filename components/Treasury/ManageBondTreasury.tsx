@@ -33,7 +33,9 @@ export default function ManageBondTreasury() {
         >
           Bond Treasury #
         </span>
-        {selectedBond !== null && <DisplayBondNumber selectedToken={selectedBond} />}
+        {selectedBond !== null && (
+          <DisplayBondNumber selectedToken={selectedBond} />
+        )}
       </h2>
       <br />
       <p>
@@ -80,27 +82,21 @@ export default function ManageBondTreasury() {
         )}
       </div>
 
-
-<div className="flex justify-center flex-wrap items-center flex-col">
-  {selectedBond !== null && (
-    <>
-      <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
-        {/* Convert selectedBond to a string */}
-        <RedeemBond bondId={selectedBond.toString()} />
+      <div className="flex justify-center flex-wrap items-center flex-col">
+        {selectedBond !== null && (
+          <>
+            <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
+              {/* Convert selectedBond to a string */}
+              <RedeemBond bondId={selectedBond.toString()} />
+            </div>
+            <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
+              <div className="w-full px-4 py-2 text-center text-white rounded-lg ">
+                <NavigationBox href="/BondedNft" title="Check NFT" />
+              </div>
+            </div>
+          </>
+        )}
       </div>
-      <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4">
-        <div className="w-full px-4 py-2 text-center text-white rounded-lg ">
-          <NavigationBox href="/BondedNft" title="Check NFT" />
-        </div>
-      </div>
-    </>
-  )}
-</div>
-
-
-
-
     </div>
   );
 }
-
